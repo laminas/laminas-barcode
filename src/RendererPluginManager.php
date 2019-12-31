@@ -1,16 +1,14 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Barcode
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Barcode;
+namespace Laminas\Barcode;
 
-use Zend\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\AbstractPluginManager;
 
 /**
  * Plugin manager implementation for barcode renderers.
@@ -19,8 +17,8 @@ use Zend\ServiceManager\AbstractPluginManager;
  * Renderer\AbstractRenderer. Additionally, it registers a number of default
  * barcode renderers.
  *
- * @category   Zend
- * @package    Zend_Barcode
+ * @category   Laminas
+ * @package    Laminas_Barcode
  */
 class RendererPluginManager extends AbstractPluginManager
 {
@@ -30,9 +28,9 @@ class RendererPluginManager extends AbstractPluginManager
      * @var array
      */
     protected $invokableClasses = array(
-        'image' => 'Zend\Barcode\Renderer\Image',
-        'pdf'   => 'Zend\Barcode\Renderer\Pdf',
-        'svg'   => 'Zend\Barcode\Renderer\Svg'
+        'image' => 'Laminas\Barcode\Renderer\Image',
+        'pdf'   => 'Laminas\Barcode\Renderer\Pdf',
+        'svg'   => 'Laminas\Barcode\Renderer\Svg'
     );
 
     /**
