@@ -6,8 +6,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#23](https://github.com/zendframework/zend-barcode/pull/23) prepares and
-  publishes the documentation to https://zendframework.github.io/zend-barcode/
+- [zendframework/zend-barcode#23](https://github.com/zendframework/zend-barcode/pull/23) prepares and
+  publishes the documentation to https://docs.laminas.dev/laminas-barcode/
 
 ### Deprecated
 
@@ -19,6 +19,6 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#12](https://github.com/zendframework/zend-barcode/pull/12) and
-  [#16](https://github.com/zendframework/zend-barcode/pull/16) update the code
-  base to be forwards-compatible with zend-servicemanager and zend-stdlib v3.
+- [zendframework/zend-barcode#12](https://github.com/zendframework/zend-barcode/pull/12) and
+  [zendframework/zend-barcode#16](https://github.com/zendframework/zend-barcode/pull/16) update the code
+  base to be forwards-compatible with laminas-servicemanager and laminas-stdlib v3.

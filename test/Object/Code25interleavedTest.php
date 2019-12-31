@@ -1,18 +1,17 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Barcode\Object;
+namespace LaminasTest\Barcode\Object;
 
-use Zend\Barcode;
+use Laminas\Barcode;
 
 /**
- * @group      Zend_Barcode
+ * @group      Laminas_Barcode
  */
 class Code25interleavedTest extends TestCommon
 {
@@ -109,7 +108,7 @@ class Code25interleavedTest extends TestCommon
 
     public function testBadTextDetectedIfChecksumWished()
     {
-        $this->setExpectedException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->setExpectedException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setText('a');
         $this->object->setWithChecksum(true);
         $this->object->getText();
@@ -123,7 +122,7 @@ class Code25interleavedTest extends TestCommon
 
     public function testCheckParamsWithLowRatio()
     {
-        $this->setExpectedException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->setExpectedException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setText('0123456789');
         $this->object->setBarThinWidth(21);
         $this->object->setBarThickWidth(40);
@@ -132,7 +131,7 @@ class Code25interleavedTest extends TestCommon
 
     public function testCheckParamsWithHighRatio()
     {
-        $this->setExpectedException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->setExpectedException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setText('0123456789');
         $this->object->setBarThinWidth(20);
         $this->object->setBarThickWidth(61);

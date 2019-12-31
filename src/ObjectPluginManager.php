@@ -1,17 +1,16 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Barcode;
+namespace Laminas\Barcode;
 
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\Exception\InvalidServiceException;
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\Exception\InvalidServiceException;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 /**
  * Plugin manager implementation for barcode parsers.
@@ -56,6 +55,46 @@ class ObjectPluginManager extends AbstractPluginManager
         'royalmail'         => Object\Royalmail::class,
         'upca'              => Object\Upca::class,
         'upce'              => Object\Upce::class,
+
+        // Legacy Zend Framework aliases
+        \Zend\Barcode\Object\Codabar::class => Object\Codabar::class,
+        \Zend\Barcode\Object\Code128::class => Object\Code128::class,
+        \Zend\Barcode\Object\Code25::class => Object\Code25::class,
+        \Zend\Barcode\Object\Code25interleaved::class => Object\Code25interleaved::class,
+        \Zend\Barcode\Object\Code39::class => Object\Code39::class,
+        \Zend\Barcode\Object\Ean13::class => Object\Ean13::class,
+        \Zend\Barcode\Object\Ean2::class => Object\Ean2::class,
+        \Zend\Barcode\Object\Ean5::class => Object\Ean5::class,
+        \Zend\Barcode\Object\Ean8::class => Object\Ean8::class,
+        \Zend\Barcode\Object\Error::class => Object\Error::class,
+        \Zend\Barcode\Object\Identcode::class => Object\Identcode::class,
+        \Zend\Barcode\Object\Itf14::class => Object\Itf14::class,
+        \Zend\Barcode\Object\Leitcode::class => Object\Leitcode::class,
+        \Zend\Barcode\Object\Planet::class => Object\Planet::class,
+        \Zend\Barcode\Object\Postnet::class => Object\Postnet::class,
+        \Zend\Barcode\Object\Royalmail::class => Object\Royalmail::class,
+        \Zend\Barcode\Object\Upca::class => Object\Upca::class,
+        \Zend\Barcode\Object\Upce::class => Object\Upce::class,
+
+        // v2 normalized FQCNs
+        'zendbarcodeobjectcodabar' => Object\Codabar::class,
+        'zendbarcodeobjectcode128' => Object\Code128::class,
+        'zendbarcodeobjectcode25' => Object\Code25::class,
+        'zendbarcodeobjectcode25interleaved' => Object\Code25interleaved::class,
+        'zendbarcodeobjectcode39' => Object\Code39::class,
+        'zendbarcodeobjectean13' => Object\Ean13::class,
+        'zendbarcodeobjectean2' => Object\Ean2::class,
+        'zendbarcodeobjectean5' => Object\Ean5::class,
+        'zendbarcodeobjectean8' => Object\Ean8::class,
+        'zendbarcodeobjecterror' => Object\Error::class,
+        'zendbarcodeobjectidentcode' => Object\Identcode::class,
+        'zendbarcodeobjectitf14' => Object\Itf14::class,
+        'zendbarcodeobjectleitcode' => Object\Leitcode::class,
+        'zendbarcodeobjectplanet' => Object\Planet::class,
+        'zendbarcodeobjectpostnet' => Object\Postnet::class,
+        'zendbarcodeobjectroyalmail' => Object\Royalmail::class,
+        'zendbarcodeobjectupca' => Object\Upca::class,
+        'zendbarcodeobjectupce' => Object\Upce::class,
     ];
 
     protected $factories = [
@@ -80,24 +119,24 @@ class ObjectPluginManager extends AbstractPluginManager
 
         // v2 canonical FQCNs
 
-        'zendbarcodeobjectcodabar'           => InvokableFactory::class,
-        'zendbarcodeobjectcode128'           => InvokableFactory::class,
-        'zendbarcodeobjectcode25'            => InvokableFactory::class,
-        'zendbarcodeobjectcode25interleaved' => InvokableFactory::class,
-        'zendbarcodeobjectcode39'            => InvokableFactory::class,
-        'zendbarcodeobjectean13'             => InvokableFactory::class,
-        'zendbarcodeobjectean2'              => InvokableFactory::class,
-        'zendbarcodeobjectean5'              => InvokableFactory::class,
-        'zendbarcodeobjectean8'              => InvokableFactory::class,
-        'zendbarcodeobjecterror'             => InvokableFactory::class,
-        'zendbarcodeobjectidentcode'         => InvokableFactory::class,
-        'zendbarcodeobjectitf14'             => InvokableFactory::class,
-        'zendbarcodeobjectleitcode'          => InvokableFactory::class,
-        'zendbarcodeobjectplanet'            => InvokableFactory::class,
-        'zendbarcodeobjectpostnet'           => InvokableFactory::class,
-        'zendbarcodeobjectroyalmail'         => InvokableFactory::class,
-        'zendbarcodeobjectupca'              => InvokableFactory::class,
-        'zendbarcodeobjectupce'              => InvokableFactory::class,
+        'laminasbarcodeobjectcodabar'           => InvokableFactory::class,
+        'laminasbarcodeobjectcode128'           => InvokableFactory::class,
+        'laminasbarcodeobjectcode25'            => InvokableFactory::class,
+        'laminasbarcodeobjectcode25interleaved' => InvokableFactory::class,
+        'laminasbarcodeobjectcode39'            => InvokableFactory::class,
+        'laminasbarcodeobjectean13'             => InvokableFactory::class,
+        'laminasbarcodeobjectean2'              => InvokableFactory::class,
+        'laminasbarcodeobjectean5'              => InvokableFactory::class,
+        'laminasbarcodeobjectean8'              => InvokableFactory::class,
+        'laminasbarcodeobjecterror'             => InvokableFactory::class,
+        'laminasbarcodeobjectidentcode'         => InvokableFactory::class,
+        'laminasbarcodeobjectitf14'             => InvokableFactory::class,
+        'laminasbarcodeobjectleitcode'          => InvokableFactory::class,
+        'laminasbarcodeobjectplanet'            => InvokableFactory::class,
+        'laminasbarcodeobjectpostnet'           => InvokableFactory::class,
+        'laminasbarcodeobjectroyalmail'         => InvokableFactory::class,
+        'laminasbarcodeobjectupca'              => InvokableFactory::class,
+        'laminasbarcodeobjectupce'              => InvokableFactory::class,
     ];
 
     protected $instanceOf = Object\AbstractObject::class;
