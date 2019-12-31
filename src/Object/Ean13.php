@@ -1,20 +1,18 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Barcode
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Barcode\Object;
+namespace Laminas\Barcode\Object;
 
 /**
  * Class for generate Ean13 barcode
  *
- * @category   Zend
- * @package    Zend_Barcode
+ * @category   Laminas
+ * @package    Laminas_Barcode
  */
 class Ean13 extends AbstractObject
 {
@@ -159,7 +157,7 @@ class Ean13 extends AbstractObject
      */
     protected function drawText()
     {
-        if (get_called_class() == 'Zend\Barcode\Object\Ean13') {
+        if (get_called_class() == 'Laminas\Barcode\Object\Ean13') {
             $this->drawEan13Text();
         } else {
             parent::drawText();
