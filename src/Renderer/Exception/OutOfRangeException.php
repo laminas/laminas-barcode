@@ -1,18 +1,17 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Barcode\Renderer\Exception;
+namespace Laminas\Barcode\Renderer\Exception;
 
-use Zend\Barcode\Exception;
+use Laminas\Barcode\Exception;
 
 /**
- * Exception for Zend\Barcode component.
+ * Exception for Laminas\Barcode component.
  */
 class OutOfRangeException extends Exception\OutOfRangeException implements
     ExceptionInterface
