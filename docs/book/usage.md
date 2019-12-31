@@ -1,9 +1,9 @@
 # Usage
 
-`Zend\Barcode\Barcode` uses a factory method, `factory()`, to create both an
+`Laminas\Barcode\Barcode` uses a factory method, `factory()`, to create both an
 instance of the barcode object to represent, and the renderer you will use to
-draw it. (Barcode objects extend `Zend\Barcode\Object\AbstractObject`, and
-renderers extend `Zend\Barcode\Renderer\AbstractRenderer`.) The `factory()`
+draw it. (Barcode objects extend `Laminas\Barcode\Object\AbstractObject`, and
+renderers extend `Laminas\Barcode\Renderer\AbstractRenderer`.) The `factory()`
 method accepts five arguments:
 
 - The name of the barcode format (e.g., "code39") or a
@@ -19,16 +19,16 @@ method accepts five arguments:
 
 On success, the factory method returns an instance of the renderer.
 
-### Getting a Renderer with Zend\\Barcode\\Barcode::factory()
+### Getting a Renderer with Laminas\\Barcode\\Barcode::factory()
 
-`Zend\Barcode\Barcode::factory()` instantiates both the barcode and renderer
+`Laminas\Barcode\Barcode::factory()` instantiates both the barcode and renderer
 instance, and binds them.
 
 In this first example, we will use the **Code39** barcode type together with the
 **Image** renderer.
 
 ```php
-use Zend\Barcode\Barcode;
+use Laminas\Barcode\Barcode;
 
 // Only the text to draw is required.
 $barcodeOptions = ['text' => 'ZEND-FRAMEWORK'];
@@ -43,17 +43,17 @@ $renderer = Barcode::factory(
 );
 ```
 
-### Using zend-config
+### Using laminas-config
 
-You may pass a `Zend\Config\Config` instance to the factory in order to create
+You may pass a `Laminas\Config\Config` instance to the factory in order to create
 the necessary objects. The following example is functionally equivalent to the
 previous.
 
 ```php
-use Zend\Config\Config;
-use Zend\Barcode\Barcode;
+use Laminas\Config\Config;
+use Laminas\Barcode\Barcode;
 
-// Using a single Zend\Config\Config object:
+// Using a single Laminas\Config\Config object:
 $config = new Config([
     'barcode'        => 'code39',
     'barcodeParams'  => ['text' => 'ZEND-FRAMEWORK'],
@@ -69,12 +69,12 @@ $renderer = Barcode::factory($config);
 
 When you **draw** the barcode, you retrieve the resource in which the barcode is
 drawn. To draw a barcode, call the `draw()` of the renderer, or use the proxy
-method provided by `Zend\Barcode\Barcode`.
+method provided by `Laminas\Barcode\Barcode`.
 
 ### Drawing a barcode with the renderer object
 
 ```php
-use Zend\Barcode\Barcode;
+use Laminas\Barcode\Barcode;
 
 // Only the text to draw is required.
 $barcodeOptions = ['text' => 'ZEND-FRAMEWORK'];
@@ -93,12 +93,12 @@ $imageResource = $renderer->draw();
 
 ```
 
-### Drawing a barcode with Zend\\Barcode\\Barcode::draw()
+### Drawing a barcode with Laminas\\Barcode\\Barcode::draw()
 
 The static `draw()` method is a shortcut for calling `factory()` + `draw()`:
 
 ```php
-use Zend\Barcode\Barcode;
+use Laminas\Barcode\Barcode;
 
 // Only the text to draw is required.
 $barcodeOptions = ['text' => 'ZEND-FRAMEWORK'];
@@ -123,12 +123,12 @@ representing the barcode, but does not actually *emit* it (e.g., to the
 browser).
 
 To emit the barcode, call the `render()` method of the renderer, or use
-the proxy method provided by `Zend\Barcode\Barcode`.
+the proxy method provided by `Laminas\Barcode\Barcode`.
 
 ### Rendering a barcode with the renderer object
 
 ```php
-use Zend\Barcode\Barcode;
+use Laminas\Barcode\Barcode;
 
 // Only the text to draw is required
 $barcodeOptions = ['text' => 'ZEND-FRAMEWORK'];
@@ -148,12 +148,12 @@ Barcode::factory(
 
 This will generate the following barcode:
 
-![image](images/zend.barcode.introduction.example-1.png)
+![image](images/laminas.barcode.introduction.example-1.png)
 
-### Rendering a barcode with Zend\\Barcode\\Barcode::render()
+### Rendering a barcode with Laminas\\Barcode\\Barcode::render()
 
 ```php
-use Zend\Barcode\Barcode;
+use Laminas\Barcode\Barcode;
 
 // Only the text to draw is required
 $barcodeOptions = ['text' => 'ZEND-FRAMEWORK'];

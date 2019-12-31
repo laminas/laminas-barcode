@@ -1,16 +1,17 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-barcode for the canonical source repository
- * @copyright Copyright (c) 2005-2019 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   https://github.com/zendframework/zend-barcode/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Barcode\Object;
+namespace LaminasTest\Barcode\Object;
 
-use Zend\Barcode;
+use Laminas\Barcode;
 
 /**
- * @group      Zend_Barcode
+ * @group      Laminas_Barcode
  */
 class Itf14Test extends TestCommon
 {
@@ -73,7 +74,7 @@ class Itf14Test extends TestCommon
 
     public function testBadTextDetectedIfChecksumWished()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setText('a');
         $this->object->setWithChecksum(true);
         $this->object->getText();
@@ -87,7 +88,7 @@ class Itf14Test extends TestCommon
 
     public function testCheckParamsWithLowRatio()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setText('0000123456789');
         $this->object->setBarThinWidth(21);
         $this->object->setBarThickWidth(40);
@@ -96,7 +97,7 @@ class Itf14Test extends TestCommon
 
     public function testCheckParamsWithHighRatio()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setText('0000123456789');
         $this->object->setBarThinWidth(20);
         $this->object->setBarThickWidth(61);
