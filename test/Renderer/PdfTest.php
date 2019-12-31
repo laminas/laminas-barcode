@@ -1,34 +1,33 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Barcode\Renderer;
+namespace LaminasTest\Barcode\Renderer;
 
+use Laminas\Barcode;
+use Laminas\Barcode\Object;
 use ZendPdf as Pdf;
-use Zend\Barcode;
-use Zend\Barcode\Object;
 
 /**
- * @group      Zend_Barcode
+ * @group      Laminas_Barcode
  */
 class PdfTest extends TestCommon
 {
     public function setUp()
     {
-        if (!constant('TESTS_ZEND_BARCODE_PDF_SUPPORT')) {
-            $this->markTestSkipped('Enable TESTS_ZEND_BARCODE_PDF_SUPPORT to test PDF render');
+        if (!constant('TESTS_LAMINAS_BARCODE_PDF_SUPPORT')) {
+            $this->markTestSkipped('Enable TESTS_LAMINAS_BARCODE_PDF_SUPPORT to test PDF render');
         }
         parent::setUp();
     }
 
     protected function getRendererObject($options = null)
     {
-        return new \Zend\Barcode\Renderer\Pdf($options);
+        return new \Laminas\Barcode\Renderer\Pdf($options);
     }
 
     public function testType()
