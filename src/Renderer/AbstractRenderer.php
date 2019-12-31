@@ -1,26 +1,24 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Barcode
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Barcode\Renderer;
+namespace Laminas\Barcode\Renderer;
 
+use Laminas\Barcode\Barcode;
+use Laminas\Barcode\Exception as BarcodeException;
+use Laminas\Barcode\Object;
+use Laminas\Stdlib\ArrayUtils;
 use Traversable;
-use Zend\Barcode\Barcode;
-use Zend\Barcode\Exception as BarcodeException;
-use Zend\Barcode\Object;
-use Zend\Stdlib\ArrayUtils;
 
 /**
  * Class for rendering the barcode
  *
- * @category   Zend
- * @package    Zend_Barcode
+ * @category   Laminas
+ * @package    Laminas_Barcode
  */
 abstract class AbstractRenderer implements RendererInterface
 {
@@ -28,7 +26,7 @@ abstract class AbstractRenderer implements RendererInterface
      * Namespace of the renderer for autoloading
      * @var string
      */
-    protected $rendererNamespace = 'Zend\Barcode\Renderer';
+    protected $rendererNamespace = 'Laminas\Barcode\Renderer';
 
     /**
      * Renderer type
