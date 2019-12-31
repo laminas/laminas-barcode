@@ -1,15 +1,14 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Barcode;
+namespace Laminas\Barcode;
 
-use Zend\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\AbstractPluginManager;
 
 /**
  * Plugin manager implementation for barcode parsers.
@@ -26,24 +25,24 @@ class ObjectPluginManager extends AbstractPluginManager
      * @var array
      */
     protected $invokableClasses = array(
-        'codabar'           => 'Zend\Barcode\Object\Codabar',
-        'code128'           => 'Zend\Barcode\Object\Code128',
-        'code25'            => 'Zend\Barcode\Object\Code25',
-        'code25interleaved' => 'Zend\Barcode\Object\Code25interleaved',
-        'code39'            => 'Zend\Barcode\Object\Code39',
-        'ean13'             => 'Zend\Barcode\Object\Ean13',
-        'ean2'              => 'Zend\Barcode\Object\Ean2',
-        'ean5'              => 'Zend\Barcode\Object\Ean5',
-        'ean8'              => 'Zend\Barcode\Object\Ean8',
-        'error'             => 'Zend\Barcode\Object\Error',
-        'identcode'         => 'Zend\Barcode\Object\Identcode',
-        'itf14'             => 'Zend\Barcode\Object\Itf14',
-        'leitcode'          => 'Zend\Barcode\Object\Leitcode',
-        'planet'            => 'Zend\Barcode\Object\Planet',
-        'postnet'           => 'Zend\Barcode\Object\Postnet',
-        'royalmail'         => 'Zend\Barcode\Object\Royalmail',
-        'upca'              => 'Zend\Barcode\Object\Upca',
-        'upce'              => 'Zend\Barcode\Object\Upce',
+        'codabar'           => 'Laminas\Barcode\Object\Codabar',
+        'code128'           => 'Laminas\Barcode\Object\Code128',
+        'code25'            => 'Laminas\Barcode\Object\Code25',
+        'code25interleaved' => 'Laminas\Barcode\Object\Code25interleaved',
+        'code39'            => 'Laminas\Barcode\Object\Code39',
+        'ean13'             => 'Laminas\Barcode\Object\Ean13',
+        'ean2'              => 'Laminas\Barcode\Object\Ean2',
+        'ean5'              => 'Laminas\Barcode\Object\Ean5',
+        'ean8'              => 'Laminas\Barcode\Object\Ean8',
+        'error'             => 'Laminas\Barcode\Object\Error',
+        'identcode'         => 'Laminas\Barcode\Object\Identcode',
+        'itf14'             => 'Laminas\Barcode\Object\Itf14',
+        'leitcode'          => 'Laminas\Barcode\Object\Leitcode',
+        'planet'            => 'Laminas\Barcode\Object\Planet',
+        'postnet'           => 'Laminas\Barcode\Object\Postnet',
+        'royalmail'         => 'Laminas\Barcode\Object\Royalmail',
+        'upca'              => 'Laminas\Barcode\Object\Upca',
+        'upce'              => 'Laminas\Barcode\Object\Upce',
     );
 
     /**

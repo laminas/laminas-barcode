@@ -1,30 +1,28 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Barcode
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Barcode\Renderer;
+namespace LaminasTest\Barcode\Renderer;
 
-use ZendTest\Barcode\Object\TestAsset as TestAsset;
-use Zend\Barcode;
-use Zend\Barcode\Object;
-use Zend\Config;
+use Laminas\Barcode;
+use Laminas\Barcode\Object;
+use Laminas\Config;
+use LaminasTest\Barcode\Object\TestAsset as TestAsset;
 
 /**
- * @category   Zend
- * @package    Zend_Barcode
+ * @category   Laminas
+ * @package    Laminas_Barcode
  * @subpackage UnitTests
  */
 abstract class TestCommon extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @var \Zend\Barcode\Renderer
+     * @var \Laminas\Barcode\Renderer
      */
     protected $renderer = null;
 
@@ -71,13 +69,13 @@ abstract class TestCommon extends \PHPUnit_Framework_TestCase
 
     public function testModuleSizeAsString()
     {
-        $this->setExpectedException('\Zend\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->setExpectedException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
         $this->renderer->setModuleSize('abc');
     }
 
     public function testModuleSizeLessThan0()
     {
-        $this->setExpectedException('\Zend\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->setExpectedException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
         $this->renderer->setModuleSize(-0.5);
     }
 
@@ -100,7 +98,7 @@ abstract class TestCommon extends \PHPUnit_Framework_TestCase
 
     public function testBadHorizontalPosition()
     {
-        $this->setExpectedException('\Zend\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->setExpectedException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
         $this->renderer->setHorizontalPosition('none');
     }
 
@@ -115,7 +113,7 @@ abstract class TestCommon extends \PHPUnit_Framework_TestCase
 
     public function testBadVerticalPosition()
     {
-        $this->setExpectedException('\Zend\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->setExpectedException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
         $this->renderer->setVerticalPosition('none');
     }
 
@@ -130,7 +128,7 @@ abstract class TestCommon extends \PHPUnit_Framework_TestCase
 
     public function testBadLeftOffset()
     {
-        $this->setExpectedException('\Zend\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->setExpectedException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
         $this->renderer->setLeftOffset(- 1);
     }
 
@@ -145,7 +143,7 @@ abstract class TestCommon extends \PHPUnit_Framework_TestCase
 
     public function testBadTopOffset()
     {
-        $this->setExpectedException('\Zend\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->setExpectedException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
         $this->renderer->setTopOffset(- 1);
     }
 
@@ -157,7 +155,7 @@ abstract class TestCommon extends \PHPUnit_Framework_TestCase
         $this->assertEquals(true, $renderer->getAutomaticRenderError());
     }
 
-    public function testConstructorWithZendConfig()
+    public function testConstructorWithLaminasConfig()
     {
         $config = new Config\Config(
                 array('automaticRenderError' => true ,
@@ -183,7 +181,7 @@ abstract class TestCommon extends \PHPUnit_Framework_TestCase
 
     public function testRendererWithUnkownInstructionProvideByObject()
     {
-        $this->setExpectedException('\Zend\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->setExpectedException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
         $object = new TestAsset\BarcodeTest();
         $object->setText('test');
         $object->addTestInstruction(array('type' => 'unknown'));
@@ -193,7 +191,7 @@ abstract class TestCommon extends \PHPUnit_Framework_TestCase
 
     public function testBarcodeObjectProvided()
     {
-        $this->setExpectedException('\Zend\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->setExpectedException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
         $this->renderer->draw();
     }
 
