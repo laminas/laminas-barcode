@@ -1,22 +1,20 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Barcode
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Barcode\Object;
+namespace LaminasTest\Barcode\Object;
 
-use Zend\Barcode;
+use Laminas\Barcode;
 
 /**
- * @category   Zend
- * @package    Zend_Barcode
+ * @category   Laminas
+ * @package    Laminas_Barcode
  * @subpackage UnitTests
- * @group      Zend_Barcode
+ * @group      Laminas_Barcode
  */
 class Code39Test extends TestCommon
 {
@@ -80,7 +78,7 @@ class Code39Test extends TestCommon
 
     public function testBadTextDetectedIfChecksumWished()
     {
-        $this->setExpectedException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->setExpectedException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setText('&');
         $this->object->setWithChecksum(true);
         $this->object->getText();
@@ -94,7 +92,7 @@ class Code39Test extends TestCommon
 
     public function testCheckParamsWithLowRatio()
     {
-        $this->setExpectedException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->setExpectedException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setText('TEST');
         $this->object->setBarThinWidth(21);
         $this->object->setBarThickWidth(40);
@@ -103,7 +101,7 @@ class Code39Test extends TestCommon
 
     public function testCheckParamsWithHighRatio()
     {
-        $this->setExpectedException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->setExpectedException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setText('TEST');
         $this->object->setBarThinWidth(20);
         $this->object->setBarThickWidth(61);
