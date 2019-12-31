@@ -1,13 +1,14 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-barcode for the canonical source repository
- * @copyright Copyright (c) 2005-2019 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   https://github.com/zendframework/zend-barcode/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Barcode\Object;
+namespace Laminas\Barcode\Object;
 
-use Zend\Validator\Barcode as BarcodeValidator;
+use Laminas\Validator\Barcode as BarcodeValidator;
 
 /**
  * Class for generate Ean8 barcode

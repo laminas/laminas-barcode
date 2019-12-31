@@ -1,20 +1,21 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-barcode for the canonical source repository
- * @copyright Copyright (c) 2005-2019 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   https://github.com/zendframework/zend-barcode/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Barcode\Object;
+namespace LaminasTest\Barcode\Object;
 
+use Laminas\Barcode;
+use Laminas\Config;
 use PHPUnit\Framework\TestCase;
-use Zend\Barcode;
-use Zend\Config;
 
 abstract class TestCommon extends TestCase
 {
     /**
-     * @var \Zend\Barcode\Object\AbstractObject
+     * @var \Laminas\Barcode\Object\AbstractObject
      */
     protected $object = null;
 
@@ -64,7 +65,7 @@ abstract class TestCommon extends TestCase
         $this->assertEquals(150, $object->getBarHeight());
     }
 
-    public function testConstructorWithZendConfig()
+    public function testConstructorWithLaminasConfig()
     {
         $config = new Config\Config(
             ['barHeight' => 150,
@@ -101,7 +102,7 @@ abstract class TestCommon extends TestCase
 
     public function testNegativeBarHeight()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setBarHeight(- 1);
     }
 
@@ -117,7 +118,7 @@ abstract class TestCommon extends TestCase
 
     public function testNegativeBarThinWidth()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setBarThinWidth(- 1);
     }
 
@@ -133,7 +134,7 @@ abstract class TestCommon extends TestCase
 
     public function testNegativeBarThickWidth()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setBarThickWidth(- 1);
     }
 
@@ -151,7 +152,7 @@ abstract class TestCommon extends TestCase
 
     public function testNegativeFactor()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setFactor(- 1);
     }
 
@@ -165,13 +166,13 @@ abstract class TestCommon extends TestCase
 
     public function testNegativeForeColor()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setForeColor(- 1);
     }
 
     public function testTooHighForeColor()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setForeColor(16777126);
     }
 
@@ -185,13 +186,13 @@ abstract class TestCommon extends TestCase
 
     public function testNegativeBackgroundColor()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setBackgroundColor(- 1);
     }
 
     public function testTooHighBackgroundColor()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setBackgroundColor(16777126);
     }
 
@@ -299,13 +300,13 @@ abstract class TestCommon extends TestCase
 
     public function testSetLowFontAsNumberForGdImage()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setFont(0);
     }
 
     public function testSetHighFontAsNumberForGdImage()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setFont(6);
     }
 
@@ -317,7 +318,7 @@ abstract class TestCommon extends TestCase
 
     public function testSetFontAsBoolean()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setFont(true);
     }
 
@@ -328,7 +329,7 @@ abstract class TestCommon extends TestCase
                 'GD extension must not be loaded to run this test'
             );
         }
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setFont(1);
     }
 
@@ -352,7 +353,7 @@ abstract class TestCommon extends TestCase
 
     public function testStringFontSize()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setFontSize('22a');
     }
 
@@ -450,7 +451,7 @@ abstract class TestCommon extends TestCase
 
     public function testCheckParamsFontWithOrientation()
     {
-        $this->expectException('\Zend\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
         $this->object->setText('0');
         $this->object->setFont(1);
         $this->object->setOrientation(45);
