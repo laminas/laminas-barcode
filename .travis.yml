@@ -1,10 +1,8 @@
-sudo: false
-
 language: php
 
 env:
   global:
-    - TESTS_ZEND_BARCODE_PDF_SUPPORT=true
+    - TESTS_LAMINAS_BARCODE_PDF_SUPPORT=true
 
 cache:
   directories:
@@ -26,7 +24,6 @@ matrix:
     - php: hhvm
 
 notifications:
-  irc: "irc.freenode.org#zftalk.dev"
   email: false
 
 before_install:
