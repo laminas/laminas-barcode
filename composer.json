@@ -1,34 +1,22 @@
 {
-    "name": "zendframework/zend-barcode",
+    "name": "laminas/laminas-barcode",
     "description": "provides a generic way to generate barcodes",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zf2",
+        "laminas",
         "barcode"
     ],
-    "homepage": "https://github.com/zendframework/zend-barcode",
-    "autoload": {
-        "psr-4": {
-            "Zend\\Barcode\\": "src/"
-        }
+    "homepage": "https://laminas.dev",
+    "support": {
+        "docs": "https://docs.laminas.dev/laminas-barcode/",
+        "issues": "https://github.com/laminas/laminas-barcode/issues",
+        "source": "https://github.com/laminas/laminas-barcode",
+        "rss": "https://github.com/laminas/laminas-barcode/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
-    "require": {
-        "php": ">=5.3.23",
-        "zendframework/zend-stdlib": "self.version",
-        "zendframework/zend-validator": "self.version"
-    },
-    "require-dev": {
-        "zendframework/zend-servicemanager": "self.version",
-        "zendframework/zendpdf": "*",
-        "zendframework/zend-validator": "self.version",
-        "fabpot/php-cs-fixer": "1.7.*",
-        "satooshi/php-coveralls": "dev-master",
-        "phpunit/PHPUnit": "~4.0"
-    },
-    "suggest": {
-        "zendframework/zend-servicemanager": "Zend\\ServiceManager component",
-        "zendframework/zendpdf": "ZendPdf component",
-        "zendframework/zend-validator": "Zend\\Validator component"
+    "config": {
+        "sort-packages": true
     },
     "extra": {
         "branch-alias": {
@@ -36,9 +24,36 @@
             "dev-develop": "2.4-dev"
         }
     },
+    "require": {
+        "php": ">=5.3.23",
+        "laminas/laminas-stdlib": "self.version",
+        "laminas/laminas-validator": "self.version",
+        "laminas/laminas-zendframework-bridge": "^1.0"
+    },
+    "require-dev": {
+        "fabpot/php-cs-fixer": "1.7.*",
+        "laminas/laminas-servicemanager": "self.version",
+        "laminas/laminas-validator": "self.version",
+        "phpunit/phpunit": "~4.0",
+        "satooshi/php-coveralls": "dev-master",
+        "zendframework/zendpdf": "*"
+    },
+    "suggest": {
+        "laminas/laminas-servicemanager": "Laminas\\ServiceManager component",
+        "laminas/laminas-validator": "Laminas\\Validator component",
+        "zendframework/zendpdf": "ZendPdf component"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laminas\\Barcode\\": "src/"
+        }
+    },
     "autoload-dev": {
         "psr-4": {
-            "ZendTest\\Barcode\\": "test/"
+            "LaminasTest\\Barcode\\": "test/"
         }
+    },
+    "replace": {
+        "zendframework/zend-barcode": "self.version"
     }
 }
