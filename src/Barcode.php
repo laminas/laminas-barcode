@@ -1,16 +1,17 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-barcode for the canonical source repository
- * @copyright Copyright (c) 2005-2019 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   https://github.com/zendframework/zend-barcode/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Barcode;
+namespace Laminas\Barcode;
 
+use Laminas\Barcode\Renderer\RendererInterface;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\Stdlib\ArrayUtils;
 use Traversable;
-use Zend\Barcode\Renderer\RendererInterface;
-use Zend\Stdlib\ArrayUtils;
-use Zend\ServiceManager\ServiceManager;
 
 /**
  * Class for generate Barcode
@@ -71,7 +72,7 @@ abstract class Barcode
     }
 
     /**
-     * Factory for Zend\Barcode classes.
+     * Factory for Laminas\Barcode classes.
      *
      * First argument may be a string containing the base of the adapter class
      * name, e.g. 'code25' corresponds to class Object\Code25.  This

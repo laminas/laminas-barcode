@@ -50,7 +50,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#48](https://github.com/zendframework/zend-barcode/pull/48) adds the methods `setProvidedChecksum(bool $value)` (and the option `providedChecksum`) and `getProvidedChecksum()`. These allow indicating that the barcode text includes a checksum value for purposes of validation.
+- [zendframework/zend-barcode#48](https://github.com/zendframework/zend-barcode/pull/48) adds the methods `setProvidedChecksum(bool $value)` (and the option `providedChecksum`) and `getProvidedChecksum()`. These allow indicating that the barcode text includes a checksum value for purposes of validation.
 
 ### Changed
 
@@ -58,7 +58,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Deprecated
 
-- [#49](https://github.com/zendframework/zend-barcode/pull/49) deprecates `Zend\Barcode\Renderer\Pdf`. The renderer uses the now-abandoned zendframework/zendpdf package, and, as such, is deprecated as well, and scheduled for removal with version 3.0.0. We will release a separate PDF renderer package at a later date that consumes a 3rd party PDF library.
+- [zendframework/zend-barcode#49](https://github.com/zendframework/zend-barcode/pull/49) deprecates `Laminas\Barcode\Renderer\Pdf`. The renderer uses the now-abandoned zendframework/zendpdf package, and, as such, is deprecated as well, and scheduled for removal with version 3.0.0. We will release a separate PDF renderer package at a later date that consumes a 3rd party PDF library.
 
 ### Removed
 
@@ -88,20 +88,20 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#43](https://github.com/zendframework/zend-barcode/pull/43) fixes typo in exception message of `Zend\Barcode\Exception\UnexpectedValueException`.
+- [zendframework/zend-barcode#43](https://github.com/zendframework/zend-barcode/pull/43) fixes typo in exception message of `Laminas\Barcode\Exception\UnexpectedValueException`.
 
-- [#44](https://github.com/zendframework/zend-barcode/pull/44) changes
+- [zendframework/zend-barcode#44](https://github.com/zendframework/zend-barcode/pull/44) changes
   curly braces in array and string offset access to square brackets
   in order to prevent issues under the upcoming PHP 7.4 release.
 
-- [#45](https://github.com/zendframework/zend-barcode/pull/45) fixes
+- [zendframework/zend-barcode#45](https://github.com/zendframework/zend-barcode/pull/45) fixes
   rotation calculations.
 
-- [#46](https://github.com/zendframework/zend-barcode/pull/46) fixes
+- [zendframework/zend-barcode#46](https://github.com/zendframework/zend-barcode/pull/46) fixes
   generating checksum for EAN5 and Identcode/Leitcode. These barcodes
   have fixed length and checksum generator must use also leading zeros. 
 
-- [#47](https://github.com/zendframework/zend-barcode/pull/47) fixes
+- [zendframework/zend-barcode#47](https://github.com/zendframework/zend-barcode/pull/47) fixes
   text length for EAN2 and EAN5 by adding leading zeros.
 
 ## 2.7.0 - 2017-12-11
@@ -120,10 +120,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- [#25](https://github.com/zendframework/zend-barcode/pull/25) removes support
+- [zendframework/zend-barcode#25](https://github.com/zendframework/zend-barcode/pull/25) removes support
   for PHP 5.5.
 
-- [#38](https://github.com/zendframework/zend-barcode/pull/38) removes support
+- [zendframework/zend-barcode#38](https://github.com/zendframework/zend-barcode/pull/38) removes support
   for HHVM.
 
 ### Fixed
@@ -150,21 +150,21 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#24](https://github.com/zendframework/zend-barcode/pull/24) updates the SVG
+- [zendframework/zend-barcode#24](https://github.com/zendframework/zend-barcode/pull/24) updates the SVG
   renderer to remove extraneous whitespace in `rgb()` declarations, as the
   specification dis-allows whitespace, and many PDF readers/manipulators will
   not correctly consume SVG definitions that include them.
 
-- [#36](https://github.com/zendframework/zend-barcode/pull/36) provides several
-  minor changes to namespace imports for the `Zend\Barcode\Object` namespace to
+- [zendframework/zend-barcode#36](https://github.com/zendframework/zend-barcode/pull/36) provides several
+  minor changes to namespace imports for the `Laminas\Barcode\Object` namespace to
   ensure the package works on PHP 7.2.
 
 ## 2.6.0 - 2016-02-17
 
 ### Added
 
-- [#23](https://github.com/zendframework/zend-barcode/pull/23) prepares and
-  publishes the documentation to https://zendframework.github.io/zend-barcode/
+- [zendframework/zend-barcode#23](https://github.com/zendframework/zend-barcode/pull/23) prepares and
+  publishes the documentation to https://docs.laminas.dev/laminas-barcode/
 
 ### Deprecated
 
@@ -176,6 +176,6 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#12](https://github.com/zendframework/zend-barcode/pull/12) and
-  [#16](https://github.com/zendframework/zend-barcode/pull/16) update the code
-  base to be forwards-compatible with zend-servicemanager and zend-stdlib v3.
+- [zendframework/zend-barcode#12](https://github.com/zendframework/zend-barcode/pull/12) and
+  [zendframework/zend-barcode#16](https://github.com/zendframework/zend-barcode/pull/16) update the code
+  base to be forwards-compatible with laminas-servicemanager and laminas-stdlib v3.
