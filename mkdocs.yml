@@ -1,12 +1,12 @@
 docs_dir: docs/book
 site_dir: docs/html
-pages:
+nav:
     - Home: index.md
     - Introduction: intro.md
     - Usage: usage.md
     - Reference:
         - 'Barcode Objects': objects.md
         - 'Renderers': renderers.md
-site_name: zend-barcode
+site_name: laminas-barcode
 site_description: 'Programmatically create and render barcodes as images or in PDFs'
-repo_url: 'https://github.com/zendframework/zend-barcode'
+repo_url: 'https://github.com/laminas/laminas-barcode'

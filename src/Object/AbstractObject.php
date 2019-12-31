@@ -1,16 +1,17 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-barcode for the canonical source repository
- * @copyright Copyright (c) 2005-2019 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   https://github.com/zendframework/zend-barcode/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Barcode\Object;
+namespace Laminas\Barcode\Object;
 
+use Laminas\Barcode;
+use Laminas\Stdlib\ArrayUtils;
+use Laminas\Validator\Barcode as BarcodeValidator;
 use Traversable;
-use Zend\Barcode;
-use Zend\Stdlib\ArrayUtils;
-use Zend\Validator\Barcode as BarcodeValidator;
 
 /**
  * Class for generate Barcode
@@ -22,7 +23,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @var string
      */
-    protected $barcodeNamespace = 'Zend\Barcode\Object';
+    protected $barcodeNamespace = 'Laminas\Barcode\Object';
 
     /**
      * Set of drawing instructions
@@ -310,7 +311,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int $value
      * @return self Provides a fluent interface
-     * @throws \Zend\Barcode\Object\Exception\ExceptionInterface
+     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
      */
     public function setBarHeight($value)
     {
@@ -338,7 +339,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int $value
      * @return self Provides a fluent interface
-     * @throws \Zend\Barcode\Object\Exception\ExceptionInterface
+     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
      */
     public function setBarThinWidth($value)
     {
@@ -366,7 +367,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int $value
      * @return self Provides a fluent interface
-     * @throws \Zend\Barcode\Object\Exception\ExceptionInterface
+     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
      */
     public function setBarThickWidth($value)
     {
@@ -395,7 +396,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int|float|string|bool $value
      * @return self Provides a fluent interface
-     * @throws \Zend\Barcode\Object\Exception\ExceptionInterface
+     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
      */
     public function setFactor($value)
     {
@@ -424,7 +425,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param string $value
      * @return self Provides a fluent interface
-     * @throws \Zend\Barcode\Object\Exception\ExceptionInterface
+     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
      */
     public function setForeColor($value)
     {
@@ -455,7 +456,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int $value
      * @return self Provides a fluent interface
-     * @throws \Zend\Barcode\Object\Exception\ExceptionInterface
+     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
      */
     public function setBackgroundColor($value)
     {
@@ -543,7 +544,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int|float|string|bool $value
      * @return self Provides a fluent interface
-     * @throws \Zend\Barcode\Object\Exception\ExceptionInterface
+     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
      */
     public function setOrientation($value)
     {
@@ -666,7 +667,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param  bool $value
      * @return self Provides a fluent interface
-     * @throws \Zend\Barcode\Object\Exception\ExceptionInterface
+     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
      */
     public function setStretchText($value)
     {
@@ -719,7 +720,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param  bool $value
      * @return self Provides a fluent interface
-     * @throws \Zend\Barcode\Object\Exception\ExceptionInterface
+     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
      */
     public function setWithChecksumInText($value)
     {
@@ -766,7 +767,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int|string $value
      * @return self Provides a fluent interface
-     * @throws \Zend\Barcode\Object\Exception\ExceptionInterface
+     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
      */
     public function setFont($value)
     {
@@ -808,7 +809,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param float $value
      * @return self Provides a fluent interface
-     * @throws \Zend\Barcode\Object\Exception\ExceptionInterface
+     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
      */
     public function setFontSize($value)
     {
@@ -943,7 +944,7 @@ abstract class AbstractObject implements ObjectInterface
      * Check if a text is really provided to barcode
      *
      * @param string|null $value
-     * @throws \Zend\Barcode\Object\Exception\ExceptionInterface
+     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
      */
     protected function checkText($value = null)
     {
@@ -963,7 +964,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int $min
      * @param int $max
-     * @throws \Zend\Barcode\Object\Exception\ExceptionInterface
+     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
      */
     protected function checkRatio($min = 2, $max = 3)
     {
@@ -981,7 +982,7 @@ abstract class AbstractObject implements ObjectInterface
     /**
      * Drawing with an angle is just allow TTF font
      *
-     * @throws \Zend\Barcode\Object\Exception\ExceptionInterface
+     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
      */
     protected function checkFontAndOrientation()
     {
