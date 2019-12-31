@@ -1,4 +1,4 @@
-# Zend\\Barcode Objects
+# Laminas\\Barcode Objects
 
 Barcode objects allow you to generate barcodes independently of the rendering support. After
 generation, you can retrieve the barcode as an array of drawing instructions that you can provide to
@@ -15,7 +15,7 @@ set in three ways:
 
 ```php
 <?php
-use Zend\Barcode\Object;
+use Laminas\Barcode\Object;
 
 $options = array('text' => 'ZEND-FRAMEWORK', 'barHeight' => 40);
 
@@ -38,7 +38,7 @@ $barcode->setText('ZEND-FRAMEWORK')
 In the following list, the values have no units; we will use the term "unit." For example, the
 default value of the "thin bar" is "1 unit". The real units depend on the rendering support (see the
 renderers documentation
-\<zend.barcode.renderers\> for more information). Setters are each named by uppercasing the initial
+\<laminas.barcode.renderers\> for more information). Setters are each named by uppercasing the initial
 letter of the option and prefixing the name with "set" (e.g. "barHeight" becomes "setBarHeight").
 All options have a corresponding getter prefixed with "get" (e.g. "getBarHeight"). Available options
 are:
@@ -46,7 +46,7 @@ are:
 
 |Option            |Data Type                        |Default Value        |Description                                                                                                |
 |------------------|---------------------------------|---------------------|-----------------------------------------------------------------------------------------------------------|
-|barcodeNamespace  |String                           |Zend\\Barcode\\Object|Namespace of the barcode; for example, if you need to extend the embedding objects                         |
+|barcodeNamespace  |String                           |Laminas\\Barcode\\Object|Namespace of the barcode; for example, if you need to extend the embedding objects                         |
 |barHeight         |Integer                          |50                   |Height of the bars                                                                                         |
 |barThickWidth     |Integer                          |3                    |Width of the thick bar                                                                                     |
 |barThinWidth      |Integer                          |1                    |Width of the thin bar                                                                                      |
@@ -69,12 +69,12 @@ are:
 ### Particular case of static setBarcodeFont()
 
 You can set a common font for all your objects by using the static method
-`Zend\Barcode\Barcode::setBarcodeFont()`. This value can be always be overridden for individual
+`Laminas\Barcode\Barcode::setBarcodeFont()`. This value can be always be overridden for individual
 objects by using the `setFont()` method.
 
 ```php
 <?php
-use Zend\Barcode\Barcode;
+use Laminas\Barcode\Barcode;
 
 // In your bootstrap:
 Barcode::setBarcodeFont('my_font.ttf');
@@ -103,7 +103,7 @@ Barcode::render(
 
 |Getter                             |Data Type|Description                                                                                                            |
 |-----------------------------------|---------|-----------------------------------------------------------------------------------------------------------------------|
-|getType()                          |String   |Return the name of the barcode class without the namespace (e.g. Zend\\Barcode\\Object\\Code39 returns simply "code39")|
+|getType()                          |String   |Return the name of the barcode class without the namespace (e.g. Laminas\\Barcode\\Object\\Code39 returns simply "code39")|
 |getRawText()                       |String   |Return the original text provided to the object                                                                        |
 |getTextToDisplay()                 |String   |Return the text to display, including, if activated, the checksum value                                                |
 |getQuietZone()                     |Integer  |Return the size of the space needed before and after the barcode without any drawing                                   |
@@ -118,19 +118,19 @@ Barcode::render(
 
 ## Description of shipped barcodes
 
-You will find below detailed information about all barcode types shipped by default with Zend
+You will find below detailed information about all barcode types shipped by default with Laminas
 Framework.
 
-### Zend\\Barcode\\Object\\Error
+### Laminas\\Barcode\\Object\\Error
 
-![image](../images/zend.barcode.objects.details.error.png)
+![image](../images/laminas.barcode.objects.details.error.png)
 
 This barcode is a special case. It is internally used to automatically render an exception caught by
-the `Zend\Barcode` component.
+the `Laminas\Barcode` component.
 
-### Zend\\Barcode\\Object\\Code128
+### Laminas\\Barcode\\Object\\Code128
 
-![image](../images/zend.barcode.objects.details.code128.png)
+![image](../images/laminas.barcode.objects.details.code128.png)
 
 - **Name:** Code 128
 - **Allowed characters:** the complete ASCII-character set
@@ -139,9 +139,9 @@ the `Zend\Barcode` component.
 
 There are no particular options for this barcode.
 
-### Zend\\Barcode\\Object\\Codabar
+### Laminas\\Barcode\\Object\\Codabar
 
-![image](../images/zend.barcode.objects.details.codabar.png)
+![image](../images/laminas.barcode.objects.details.codabar.png)
 
 - **Name:** Codabar (or Code 2 of 7)
 - **Allowed characters:**'0123456789-\$:/.+' with 'ABCD' as start and stop characters
@@ -150,9 +150,9 @@ There are no particular options for this barcode.
 
 There are no particular options for this barcode.
 
-### Zend\\Barcode\\Object\\Code25
+### Laminas\\Barcode\\Object\\Code25
 
-![image](../images/zend.barcode.objects.details.code25.png)
+![image](../images/laminas.barcode.objects.details.code25.png)
 
 - **Name:** Code 25 (or Code 2 of 5 or Code 25 Industrial)
 - **Allowed characters:**'0123456789'
@@ -161,11 +161,11 @@ There are no particular options for this barcode.
 
 There are no particular options for this barcode.
 
-### Zend\\Barcode\\Object\\Code25interleaved
+### Laminas\\Barcode\\Object\\Code25interleaved
 
-![image](../images/zend.barcode.objects.details.int25.png)
+![image](../images/laminas.barcode.objects.details.int25.png)
 
-This barcode extends `Zend\Barcode\Object\Code25` (Code 2 of 5), and has the same particulars and
+This barcode extends `Laminas\Barcode\Object\Code25` (Code 2 of 5), and has the same particulars and
 options, and adds the following:
 
 - **Name:** Code 2 of 5 Interleaved
@@ -181,14 +181,14 @@ Available options include:
 |withBearerBars|Boolean  |FALSE        |Draw a thick bar at the top and the bottom of the barcode.|
 
 
-> If the number of characters is not even, ``Zend\Barcode\Object\Code25interleaved`` will automatically 
+> If the number of characters is not even, ``Laminas\Barcode\Object\Code25interleaved`` will automatically 
 prepend the missing zero to the barcode text.
 
-### Zend\\Barcode\\Object\\Ean2
+### Laminas\\Barcode\\Object\\Ean2
 
-![image](../images/zend.barcode.objects.details.ean2.png)
+![image](../images/laminas.barcode.objects.details.ean2.png)
 
-This barcode extends `Zend\Barcode\Object\Ean5` (*EAN* 5), and has the same particulars and options,
+This barcode extends `Laminas\Barcode\Object\Ean5` (*EAN* 5), and has the same particulars and options,
 and adds the following:
 
 - **Name:** *EAN*-2
@@ -199,14 +199,14 @@ and adds the following:
 There are no particular options for this barcode.
 
 > ## Note
-If the number of characters is lower than 2, `Zend\Barcode\Object\Ean2` will automatically prepend
+If the number of characters is lower than 2, `Laminas\Barcode\Object\Ean2` will automatically prepend
 the missing zero to the barcode text.
 
-### Zend\\Barcode\\Object\\Ean5
+### Laminas\\Barcode\\Object\\Ean5
 
-![image](../images/zend.barcode.objects.details.ean5.png)
+![image](../images/laminas.barcode.objects.details.ean5.png)
 
-This barcode extends `Zend\Barcode\Object\Ean13` (*EAN* 13), and has the same particulars and
+This barcode extends `Laminas\Barcode\Object\Ean13` (*EAN* 13), and has the same particulars and
 options, and adds the following:
 
 - **Name:** *EAN*-5
@@ -217,14 +217,14 @@ options, and adds the following:
 There are no particular options for this barcode.
 
 > ## Note
-If the number of characters is lower than 5, `Zend\Barcode\Object\Ean5` will automatically prepend
+If the number of characters is lower than 5, `Laminas\Barcode\Object\Ean5` will automatically prepend
 the missing zero to the barcode text.
 
-### Zend\\Barcode\\Object\\Ean8
+### Laminas\\Barcode\\Object\\Ean8
 
-![image](../images/zend.barcode.objects.details.ean8.png)
+![image](../images/laminas.barcode.objects.details.ean8.png)
 
-This barcode extends `Zend\Barcode\Object\Ean13` (*EAN* 13), and has the same particulars and
+This barcode extends `Laminas\Barcode\Object\Ean13` (*EAN* 13), and has the same particulars and
 options, and adds the following:
 
 - **Name:** *EAN*-8
@@ -235,12 +235,12 @@ options, and adds the following:
 There are no particular options for this barcode.
 
 > ## Note
-If the number of characters is lower than 8, `Zend\Barcode\Object\Ean8` will automatically prepend
+If the number of characters is lower than 8, `Laminas\Barcode\Object\Ean8` will automatically prepend
 the missing zero to the barcode text.
 
-### Zend\\Barcode\\Object\\Ean13
+### Laminas\\Barcode\\Object\\Ean13
 
-![image](../images/zend.barcode.objects.details.ean13.png)
+![image](../images/laminas.barcode.objects.details.ean13.png)
 
 - **Name:** *EAN*-13
 - **Allowed characters:**'0123456789'
@@ -250,13 +250,13 @@ the missing zero to the barcode text.
 There are no particular options for this barcode.
 
 > ## Note
-If the number of characters is lower than 13, `Zend\Barcode\Object\Ean13` will automatically prepend
+If the number of characters is lower than 13, `Laminas\Barcode\Object\Ean13` will automatically prepend
 the missing zero to the barcode text.
 The option `withQuietZones` has no effect with this barcode.
 
-### Zend\\Barcode\\Object\\Code39
+### Laminas\\Barcode\\Object\\Code39
 
-![image](../images/zend.barcode.introduction.example-1.png)
+![image](../images/laminas.barcode.introduction.example-1.png)
 
 - **Name:** Code 39
 - **Allowed characters:**'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ -.\$/+%'
@@ -264,15 +264,15 @@ The option `withQuietZones` has no effect with this barcode.
 - **Length:** variable
 
 > ## Note
-`Zend\Barcode\Object\Code39` will automatically add the start and stop characters ('\*') for you.
+`Laminas\Barcode\Object\Code39` will automatically add the start and stop characters ('\*') for you.
 
 There are no particular options for this barcode.
 
-### Zend\\Barcode\\Object\\Identcode
+### Laminas\\Barcode\\Object\\Identcode
 
-![image](../images/zend.barcode.objects.details.identcode.png)
+![image](../images/laminas.barcode.objects.details.identcode.png)
 
-This barcode extends `Zend\Barcode\Object\Code25interleaved` (Code 2 of 5 Interleaved), and inherits
+This barcode extends `Laminas\Barcode\Object\Code25interleaved` (Code 2 of 5 Interleaved), and inherits
 some of its capabilities; it also has a few particulars of its own.
 
 - **Name:** Identcode (Deutsche Post Identcode)
@@ -283,14 +283,14 @@ some of its capabilities; it also has a few particulars of its own.
 There are no particular options for this barcode.
 
 > ## Note
-If the number of characters is lower than 12, `Zend\Barcode\Object\Identcode` will automatically
+If the number of characters is lower than 12, `Laminas\Barcode\Object\Identcode` will automatically
 prepend missing zeros to the barcode text.
 
-### Zend\\Barcode\\Object\\Itf14
+### Laminas\\Barcode\\Object\\Itf14
 
-![image](../images/zend.barcode.objects.details.itf14.png)
+![image](../images/laminas.barcode.objects.details.itf14.png)
 
-This barcode extends `Zend\Barcode\Object\Code25interleaved` (Code 2 of 5 Interleaved), and inherits
+This barcode extends `Laminas\Barcode\Object\Code25interleaved` (Code 2 of 5 Interleaved), and inherits
 some of its capabilities; it also has a few particulars of its own.
 
 - **Name:** *ITF*-14
@@ -301,14 +301,14 @@ some of its capabilities; it also has a few particulars of its own.
 There are no particular options for this barcode.
 
 > ## Note
-If the number of characters is lower than 14, `Zend\Barcode\Object\Itf14` will automatically prepend
+If the number of characters is lower than 14, `Laminas\Barcode\Object\Itf14` will automatically prepend
 missing zeros to the barcode text.
 
-### Zend\\Barcode\\Object\\Leitcode
+### Laminas\\Barcode\\Object\\Leitcode
 
-![image](../images/zend.barcode.objects.details.leitcode.png)
+![image](../images/laminas.barcode.objects.details.leitcode.png)
 
-This barcode extends `Zend\Barcode\Object\Identcode` (Deutsche Post Identcode), and inherits some of
+This barcode extends `Laminas\Barcode\Object\Identcode` (Deutsche Post Identcode), and inherits some of
 its capabilities; it also has a few particulars of its own.
 
 - **Name:** Leitcode (Deutsche Post Leitcode)
@@ -319,12 +319,12 @@ its capabilities; it also has a few particulars of its own.
 There are no particular options for this barcode.
 
 > ## Note
-If the number of characters is lower than 14, `Zend\Barcode\Object\Leitcode` will automatically
+If the number of characters is lower than 14, `Laminas\Barcode\Object\Leitcode` will automatically
 prepend missing zeros to the barcode text.
 
-### Zend\\Barcode\\Object\\Planet
+### Laminas\\Barcode\\Object\\Planet
 
-![image](../images/zend.barcode.objects.details.planet.png)
+![image](../images/laminas.barcode.objects.details.planet.png)
 
 - **Name:** Planet (PostaL Alpha Numeric Encoding Technique)
 - **Allowed characters:**'0123456789'
@@ -333,9 +333,9 @@ prepend missing zeros to the barcode text.
 
 There are no particular options for this barcode.
 
-### Zend\\Barcode\\Object\\Postnet
+### Laminas\\Barcode\\Object\\Postnet
 
-![image](../images/zend.barcode.objects.details.postnet.png)
+![image](../images/laminas.barcode.objects.details.postnet.png)
 
 - **Name:** Postnet (POSTal Numeric Encoding Technique)
 - **Allowed characters:**'0123456789'
@@ -344,9 +344,9 @@ There are no particular options for this barcode.
 
 There are no particular options for this barcode.
 
-### Zend\\Barcode\\Object\\Royalmail
+### Laminas\\Barcode\\Object\\Royalmail
 
-![image](../images/zend.barcode.objects.details.royalmail.png)
+![image](../images/laminas.barcode.objects.details.royalmail.png)
 
 - **Name:** Royal Mail or *RM4SCC* (Royal Mail 4-State Customer Code)
 - **Allowed characters:**'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -355,11 +355,11 @@ There are no particular options for this barcode.
 
 There are no particular options for this barcode.
 
-### Zend\\Barcode\\Object\\Upca
+### Laminas\\Barcode\\Object\\Upca
 
-![image](../images/zend.barcode.objects.details.upca.png)
+![image](../images/laminas.barcode.objects.details.upca.png)
 
-This barcode extends `Zend\Barcode\Object\Ean13` (*EAN*-13), and inherits some of its capabilities;
+This barcode extends `Laminas\Barcode\Object\Ean13` (*EAN*-13), and inherits some of its capabilities;
 it also has a few particulars of its own.
 
 - **Name:** *UPC*-A (Universal Product Code)
@@ -370,15 +370,15 @@ it also has a few particulars of its own.
 There are no particular options for this barcode.
 
 > ## Note
-If the number of characters is lower than 12, `Zend\Barcode\Object\Upca` will automatically prepend
+If the number of characters is lower than 12, `Laminas\Barcode\Object\Upca` will automatically prepend
 missing zeros to the barcode text.
 The option `withQuietZones` has no effect with this barcode.
 
-### Zend\\Barcode\\Object\\Upce
+### Laminas\\Barcode\\Object\\Upce
 
-![image](../images/zend.barcode.objects.details.upce.png)
+![image](../images/laminas.barcode.objects.details.upce.png)
 
-This barcode extends `Zend\Barcode\Object\Upca` (*UPC*-A), and inherits some of its capabilities; it
+This barcode extends `Laminas\Barcode\Object\Upca` (*UPC*-A), and inherits some of its capabilities; it
 also has a few particulars of its own. The first character of the text to encode is the system (0 or
 1).
 
@@ -390,11 +390,11 @@ also has a few particulars of its own. The first character of the text to encode
 There are no particular options for this barcode.
 
 > ## Note
-If the number of characters is lower than 8, `Zend\Barcode\Object\Upce` will automatically prepend
+If the number of characters is lower than 8, `Laminas\Barcode\Object\Upce` will automatically prepend
 missing zeros to the barcode text.
 
 > ## Note
-If the first character of the text to encode is not 0 or 1, `Zend\Barcode\Object\Upce` will
+If the first character of the text to encode is not 0 or 1, `Laminas\Barcode\Object\Upce` will
 automatically replace it by 0.
 The option `withQuietZones` has no effect with this barcode.
 

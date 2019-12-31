@@ -1,10 +1,10 @@
 {
-    "title": "Zend\\Barcode",
+    "title": "Laminas\\Barcode",
     "target": "html\/",
     "content": [
-        "book\/zend.barcode.intro.md",
-        "book\/zend.barcode.creation.md",
-        "book\/zend.barcode.objects.md",
-        "book\/zend.barcode.renderers.md"
+        "book\/laminas.barcode.intro.md",
+        "book\/laminas.barcode.creation.md",
+        "book\/laminas.barcode.objects.md",
+        "book\/laminas.barcode.renderers.md"
     ]
 }

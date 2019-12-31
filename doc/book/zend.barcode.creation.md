@@ -1,9 +1,9 @@
-# Barcode creation using Zend\\Barcode\\Barcode class
+# Barcode creation using Laminas\\Barcode\\Barcode class
 
-## Using Zend\\Barcode\\Barcode::factory
+## Using Laminas\\Barcode\\Barcode::factory
 
-`Zend\Barcode\Barcode` uses a factory method to create an instance of a renderer that extends
-`Zend\Barcode\Renderer\AbstractRenderer`. The factory method accepts five arguments.
+`Laminas\Barcode\Barcode` uses a factory method to create an instance of a renderer that extends
+`Laminas\Barcode\Renderer\AbstractRenderer`. The factory method accepts five arguments.
 
 - The name of the barcode format (e.g., "code39") or a [Traversable](http://php.net/traversable)
 object (required)
@@ -15,14 +15,14 @@ object) (optional)
 - Boolean to indicate whether or not to automatically render errors. If an exception occurs, the
 provided barcode object will be replaced with an Error representation (optional default `TRUE`)
 
-### Getting a Renderer with Zend\\Barcode\\Barcode::factory()
+### Getting a Renderer with Laminas\\Barcode\\Barcode::factory()
 
-`Zend\Barcode\Barcode::factory()` instantiates barcode classes and renderers and ties them together.
+`Laminas\Barcode\Barcode::factory()` instantiates barcode classes and renderers and ties them together.
 In this first example, we will use the **Code39** barcode type together with the **Image** renderer.
 
 ```php
 <?php
-use Zend\Barcode\Barcode;
+use Laminas\Barcode\Barcode;
 
 // Only the text to draw is required
 $barcodeOptions = array('text' => 'ZEND-FRAMEWORK');
@@ -35,17 +35,17 @@ $renderer = Barcode::factory(
 
 ```
 
-### Using Zend\\Barcode\\Barcode::factory() with Zend\\Config\\Config objects
+### Using Laminas\\Barcode\\Barcode::factory() with Laminas\\Config\\Config objects
 
-You may pass a `Zend\Config\Config` object to the factory in order to create the necessary objects.
+You may pass a `Laminas\Config\Config` object to the factory in order to create the necessary objects.
 The following example is functionally equivalent to the previous.
 
 ```php
 <?php
-use Zend\Config\Config;
-use Zend\Barcode\Barcode;
+use Laminas\Config\Config;
+use Laminas\Barcode\Barcode;
 
-// Using only one Zend\Config\Config object
+// Using only one Laminas\Config\Config object
 $config = new Config(array(
     'barcode'        => 'code39',
     'barcodeParams'  => array('text' => 'ZEND-FRAMEWORK'),
@@ -61,13 +61,13 @@ $renderer = Barcode::factory($config);
 
 When you **draw** the barcode, you retrieve the resource in which the barcode is drawn. To draw a
 barcode, you can call the `draw()` of the renderer, or simply use the proxy method provided by
-`Zend\Barcode\Barcode`.
+`Laminas\Barcode\Barcode`.
 
 ### Drawing a barcode with the renderer object
 
 ```php
 <?php
-use Zend\Barcode\Barcode;
+use Laminas\Barcode\Barcode;
 
 // Only the text to draw is required
 $barcodeOptions = array('text' => 'ZEND-FRAMEWORK');
@@ -82,11 +82,11 @@ $imageResource = Barcode::factory(
 
 ```
 
-### Drawing a barcode with Zend\\Barcode\\Barcode::draw()
+### Drawing a barcode with Laminas\\Barcode\\Barcode::draw()
 
 ```php
 <?php
-use Zend\Barcode\Barcode;
+use Laminas\Barcode\Barcode;
 
 // Only the text to draw is required
 $barcodeOptions = array('text' => 'ZEND-FRAMEWORK');
@@ -105,13 +105,13 @@ $imageResource = Barcode::draw(
 
 When you render a barcode, you draw the barcode, you send the headers and you send the resource
 (e.g. to a browser). To render a barcode, you can call the `render()` method of the renderer or
-simply use the proxy method provided by `Zend\Barcode\Barcode`.
+simply use the proxy method provided by `Laminas\Barcode\Barcode`.
 
 ### Rendering a barcode with the renderer object
 
 ```php
 <?php
-use Zend\Barcode\Barcode;
+use Laminas\Barcode\Barcode;
 
 // Only the text to draw is required
 $barcodeOptions = array('text' => 'ZEND-FRAMEWORK');
@@ -129,13 +129,13 @@ Barcode::factory(
 
 This will generate this barcode:
 
-![image](../images/zend.barcode.introduction.example-1.png)
+![image](../images/laminas.barcode.introduction.example-1.png)
 
-### Rendering a barcode with Zend\\Barcode\\Barcode::render()
+### Rendering a barcode with Laminas\\Barcode\\Barcode::render()
 
 ```php
 <?php
-use Zend\Barcode\Barcode;
+use Laminas\Barcode\Barcode;
 
 // Only the text to draw is required
 $barcodeOptions = array('text' => 'ZEND-FRAMEWORK');

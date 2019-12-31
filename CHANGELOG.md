@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#3](https://github.com/zendframework/zend-barcode/pull/3) adds documentation!
+- [zendframework/zend-barcode#3](https://github.com/zendframework/zend-barcode/pull/3) adds documentation!
 
 ### Deprecated
 
@@ -18,6 +18,6 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#5](https://github.com/zendframework/zend-barcode/pull/5) updates the
-  dependencies to *require* zendframework/zend-servicemanager, instead of list
+- [zendframework/zend-barcode#5](https://github.com/zendframework/zend-barcode/pull/5) updates the
+  dependencies to *require* laminas/laminas-servicemanager, instead of list
   it as an optional dependency, as it's required for they typical workflow.

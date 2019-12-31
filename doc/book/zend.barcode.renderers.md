@@ -1,4 +1,4 @@
-# Zend\\Barcode Renderers
+# Laminas\\Barcode Renderers
 
 Renderers have some common options. These options can be set in three ways:
 
@@ -10,7 +10,7 @@ Renderers have some common options. These options can be set in three ways:
 
 ```php
 <?php
-use Zend\Barcode\Renderer;
+use Laminas\Barcode\Renderer;
 
 $options = array('topOffset' => 10);
 
@@ -38,20 +38,20 @@ prefixed with "get" (e.g. "getBarHeight"). Available options are:
 
 |Option              |Data Type            |Default Value          |Description                                                                                                                                                                                                 |
 |--------------------|---------------------|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|rendererNamespace   |String               |Zend\\Barcode\\Renderer|Namespace of the renderer; for example, if you need to extend the renderers                                                                                                                                 |
+|rendererNamespace   |String               |Laminas\\Barcode\\Renderer|Namespace of the renderer; for example, if you need to extend the renderers                                                                                                                                 |
 |horizontalPosition  |String               |"left"                 |Can be "left", "center" or "right". Can be useful with PDF or if the setWidth() method is used with an image renderer.                                                                                      |
 |verticalPosition    |String               |"top"                  |Can be "top", "middle" or "bottom". Can be useful with PDF or if the setHeight() method is used with an image renderer.                                                                                     |
 |leftOffset          |Integer              |0                      |Top position of the barcode inside the renderer. If used, this value will override the "horizontalPosition" option.                                                                                         |
 |topOffset           |Integer              |0                      |Top position of the barcode inside the renderer. If used, this value will override the "verticalPosition" option.                                                                                           |
 |automaticRenderError|Boolean              |FALSE                  |Whether or not to automatically render errors. If an exception occurs, the provided barcode object will be replaced with an Error representation. Note that some errors (or exceptions) can not be rendered.|
 |moduleSize          |Float                |1                      |Size of a rendering module in the support.                                                                                                                                                                  |
-|barcode             |Zend\\Barcode\\Object|NULL                   |The barcode object to render.                                                                                                                                                                               |
+|barcode             |Laminas\\Barcode\\Object|NULL                   |The barcode object to render.                                                                                                                                                                               |
 
  An additional getter
 exists: `getType()`. It returns the name of the renderer class without the namespace (e.g.
-`Zend\Barcode\Renderer\Image` returns "image").
+`Laminas\Barcode\Renderer\Image` returns "image").
 
-## Zend\\Barcode\\Renderer\\Image
+## Laminas\\Barcode\\Renderer\\Image
 
 The Image renderer will draw the instruction list of the barcode object in an image resource. The
 component requires the GD extension. The default width of a module is 1 pixel.
@@ -67,7 +67,7 @@ Available options are:
 
 
 
-## Zend\\Barcode\\Renderer\\Pdf
+## Laminas\\Barcode\\Renderer\\Pdf
 
 The *PDF* renderer will draw the instruction list of the barcode object in a *PDF* document. The
 default width of a module is 0.5 point.
