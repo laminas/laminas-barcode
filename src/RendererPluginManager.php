@@ -1,17 +1,16 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Barcode;
+namespace Laminas\Barcode;
 
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\Exception\InvalidServiceException;
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\Exception\InvalidServiceException;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 /**
  * Plugin manager implementation for barcode renderers.
@@ -40,7 +39,17 @@ class RendererPluginManager extends AbstractPluginManager
     protected $aliases = [
         'image' => Renderer\Image::class,
         'pdf'   => Renderer\Pdf::class,
-        'svg'   => Renderer\Svg::class
+        'svg'   => Renderer\Svg::class,
+
+        // Legacy Zend Framework aliases
+        \Zend\Barcode\Renderer\Image::class => Renderer\Image::class,
+        \Zend\Barcode\Renderer\Pdf::class => Renderer\Pdf::class,
+        \Zend\Barcode\Renderer\Svg::class => Renderer\Svg::class,
+
+        // v2 normalized FQCNs
+        'zendbarcoderendererimage' => Renderer\Image::class,
+        'zendbarcoderendererpdf' => Renderer\Pdf::class,
+        'zendbarcoderenderersvg' => Renderer\Svg::class,
     ];
 
     protected $factories = [
@@ -50,9 +59,9 @@ class RendererPluginManager extends AbstractPluginManager
 
         // v2 canonical FQCNs
 
-        'zendbarcoderendererimage' => InvokableFactory::class,
-        'zendbarcoderendererpdf'   => InvokableFactory::class,
-        'zendbarcoderenderersvg'   => InvokableFactory::class,
+        'laminasbarcoderendererimage' => InvokableFactory::class,
+        'laminasbarcoderendererpdf'   => InvokableFactory::class,
+        'laminasbarcoderenderersvg'   => InvokableFactory::class,
     ];
 
     protected $instanceOf = Renderer\AbstractRenderer::class;

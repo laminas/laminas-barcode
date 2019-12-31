@@ -1,31 +1,22 @@
 {
-    "name": "zendframework/zend-barcode",
+    "name": "laminas/laminas-barcode",
     "description": "provides a generic way to generate barcodes",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zf2",
+        "laminas",
         "barcode"
     ],
-    "homepage": "https://github.com/zendframework/zend-barcode",
-    "autoload": {
-        "psr-4": {
-            "Zend\\Barcode\\": "src/"
-        }
+    "homepage": "https://laminas.dev",
+    "support": {
+        "docs": "https://docs.laminas.dev/laminas-barcode/",
+        "issues": "https://github.com/laminas/laminas-barcode/issues",
+        "source": "https://github.com/laminas/laminas-barcode",
+        "rss": "https://github.com/laminas/laminas-barcode/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
-    "require": {
-        "php": "^5.5 || ^7.0",
-        "zendframework/zend-stdlib": "^2.7 || ^3.0",
-        "zendframework/zend-validator": "^2.6",
-        "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3"
-    },
-    "require-dev": {
-        "zendframework/zend-config": "^2.6",
-        "zendframework/zendpdf": "*",
-        "phpunit/PHPUnit": "~4.0",
-        "zendframework/zend-coding-standard": "~1.0.0"
-    },
-    "suggest": {
-        "zendframework/zendpdf": "ZendPdf component"
+    "config": {
+        "sort-packages": true
     },
     "extra": {
         "branch-alias": {
@@ -33,9 +24,30 @@
             "dev-develop": "2.7-dev"
         }
     },
+    "require": {
+        "php": "^5.5 || ^7.0",
+        "laminas/laminas-servicemanager": "^2.7.5 || ^3.0.3",
+        "laminas/laminas-stdlib": "^2.7 || ^3.0",
+        "laminas/laminas-validator": "^2.6",
+        "laminas/laminas-zendframework-bridge": "^1.0"
+    },
+    "require-dev": {
+        "laminas/laminas-coding-standard": "~1.0.0",
+        "laminas/laminas-config": "^2.6",
+        "phpunit/phpunit": "~4.0",
+        "zendframework/zendpdf": "*"
+    },
+    "suggest": {
+        "zendframework/zendpdf": "ZendPdf component"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laminas\\Barcode\\": "src/"
+        }
+    },
     "autoload-dev": {
         "psr-4": {
-            "ZendTest\\Barcode\\": "test/"
+            "LaminasTest\\Barcode\\": "test/"
         }
     },
     "scripts": {
@@ -48,5 +60,8 @@
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
         "upload-coverage": "coveralls -v"
+    },
+    "replace": {
+        "zendframework/zend-barcode": "self.version"
     }
 }
