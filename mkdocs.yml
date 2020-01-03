@@ -10,3 +10,6 @@ nav:
 site_name: laminas-barcode
 site_description: 'Programmatically create and render barcodes as images or in PDFs'
 repo_url: 'https://github.com/laminas/laminas-barcode'
+extra:
+    project: Components
+    project_url: 'https://docs.laminas.dev'
