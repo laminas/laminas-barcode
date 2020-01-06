@@ -1,6 +1,6 @@
 # laminas-barcode
 
-[![Build Status](https://travis-ci.org/laminas/laminas-barcode.svg?branch=master)](https://travis-ci.org/laminas/laminas-barcode)
+[![Build Status](https://travis-ci.com/laminas/laminas-barcode.svg?branch=master)](https://travis-ci.com/laminas/laminas-barcode)
 [![Coverage Status](https://coveralls.io/repos/github/laminas/laminas-barcode/badge.svg?branch=master)](https://coveralls.io/github/laminas/laminas-barcode?branch=master)
 
 `Laminas\Barcode` provides a generic way to generate barcodes. The `Laminas\Barcode`
