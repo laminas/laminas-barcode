@@ -12,4 +12,3 @@ site_description: 'Programmatically create and render barcodes as images or in P
 repo_url: 'https://github.com/laminas/laminas-barcode'
 extra:
     project: Components
-    project_url: 'https://docs.laminas.dev'
