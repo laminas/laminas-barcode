@@ -509,11 +509,11 @@ Barcode::render(
 noted, each barcode supports the general options outlined in the previous
 section, and no others.</p>
 <h3>Laminas\Barcode\Object\Error</h3>
-<p><img alt="error" src="images/laminas.barcode.objects.details.error.png" class="img-responsive"/></p>
+<p><img alt="error" src="../images/laminas.barcode.objects.details.error.png" class="img-responsive"/></p>
 <p>This barcode is a special case. It is internally used to automatically render an
 exception caught by the component.</p>
 <h3>Laminas\Barcode\Object\Code128</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.code128.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.code128.png" class="img-responsive"/></p>
 <ul>
 <li><strong>Name:</strong> Code 128</li>
 <li><strong>Allowed characters:</strong> the complete ASCII-character set</li>
@@ -521,7 +521,7 @@ exception caught by the component.</p>
 <li><strong>Length:</strong> variable</li>
 </ul>
 <h3>Laminas\Barcode\Object\Codabar</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.codabar.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.codabar.png" class="img-responsive"/></p>
 <ul>
 <li><strong>Name:</strong> Codabar (or Code 2 of 7)</li>
 <li><strong>Allowed characters:</strong> <code>0123456789-\$:/.+</code> with <code>ABCD</code> as start and stop characters</li>
@@ -529,7 +529,7 @@ exception caught by the component.</p>
 <li><strong>Length:</strong> variable</li>
 </ul>
 <h3>Laminas\Barcode\Object\Code25</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.code25.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.code25.png" class="img-responsive"/></p>
 <ul>
 <li><strong>Name:</strong> Code 25 (or Code 2 of 5 or Code 25 Industrial)</li>
 <li><strong>Allowed characters:</strong> <code>0123456789</code></li>
@@ -537,7 +537,7 @@ exception caught by the component.</p>
 <li><strong>Length:</strong> variable</li>
 </ul>
 <h3>Laminas\Barcode\Object\Code25interleaved</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.int25.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.int25.png" class="img-responsive"/></p>
 <p>This barcode extends <code>Laminas\Barcode\Object\Code25</code> (Code 2 of 5), with the
 following changes:</p>
 <ul>
@@ -568,7 +568,7 @@ following changes:</p>
 <p>If the number of characters is not even, <code>Laminas\Barcode\Object\Code25interleaved</code>
 will automatically prepend the missing zero to the barcode text.</p>
 <h3>Laminas\Barcode\Object\Ean2</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.ean2.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.ean2.png" class="img-responsive"/></p>
 <p>This barcode extends <code>Laminas\Barcode\Object\Ean5</code> (<em>EAN</em> 5), with the following
 changes:</p>
 <ul>
@@ -580,7 +580,7 @@ changes:</p>
 <p>If the number of characters is lower than 2, <code>Laminas\Barcode\Object\Ean2</code> will
 automatically prepend the missing zero to the barcode text.</p>
 <h3>Laminas\Barcode\Object\Ean5</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.ean5.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.ean5.png" class="img-responsive"/></p>
 <p>This barcode extends <code>Laminas\Barcode\Object\Ean13</code> (<em>EAN</em> 13), with the following
 changes:</p>
 <ul>
@@ -592,7 +592,7 @@ changes:</p>
 <p>If the number of characters is lower than 5, <code>Laminas\Barcode\Object\Ean5</code> will
 automatically prepend zeroes to the barcode text until it reaches 5 characters.</p>
 <h3>Laminas\Barcode\Object\Ean8</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.ean8.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.ean8.png" class="img-responsive"/></p>
 <p>This barcode extends <code>Laminas\Barcode\Object\Ean13</code> (<em>EAN</em> 13), with the following
 changes:</p>
 <ul>
@@ -604,7 +604,7 @@ changes:</p>
 <p>If the number of characters is lower than 8, <code>Laminas\Barcode\Object\Ean8</code> will
 automatically prepend zeros to the barcode text until it reaches 8 characters.</p>
 <h3>Laminas\Barcode\Object\Ean13</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.ean13.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.ean13.png" class="img-responsive"/></p>
 <ul>
 <li><strong>Name:</strong> <em>EAN</em>-13</li>
 <li><strong>Allowed characters:</strong> <code>0123456789</code></li>
@@ -615,7 +615,7 @@ automatically prepend zeros to the barcode text until it reaches 8 characters.</
 automatically prepend zeros to the barcode text until it reaches 13 characters.</p>
 <p>The option <code>withQuietZones</code> has no effect with this barcode.</p>
 <h3>Laminas\Barcode\Object\Code39</h3>
-<p><img alt="image" src="images/laminas.barcode.introduction.example-1.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.introduction.example-1.png" class="img-responsive"/></p>
 <ul>
 <li><strong>Name:</strong> Code 39</li>
 <li><strong>Allowed characters:</strong> <code>0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ -.\$/+%</code></li>
@@ -625,7 +625,7 @@ automatically prepend zeros to the barcode text until it reaches 13 characters.<
 <p><code>Laminas\Barcode\Object\Code39</code> automatically adds the start and stop characters
 (<code>*</code>) for you.</p>
 <h3>Laminas\Barcode\Object\Identcode</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.identcode.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.identcode.png" class="img-responsive"/></p>
 <p>This barcode extends <code>Laminas\Barcode\Object\Code25interleaved</code> (Code 2 of 5
 Interleaved), inheriting its capabilities and defining some of its own.</p>
 <ul>
@@ -637,7 +637,7 @@ Interleaved), inheriting its capabilities and defining some of its own.</p>
 <p>If the number of characters is lower than 12, <code>Laminas\Barcode\Object\Identcode</code>
 will automatically prepend missing zeros to the barcode text.</p>
 <h3>Laminas\Barcode\Object\Itf14</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.itf14.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.itf14.png" class="img-responsive"/></p>
 <p>This barcode extends <code>Laminas\Barcode\Object\Code25interleaved</code> (Code 2 of 5
 Interleaved), inheriting its capabilities and defining some of its own.</p>
 <ul>
@@ -649,7 +649,7 @@ Interleaved), inheriting its capabilities and defining some of its own.</p>
 <p>If the number of characters is lower than 14, <code>Laminas\Barcode\Object\Itf14</code> will
 automatically prepend missing zeros to the barcode text.</p>
 <h3>Laminas\Barcode\Object\Leitcode</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.leitcode.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.leitcode.png" class="img-responsive"/></p>
 <p>This barcode extends <code>Laminas\Barcode\Object\Identcode</code> (Deutsche Post Identcode),
 inheriting its capabilities and defining some of its own:</p>
 <ul>
@@ -661,7 +661,7 @@ inheriting its capabilities and defining some of its own:</p>
 <p>If the number of characters is lower than 14, <code>Laminas\Barcode\Object\Leitcode</code>
 will automatically prepend missing zeros to the barcode text.</p>
 <h3>Laminas\Barcode\Object\Planet</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.planet.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.planet.png" class="img-responsive"/></p>
 <ul>
 <li><strong>Name:</strong> Planet (PostaL Alpha Numeric Encoding Technique)</li>
 <li><strong>Allowed characters:</strong> <code>0123456789</code></li>
@@ -669,7 +669,7 @@ will automatically prepend missing zeros to the barcode text.</p>
 <li><strong>Length:</strong> 12 or 14 characters (including checksum)</li>
 </ul>
 <h3>Laminas\Barcode\Object\Postnet</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.postnet.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.postnet.png" class="img-responsive"/></p>
 <ul>
 <li><strong>Name:</strong> Postnet (POSTal Numeric Encoding Technique)</li>
 <li><strong>Allowed characters:</strong> <code>0123456789</code></li>
@@ -677,7 +677,7 @@ will automatically prepend missing zeros to the barcode text.</p>
 <li><strong>Length:</strong> 6, 7, 10, or 12 characters (including checksum)</li>
 </ul>
 <h3>Laminas\Barcode\Object\Royalmail</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.royalmail.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.royalmail.png" class="img-responsive"/></p>
 <ul>
 <li><strong>Name:</strong> Royal Mail or <em>RM4SCC</em> (Royal Mail 4-State Customer Code)</li>
 <li><strong>Allowed characters:</strong> <code>0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ</code></li>
@@ -685,7 +685,7 @@ will automatically prepend missing zeros to the barcode text.</p>
 <li><strong>Length:</strong> variable</li>
 </ul>
 <h3>Laminas\Barcode\Object\Upca</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.upca.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.upca.png" class="img-responsive"/></p>
 <p>This barcode extends <code>Laminas\Barcode\Object\Ean13</code> (<em>EAN</em>-13), inheriting some of
 its capabilities and defining some of its own.</p>
 <ul>
@@ -698,7 +698,7 @@ its capabilities and defining some of its own.</p>
 automatically prepend missing zeros to the barcode text.</p>
 <p>The option <code>withQuietZones</code> has no effect with this barcode.</p>
 <h3>Laminas\Barcode\Object\Upce</h3>
-<p><img alt="image" src="images/laminas.barcode.objects.details.upce.png" class="img-responsive"/></p>
+<p><img alt="image" src="../images/laminas.barcode.objects.details.upce.png" class="img-responsive"/></p>
 <p>This barcode extends <code>Laminas\Barcode\Object\Upca</code> (<em>UPC</em>-A), inheriting some of
 its capabilities and defining some of its own. In particular, the first
 character of the text to encode is the system (0 or 1).</p>
