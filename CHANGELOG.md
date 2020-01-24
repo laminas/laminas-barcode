@@ -44,7 +44,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#2](https://github.com/laminas/laminas-barcode/pull/2) Fixes php warning about invalid character ignored when setting color as hex code
 
 ## 2.8.0 - 2019-12-26
 
