@@ -42,12 +42,15 @@ matrix:
     - php: 7.3
       env:
         - DEPS=lowest
+        - TESTS_LAMINAS_BARCODE_PDF_SUPPORT=0
     - php: 7.3
       env:
         - DEPS=latest
+        - TESTS_LAMINAS_BARCODE_PDF_SUPPORT=0
     - php: 7.4
       env:
         - DEPS=latest
+        - TESTS_LAMINAS_BARCODE_PDF_SUPPORT=0
 
 before_install:
   - if [[ $TEST_COVERAGE != 'true' ]]; then phpenv config-rm xdebug.ini || return 0 ; fi
