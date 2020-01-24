@@ -429,8 +429,8 @@ abstract class AbstractObject implements ObjectInterface
      */
     public function setForeColor($value)
     {
-        if (preg_match('`\#[0-9A-F]{6}`', $value)) {
-            $this->foreColor = hexdec($value);
+        if (preg_match('`\#([0-9A-F]{6})`', $value, $reg)) {
+            $this->foreColor = hexdec($reg[1]);
         } elseif (is_numeric($value) && $value >= 0 && $value <= 16777125) {
             $this->foreColor = intval($value);
         } else {
@@ -460,8 +460,8 @@ abstract class AbstractObject implements ObjectInterface
      */
     public function setBackgroundColor($value)
     {
-        if (preg_match('`\#[0-9A-F]{6}`', $value)) {
-            $this->backgroundColor = hexdec($value);
+        if (preg_match('`\#([0-9A-F]{6})`', $value, $reg)) {
+            $this->backgroundColor = hexdec($reg[1]);
         } elseif (is_numeric($value) && $value >= 0 && $value <= 16777125) {
             $this->backgroundColor = intval($value);
         } else {
