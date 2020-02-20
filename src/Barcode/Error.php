@@ -6,12 +6,12 @@
  * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Laminas\Barcode\Object;
+namespace Laminas\Barcode\Barcode;
 
 /**
  * Class for generate Barcode
  */
-class Error extends AbstractObject
+class Error extends AbstractBarcode
 {
     /**
      * All texts are accepted

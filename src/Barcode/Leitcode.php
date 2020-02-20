@@ -6,20 +6,31 @@
  * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Laminas\Barcode\Object;
+namespace Laminas\Barcode\Barcode;
 
 /**
- * Class for generate Itf14 barcode
+ * Class for generate Identcode barcode
  */
-class Itf14 extends Code25interleaved
+class Leitcode extends Identcode
 {
     /**
-     * Default options for Identcode barcode
+     * Default options for Leitcode barcode
      * @return void
      */
     protected function getDefaultOptions()
     {
         $this->barcodeLength = 14;
         $this->mandatoryChecksum = true;
+    }
+
+    /**
+     * Retrieve text to display
+     * @return string
+     */
+    public function getTextToDisplay()
+    {
+        $this->checkText($this->text);
+
+        return preg_replace('/([0-9]{5})([0-9]{3})([0-9]{3})([0-9]{2})([0-9])/', '$1.$2.$3.$4 $5', $this->getText());
     }
 }

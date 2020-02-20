@@ -6,12 +6,12 @@
  * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Laminas\Barcode\Object;
+namespace Laminas\Barcode\Barcode;
 
 /**
  * Class for generate Ean13 barcode
  */
-class Ean13 extends AbstractObject
+class Ean13 extends AbstractBarcode
 {
     /**
      * Coding map

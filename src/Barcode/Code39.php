@@ -6,12 +6,12 @@
  * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Laminas\Barcode\Object;
+namespace Laminas\Barcode\Barcode;
 
 /**
  * Class for generate Code39 barcode
  */
-class Code39 extends AbstractObject
+class Code39 extends AbstractBarcode
 {
     /**
      * Coding map

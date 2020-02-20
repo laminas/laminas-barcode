@@ -6,7 +6,7 @@
  * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Laminas\Barcode\Object;
+namespace Laminas\Barcode\Barcode;
 
 /**
  * Class for generate Interleaved 2 of 5 barcode

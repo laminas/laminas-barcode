@@ -6,12 +6,12 @@
  * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Laminas\Barcode\Object;
+namespace Laminas\Barcode\Barcode;
 
 /**
  * Class for generate Postnet barcode
  */
-class Postnet extends AbstractObject
+class Postnet extends AbstractBarcode
 {
     /**
      * Coding map

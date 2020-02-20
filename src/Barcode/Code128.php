@@ -6,12 +6,12 @@
  * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Laminas\Barcode\Object;
+namespace Laminas\Barcode\Barcode;
 
 /**
  * Class for generate Code128 barcode
  */
-class Code128 extends AbstractObject
+class Code128 extends AbstractBarcode
 {
     /**
      * Drawing of checksum

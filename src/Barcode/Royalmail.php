@@ -6,12 +6,12 @@
  * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Laminas\Barcode\Object;
+namespace Laminas\Barcode\Barcode;
 
 /**
  * Class for generate Royal maim barcode
  */
-class Royalmail extends AbstractObject
+class Royalmail extends AbstractBarcode
 {
     /**
      * Coding map
