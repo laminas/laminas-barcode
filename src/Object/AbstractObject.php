@@ -15,6 +15,8 @@ use Traversable;
 
 /**
  * Class for generate Barcode
+ *
+ * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode\AbstractBarcode instead.
  */
 abstract class AbstractObject implements ObjectInterface
 {

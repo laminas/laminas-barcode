@@ -12,6 +12,8 @@ use Laminas\Barcode\Barcode\BarcodeInterface;
 
 /**
  * Interface for generate Barcode
+ *
+ * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode\BarcodeInterface instead.
  */
 interface ObjectInterface extends BarcodeInterface
 {
