@@ -6,12 +6,12 @@
  * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Laminas\Barcode\Object;
+namespace Laminas\Barcode\Barcode;
 
 /**
  * Interface for generate Barcode
  */
-interface ObjectInterface
+interface BarcodeInterface
 {
     /**
      * Constructor
