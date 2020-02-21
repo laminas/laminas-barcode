@@ -8,11 +8,11 @@
 
 namespace Laminas\Barcode\Barcode\Exception;
 
-use Laminas\Barcode\Object\Exception\RuntimeException as ObjectRuntimeException;
+use Laminas\Barcode\Object\Exception\ExtensionNotLoadedException as ObjectExtensionNotLoadedException;
 
 /**
  * Exception for Laminas\Barcode component.
  */
-class ExtensionNotLoadedException extends ObjectRuntimeException
+class ExtensionNotLoadedException extends ObjectExtensionNotLoadedException
 {
 }

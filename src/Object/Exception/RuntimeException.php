@@ -8,13 +8,15 @@
 
 namespace Laminas\Barcode\Object\Exception;
 
-use Laminas\Barcode\Barcode\Exception\RuntimeException as BarcodeRuntimeException;
+use Laminas\Barcode\Exception;
+use Laminas\Barcode\Barcode\Exception\ExceptionInterface as BarcodeExceptionInterface;
 
 /**
  * Exception for Laminas\Barcode component.
  *
  * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode\Exception namespace instead.
  */
-class RuntimeException extends BarcodeRuntimeException
+class RuntimeException extends Exception\RuntimeException implements
+    BarcodeExceptionInterface
 {
 }

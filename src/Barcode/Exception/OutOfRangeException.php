@@ -8,12 +8,11 @@
 
 namespace Laminas\Barcode\Barcode\Exception;
 
-use Laminas\Barcode\Exception;
+use Laminas\Barcode\Object\Exception\OutOfRangeException as ObjectOutOfRangeException;
 
 /**
  * Exception for Laminas\Barcode component.
  */
-class OutOfRangeException extends Exception\OutOfRangeException implements
-    ExceptionInterface
+class OutOfRangeException extends ObjectOutOfRangeException
 {
 }

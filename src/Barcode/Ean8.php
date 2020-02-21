@@ -8,6 +8,7 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Barcode\Exception\BarcodeValidationException;
 use Laminas\Validator\Barcode as BarcodeValidator;
 
 use Laminas\Barcode\Object\Ean13 as ObjectEan13;
@@ -141,7 +142,7 @@ class Ean8 extends ObjectEan13
 
         if (! $validator->isValid($value)) {
             $message = implode("\n", $validator->getMessages());
-            throw new Exception\BarcodeValidationException($message);
+            throw new BarcodeValidationException($message);
         }
     }
 }

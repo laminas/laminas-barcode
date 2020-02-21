@@ -8,13 +8,15 @@
 
 namespace Laminas\Barcode\Object\Exception;
 
-use Laminas\Barcode\Barcode\Exception\InvalidArgumentException as BarcodeInvalidArgumentException;
+use Laminas\Barcode\Barcode\Exception\ExceptionInterface;
+use Laminas\Barcode\Exception;
 
 /**
  * Exception for Laminas\Barcode component.
  *
  * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode\Exception namespace instead.
  */
-class InvalidArgumentException extends BarcodeInvalidArgumentException
+class InvalidArgumentException extends Exception\InvalidArgumentException implements
+    ExceptionInterface
 {
 }

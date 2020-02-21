@@ -318,7 +318,7 @@ abstract class AbstractObject implements ObjectInterface
     public function setBarHeight($value)
     {
         if (intval($value) <= 0) {
-            throw new Exception\OutOfRangeException(
+            throw new Barcode\Barcode\Exception\OutOfRangeException(
                 'Bar height must be greater than 0'
             );
         }
@@ -346,7 +346,7 @@ abstract class AbstractObject implements ObjectInterface
     public function setBarThinWidth($value)
     {
         if (intval($value) <= 0) {
-            throw new Exception\OutOfRangeException(
+            throw new Barcode\Barcode\Exception\OutOfRangeException(
                 'Bar width must be greater than 0'
             );
         }
@@ -374,7 +374,7 @@ abstract class AbstractObject implements ObjectInterface
     public function setBarThickWidth($value)
     {
         if (intval($value) <= 0) {
-            throw new Exception\OutOfRangeException(
+            throw new Barcode\Barcode\Exception\OutOfRangeException(
                 'Bar width must be greater than 0'
             );
         }
@@ -403,7 +403,7 @@ abstract class AbstractObject implements ObjectInterface
     public function setFactor($value)
     {
         if (floatval($value) <= 0) {
-            throw new Exception\OutOfRangeException(
+            throw new Barcode\Barcode\Exception\OutOfRangeException(
                 'Factor must be greater than 0'
             );
         }
@@ -436,7 +436,7 @@ abstract class AbstractObject implements ObjectInterface
         } elseif (is_numeric($value) && $value >= 0 && $value <= 16777125) {
             $this->foreColor = intval($value);
         } else {
-            throw new Exception\InvalidArgumentException(
+            throw new Barcode\Barcode\Exception\InvalidArgumentException(
                 'Text color must be set as #[0-9A-F]{6}'
             );
         }
@@ -467,7 +467,7 @@ abstract class AbstractObject implements ObjectInterface
         } elseif (is_numeric($value) && $value >= 0 && $value <= 16777125) {
             $this->backgroundColor = intval($value);
         } else {
-            throw new Exception\InvalidArgumentException(
+            throw new Barcode\Barcode\Exception\InvalidArgumentException(
                 'Background color must be set as #[0-9A-F]{6}'
             );
         }
@@ -775,7 +775,7 @@ abstract class AbstractObject implements ObjectInterface
     {
         if (is_int($value) && $value >= 1 && $value <= 5) {
             if (! extension_loaded('gd')) {
-                throw new Exception\ExtensionNotLoadedException(
+                throw new Barcode\Barcode\Exception\ExtensionNotLoadedException(
                     'GD extension is required to use numeric font'
                 );
             }
@@ -788,7 +788,7 @@ abstract class AbstractObject implements ObjectInterface
         } elseif (is_string($value)) {
             $this->font = $value;
         } else {
-            throw new Exception\InvalidArgumentException(sprintf(
+            throw new Barcode\Barcode\Exception\InvalidArgumentException(sprintf(
                 'Invalid font "%s" provided to setFont()',
                 $value
             ));
@@ -821,7 +821,7 @@ abstract class AbstractObject implements ObjectInterface
         }
 
         if (! is_numeric($value)) {
-            throw new Exception\InvalidArgumentException(
+            throw new Barcode\Barcode\Exception\InvalidArgumentException(
                 'Font size must be a numeric value'
             );
         }
@@ -954,7 +954,7 @@ abstract class AbstractObject implements ObjectInterface
             $value = $this->text;
         }
         if (! strlen($value)) {
-            throw new Exception\RuntimeException(
+            throw new Barcode\Barcode\Exception\RuntimeException(
                 'A text must be provide to Barcode before drawing'
             );
         }
@@ -972,7 +972,7 @@ abstract class AbstractObject implements ObjectInterface
     {
         $ratio = $this->barThickWidth / $this->barThinWidth;
         if (! ($ratio >= $min && $ratio <= $max)) {
-            throw new Exception\OutOfRangeException(sprintf(
+            throw new Barcode\Barcode\Exception\OutOfRangeException(sprintf(
                 'Ratio thick/thin bar must be between %0.1f and %0.1f (actual %0.3f)',
                 $min,
                 $max,
@@ -989,7 +989,7 @@ abstract class AbstractObject implements ObjectInterface
     protected function checkFontAndOrientation()
     {
         if (is_numeric($this->font) && $this->orientation != 0) {
-            throw new Exception\RuntimeException(
+            throw new Barcode\Barcode\Exception\RuntimeException(
                 'Only drawing with TTF font allow orientation of the barcode.'
             );
         }
@@ -1312,7 +1312,7 @@ abstract class AbstractObject implements ObjectInterface
 
         if (! $validator->isValid($value)) {
             $message = implode("\n", $validator->getMessages());
-            throw new Exception\BarcodeValidationException($message);
+            throw new Barcode\Barcode\Exception\BarcodeValidationException($message);
         }
     }
 
