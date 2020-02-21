@@ -6,14 +6,14 @@
  * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Laminas\Barcode\Object\Exception;
+namespace Laminas\Barcode\Barcode\Exception;
 
 use Laminas\Barcode\Exception;
 
 /**
  * Exception for Laminas\Barcode component.
  */
-class OutOfRangeException extends Exception\OutOfRangeException implements
+class InvalidArgumentException extends Exception\InvalidArgumentException implements
     ExceptionInterface
 {
 }

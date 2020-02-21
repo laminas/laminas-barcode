@@ -6,13 +6,11 @@
  * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Laminas\Barcode\Object\Exception;
-
-use Laminas\Barcode\Exception\ExceptionInterface as Exception;
+namespace Laminas\Barcode\Barcode\Exception;
 
 /**
- * Base exception interface for barcode objects
+ * Exception for Laminas\Barcode component.
  */
-interface ExceptionInterface extends Exception
+class ExtensionNotLoadedException extends RuntimeException
 {
 }
