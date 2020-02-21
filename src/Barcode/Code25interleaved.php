@@ -8,10 +8,12 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Object\Code25 as ObjectCode25;
+
 /**
  * Class for generate Interleaved 2 of 5 barcode
  */
-class Code25interleaved extends Code25
+class Code25interleaved extends ObjectCode25
 {
     /**
      * Drawing of bearer bars

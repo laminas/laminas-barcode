@@ -10,10 +10,12 @@ namespace Laminas\Barcode\Barcode;
 
 use Laminas\Validator\Barcode as BarcodeValidator;
 
+use Laminas\Barcode\Object\Ean13 as ObjectEan13;
+
 /**
  * Class for generate Ean8 barcode
  */
-class Ean8 extends Ean13
+class Ean8 extends ObjectEan13
 {
     /**
      * Default options for Postnet barcode

@@ -8,10 +8,12 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Object\Ean5 as ObjectEan5;
+
 /**
  * Class for generate Ean2 barcode
  */
-class Ean2 extends Ean5
+class Ean2 extends ObjectEan5
 {
     protected $parities = [
         0 => ['A','A'],

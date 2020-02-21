@@ -8,10 +8,12 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Object\Postnet as ObjectPostnet;
+
 /**
  * Class for generate Planet barcode
  */
-class Planet extends Postnet
+class Planet extends ObjectPostnet
 {
     /**
      * Coding map

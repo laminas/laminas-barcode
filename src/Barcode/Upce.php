@@ -9,11 +9,12 @@
 namespace Laminas\Barcode\Barcode;
 
 use Laminas\Validator\Barcode as BarcodeValidator;
+use Laminas\Barcode\Object\Ean13 as ObjectEan13;
 
 /**
  * Class for generate UpcA barcode
  */
-class Upce extends Ean13
+class Upce extends ObjectEan13
 {
     protected $parities = [
         0 => [

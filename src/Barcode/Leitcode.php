@@ -8,10 +8,12 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Object\Identcode as ObjectIdentcode;
+
 /**
  * Class for generate Identcode barcode
  */
-class Leitcode extends Identcode
+class Leitcode extends ObjectIdentcode
 {
     /**
      * Default options for Leitcode barcode

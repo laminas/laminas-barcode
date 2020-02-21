@@ -8,10 +8,12 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Object\Ean13 as ObjectEan13;
+
 /**
  * Class for generate UpcA barcode
  */
-class Upca extends Ean13
+class Upca extends ObjectEan13
 {
     /**
      * Default options for Postnet barcode

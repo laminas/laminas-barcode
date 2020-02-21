@@ -8,10 +8,12 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Object\Code25interleaved as ObjectCode25interleaved;
+
 /**
  * Class for generate Identcode barcode
  */
-class Identcode extends Code25interleaved
+class Identcode extends ObjectCode25interleaved
 {
     /**
      * Default options for Identcode barcode
