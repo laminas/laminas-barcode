@@ -47,7 +47,7 @@ Available options are:
 
 Option               | Data Type                   | Default Value         | Description
 :------------------- | :-------------------------: | :-------------------: | :----------
-`barcodeNamespace`   | string                      | `Laminas\Barcode\Object` | Namespace of the barcode; for example, if you need to extend the embedding objects.
+`barcodeNamespace`   | string                      | `Laminas\Barcode\Barcode` | Namespace of the barcode; for example, if you need to extend the embedding objects.
 `barHeight`          | int                         | `50`                  | Height of the bars.
 `barThickWidth`      | int                         | `3`                   | Width of the thick bar.
 `barThinWidth`       | int                         | `1`                   | Width of the thin bar.
@@ -125,7 +125,7 @@ Barcode::render(
 
 Getter                                | Data Type | Description
 :------------------------------------ | :-------: | :----------
-`getType()`                           | string    | Return the name of the barcode class without the namespace (e.g. `Laminas\Barcode\Object\Code39` returns simply "code39").
+`getType()`                           | string    | Return the name of the barcode class without the namespace (e.g. `Laminas\Barcode\Barcode\Code39` returns simply "code39").
 `getRawText()`                        | string    | Return the original text provided to the object.
 `getTextToDisplay()`                  | string    | Return the text to display, including, if activated, the checksum value.
 `getQuietZone()`                      | int       | Return the size of the space needed before and after the barcode without any drawing.
@@ -141,14 +141,14 @@ Below is detailed information on all barcode types supported. Unless otherwise
 noted, each barcode supports the general options outlined in the previous
 section, and no others.
 
-### Laminas\\Barcode\\Object\\Error
+### Laminas\\Barcode\\Barcode\\Error
 
 ![error](images/laminas.barcode.objects.details.error.png)
 
 This barcode is a special case. It is internally used to automatically render an
 exception caught by the component.
 
-### Laminas\\Barcode\\Object\\Code128
+### Laminas\\Barcode\\Barcode\\Code128
 
 ![image](images/laminas.barcode.objects.details.code128.png)
 
@@ -157,7 +157,7 @@ exception caught by the component.
 - **Checksum:** optional (modulo 103)
 - **Length:** variable
 
-### Laminas\\Barcode\\Object\\Codabar
+### Laminas\\Barcode\\Barcode\\Codabar
 
 ![image](images/laminas.barcode.objects.details.codabar.png)
 
@@ -166,7 +166,7 @@ exception caught by the component.
 * **Checksum:** none
 * **Length:** variable
 
-### Laminas\\Barcode\\Object\\Code25
+### Laminas\\Barcode\\Barcode\\Code25
 
 ![image](images/laminas.barcode.objects.details.code25.png)
 
@@ -175,11 +175,11 @@ exception caught by the component.
 * **Checksum:** optional (modulo 10)
 * **Length:** variable
 
-### Laminas\\Barcode\\Object\\Code25interleaved
+### Laminas\\Barcode\\Barcode\\Code25interleaved
 
 ![image](images/laminas.barcode.objects.details.int25.png)
 
-This barcode extends `Laminas\Barcode\Object\Code25` (Code 2 of 5), with the
+This barcode extends `Laminas\Barcode\Barcode\Code25` (Code 2 of 5), with the
 following changes:
 
 * **Name:** Code 2 of 5 Interleaved
@@ -193,14 +193,14 @@ Option           | Data Type | Default Value | Description
 ---------------- | :-------: | :-----------: | :----------
 `withBearerBars` | bool      | `FALSE`       | Draw a thick bar at the top and the bottom of the barcode.
 
-If the number of characters is not even, `Laminas\Barcode\Object\Code25interleaved`
+If the number of characters is not even, `Laminas\Barcode\Barcode\Code25interleaved`
 will automatically prepend the missing zero to the barcode text.
 
-### Laminas\\Barcode\\Object\\Ean2
+### Laminas\\Barcode\\Barcode\\Ean2
 
 ![image](images/laminas.barcode.objects.details.ean2.png)
 
-This barcode extends `Laminas\Barcode\Object\Ean5` (*EAN* 5), with the following
+This barcode extends `Laminas\Barcode\Barcode\Ean5` (*EAN* 5), with the following
 changes:
 
 * **Name:** *EAN*-2
@@ -208,14 +208,14 @@ changes:
 * **Checksum:** Used internally, but not displayed
 * **Length:** 2 characters
 
-If the number of characters is lower than 2, `Laminas\Barcode\Object\Ean2` will
+If the number of characters is lower than 2, `Laminas\Barcode\Barcode\Ean2` will
 automatically prepend the missing zero to the barcode text.
 
-### Laminas\\Barcode\\Object\\Ean5
+### Laminas\\Barcode\\Barcode\\Ean5
 
 ![image](images/laminas.barcode.objects.details.ean5.png)
 
-This barcode extends `Laminas\Barcode\Object\Ean13` (*EAN* 13), with the following
+This barcode extends `Laminas\Barcode\Barcode\Ean13` (*EAN* 13), with the following
 changes:
 
 * **Name:** *EAN*-5
@@ -223,14 +223,14 @@ changes:
 * **Checksum:** Used internally, but not displayed
 * **Length:** 5 characters
 
-If the number of characters is lower than 5, `Laminas\Barcode\Object\Ean5` will
+If the number of characters is lower than 5, `Laminas\Barcode\Barcode\Ean5` will
 automatically prepend zeroes to the barcode text until it reaches 5 characters.
 
-### Laminas\\Barcode\\Object\\Ean8
+### Laminas\\Barcode\\Barcode\\Ean8
 
 ![image](images/laminas.barcode.objects.details.ean8.png)
 
-This barcode extends `Laminas\Barcode\Object\Ean13` (*EAN* 13), with the following
+This barcode extends `Laminas\Barcode\Barcode\Ean13` (*EAN* 13), with the following
 changes:
 
 * **Name:** *EAN*-8
@@ -238,10 +238,10 @@ changes:
 * **Checksum:** mandatory (modulo 10)
 * **Length:** 8 characters (including checksum)
 
-If the number of characters is lower than 8, `Laminas\Barcode\Object\Ean8` will
+If the number of characters is lower than 8, `Laminas\Barcode\Barcode\Ean8` will
 automatically prepend zeros to the barcode text until it reaches 8 characters.
 
-### Laminas\\Barcode\\Object\\Ean13
+### Laminas\\Barcode\\Barcode\\Ean13
 
 ![image](images/laminas.barcode.objects.details.ean13.png)
 
@@ -250,12 +250,12 @@ automatically prepend zeros to the barcode text until it reaches 8 characters.
 * **Checksum:** mandatory (modulo 10)
 * **Length:** 13 characters (including checksum)
 
-If the number of characters is lower than 13, `Laminas\Barcode\Object\Ean13` will
+If the number of characters is lower than 13, `Laminas\Barcode\Barcode\Ean13` will
 automatically prepend zeros to the barcode text until it reaches 13 characters.
 
 The option `withQuietZones` has no effect with this barcode.
 
-### Laminas\\Barcode\\Object\\Code39
+### Laminas\\Barcode\\Barcode\\Code39
 
 ![image](images/laminas.barcode.introduction.example-1.png)
 
@@ -264,14 +264,14 @@ The option `withQuietZones` has no effect with this barcode.
 * **Checksum:** optional (modulo 43)
 * **Length:** variable
 
-`Laminas\Barcode\Object\Code39` automatically adds the start and stop characters
+`Laminas\Barcode\Barcode\Code39` automatically adds the start and stop characters
 (`*`) for you.
 
-### Laminas\\Barcode\\Object\\Identcode
+### Laminas\\Barcode\\Barcode\\Identcode
 
 ![image](images/laminas.barcode.objects.details.identcode.png)
 
-This barcode extends `Laminas\Barcode\Object\Code25interleaved` (Code 2 of 5
+This barcode extends `Laminas\Barcode\Barcode\Code25interleaved` (Code 2 of 5
 Interleaved), inheriting its capabilities and defining some of its own.
 
 * **Name:** Identcode (Deutsche Post Identcode)
@@ -279,14 +279,14 @@ Interleaved), inheriting its capabilities and defining some of its own.
 * **Checksum:** mandatory (modulo 10 different from Code25)
 * **Length:** 12 characters (including checksum)
 
-If the number of characters is lower than 12, `Laminas\Barcode\Object\Identcode`
+If the number of characters is lower than 12, `Laminas\Barcode\Barcode\Identcode`
 will automatically prepend missing zeros to the barcode text.
 
-### Laminas\\Barcode\\Object\\Itf14
+### Laminas\\Barcode\\Barcode\\Itf14
 
 ![image](images/laminas.barcode.objects.details.itf14.png)
 
-This barcode extends `Laminas\Barcode\Object\Code25interleaved` (Code 2 of 5
+This barcode extends `Laminas\Barcode\Barcode\Code25interleaved` (Code 2 of 5
 Interleaved), inheriting its capabilities and defining some of its own.
 
 * **Name:** *ITF*-14
@@ -294,14 +294,14 @@ Interleaved), inheriting its capabilities and defining some of its own.
 * **Checksum:** mandatory (modulo 10)
 * **Length:** 14 characters (including checksum)
 
-If the number of characters is lower than 14, `Laminas\Barcode\Object\Itf14` will
+If the number of characters is lower than 14, `Laminas\Barcode\Barcode\Itf14` will
 automatically prepend missing zeros to the barcode text.
 
-### Laminas\\Barcode\\Object\\Leitcode
+### Laminas\\Barcode\\Barcode\\Leitcode
 
 ![image](images/laminas.barcode.objects.details.leitcode.png)
 
-This barcode extends `Laminas\Barcode\Object\Identcode` (Deutsche Post Identcode),
+This barcode extends `Laminas\Barcode\Barcode\Identcode` (Deutsche Post Identcode),
 inheriting its capabilities and defining some of its own:
 
 * **Name:** Leitcode (Deutsche Post Leitcode)
@@ -309,10 +309,10 @@ inheriting its capabilities and defining some of its own:
 * **Checksum:** mandatory (modulo 10 different from Code25)
 * **Length:** 14 characters (including checksum)
 
-If the number of characters is lower than 14, `Laminas\Barcode\Object\Leitcode`
+If the number of characters is lower than 14, `Laminas\Barcode\Barcode\Leitcode`
 will automatically prepend missing zeros to the barcode text.
 
-### Laminas\\Barcode\\Object\\Planet
+### Laminas\\Barcode\\Barcode\\Planet
 
 ![image](images/laminas.barcode.objects.details.planet.png)
 
@@ -321,7 +321,7 @@ will automatically prepend missing zeros to the barcode text.
 * **Checksum:** mandatory (modulo 10)
 * **Length:** 12 or 14 characters (including checksum)
 
-### Laminas\\Barcode\\Object\\Postnet
+### Laminas\\Barcode\\Barcode\\Postnet
 
 ![image](images/laminas.barcode.objects.details.postnet.png)
 
@@ -330,7 +330,7 @@ will automatically prepend missing zeros to the barcode text.
 * **Checksum:** mandatory (modulo 10)
 * **Length:** 6, 7, 10, or 12 characters (including checksum)
 
-### Laminas\\Barcode\\Object\\Royalmail
+### Laminas\\Barcode\\Barcode\\Royalmail
 
 ![image](images/laminas.barcode.objects.details.royalmail.png)
 
@@ -339,11 +339,11 @@ will automatically prepend missing zeros to the barcode text.
 * **Checksum:** mandatory
 * **Length:** variable
 
-### Laminas\\Barcode\\Object\\Upca
+### Laminas\\Barcode\\Barcode\\Upca
 
 ![image](images/laminas.barcode.objects.details.upca.png)
 
-This barcode extends `Laminas\Barcode\Object\Ean13` (*EAN*-13), inheriting some of
+This barcode extends `Laminas\Barcode\Barcode\Ean13` (*EAN*-13), inheriting some of
 its capabilities and defining some of its own.
 
 * **Name:** *UPC*-A (Universal Product Code)
@@ -351,16 +351,16 @@ its capabilities and defining some of its own.
 * **Checksum:** mandatory (modulo 10)
 * **Length:** 12 characters (including checksum)
 
-If the number of characters is lower than 12, `Laminas\Barcode\Object\Upca` will
+If the number of characters is lower than 12, `Laminas\Barcode\Barcode\Upca` will
 automatically prepend missing zeros to the barcode text.
 
 The option `withQuietZones` has no effect with this barcode.
 
-### Laminas\\Barcode\\Object\\Upce
+### Laminas\\Barcode\\Barcode\\Upce
 
 ![image](images/laminas.barcode.objects.details.upce.png)
 
-This barcode extends `Laminas\Barcode\Object\Upca` (*UPC*-A), inheriting some of
+This barcode extends `Laminas\Barcode\Barcode\Upca` (*UPC*-A), inheriting some of
 its capabilities and defining some of its own. In particular, the first
 character of the text to encode is the system (0 or 1).
 
@@ -369,10 +369,10 @@ character of the text to encode is the system (0 or 1).
 * **Checksum:** mandatory (modulo 10)
 * **Length:** 8 characters (including checksum)
 
-If the number of characters is lower than 8, `Laminas\Barcode\Object\Upce` will
+If the number of characters is lower than 8, `Laminas\Barcode\Barcode\Upce` will
 automatically prepend missing zeros to the barcode text.
 
-If the first character of the text to encode is not 0 or 1, `Laminas\Barcode\Object\Upce` will
+If the first character of the text to encode is not 0 or 1, `Laminas\Barcode\Barcode\Upce` will
 automatically replace it with 0.
 
 The option `withQuietZones` has no effect with this barcode.

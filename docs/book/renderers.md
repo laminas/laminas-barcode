@@ -48,7 +48,7 @@ Option                 | Data Type             | Default Value            | Desc
 `topOffset`            | int                   | 0                        | Top position of the barcode inside the renderer. If used, this value will override the `verticalPosition` option.
 `automaticRenderError` | bool                  | `FALSE`                  | Whether or not to automatically render errors. If an exception occurs, the provided barcode object will be replaced with an `Error` representation. Note that some errors (or exceptions) can not be rendered.
 `moduleSize`           | float                 | 1                        | Size of a rendering module in the support.
-`barcode`              | `Laminas\Barcode\Object` | `NULL`                   | The barcode object to render.
+`barcode`              | `Laminas\Barcode\Barcode` | `NULL`                   | The barcode object to render.
 
 An additional getter exists: `getType()`. It returns the name of the renderer
 class without the namespace (e.g.  `Laminas\Barcode\Renderer\Image` returns

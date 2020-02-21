@@ -2,7 +2,7 @@
 
 `Laminas\Barcode\Barcode` uses a factory method, `factory()`, to create both an
 instance of the barcode object to represent, and the renderer you will use to
-draw it. (Barcode objects extend `Laminas\Barcode\Object\AbstractObject`, and
+draw it. (Barcode objects extend `Laminas\Barcode\Barcode\AbstractBarcode`, and
 renderers extend `Laminas\Barcode\Renderer\AbstractRenderer`.) The `factory()`
 method accepts five arguments:
 
