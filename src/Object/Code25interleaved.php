@@ -8,13 +8,13 @@
 
 namespace Laminas\Barcode\Object;
 
-use Laminas\Barcode\Barcode\Code25interleaved as BaseCode25interleaved;
+use Laminas\Barcode\Barcode\Code25interleaved as BarcodeCode25interleaved;
 
 /**
  * Class for generate Interleaved 2 of 5 barcode
  *
  * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode namespace instead.
  */
-class Code25interleaved extends BaseCode25interleaved
+class Code25interleaved extends BarcodeCode25interleaved
 {
 }

@@ -8,13 +8,13 @@
 
 namespace Laminas\Barcode\Object;
 
-use Laminas\Barcode\Barcode\Upce as BaseUpce;
+use Laminas\Barcode\Barcode\Upce as BarcodeUpce;
 
 /**
  * Class for generate UpcA barcode
  *
  * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode namespace instead.
  */
-class Upce extends BaseUpce
+class Upce extends BarcodeUpce
 {
 }

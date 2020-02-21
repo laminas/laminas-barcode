@@ -8,13 +8,13 @@
 
 namespace Laminas\Barcode\Object;
 
-use Laminas\Barcode\Barcode\Ean8 as BaseEan8;
+use Laminas\Barcode\Barcode\Ean8 as BarcodeEan8;
 
 /**
  * Class for generate Ean8 barcode
  *
  * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode namespace instead.
  */
-class Ean8 extends BaseEan8
+class Ean8 extends BarcodeEan8
 {
 }

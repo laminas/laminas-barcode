@@ -8,13 +8,13 @@
 
 namespace Laminas\Barcode\Object;
 
-use Laminas\Barcode\Barcode\Itf14 as BaseItf14;
+use Laminas\Barcode\Barcode\Itf14 as BarcodeItf14;
 
 /**
  * Class for generate Itf14 barcode
  *
  * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode namespace instead.
  */
-class Itf14 extends BaseItf14
+class Itf14 extends BarcodeItf14
 {
 }

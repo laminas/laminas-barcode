@@ -8,13 +8,13 @@
 
 namespace Laminas\Barcode\Object;
 
-use Laminas\Barcode\Barcode\Postnet as BasePostnet;
+use Laminas\Barcode\Barcode\Postnet as BarcodePostnet;
 
 /**
  * Class for generate Postnet barcode
  *
  * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode namespace instead.
  */
-class Postnet extends BasePostnet
+class Postnet extends BarcodePostnet
 {
 }

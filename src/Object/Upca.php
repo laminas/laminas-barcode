@@ -8,13 +8,13 @@
 
 namespace Laminas\Barcode\Object;
 
-use Laminas\Barcode\Barcode\Upca as BaseUpca;
+use Laminas\Barcode\Barcode\Upca as BarcodeUpca;
 
 /**
  * Class for generate UpcA barcode
  *
  * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode namespace instead.
  */
-class Upca extends BaseUpca
+class Upca extends BarcodeUpca
 {
 }

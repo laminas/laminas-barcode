@@ -8,13 +8,13 @@
 
 namespace Laminas\Barcode\Object;
 
-use Laminas\Barcode\Barcode\Identcode as BaseIdentcode;
+use Laminas\Barcode\Barcode\Identcode as BarcodeIdentcode;
 
 /**
  * Class for generate Identcode barcode
  *
  * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode namespace instead.
  */
-class Identcode extends BaseIdentcode
+class Identcode extends BarcodeIdentcode
 {
 }

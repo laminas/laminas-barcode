@@ -8,13 +8,13 @@
 
 namespace Laminas\Barcode\Object;
 
-use Laminas\Barcode\Barcode\Planet as BasePlanet;
+use Laminas\Barcode\Barcode\Planet as Basrcodelanet;
 
 /**
  * Class for generate Planet barcode
  *
  * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode namespace instead.
  */
-class Planet extends BasePlanet
+class Planet extends Basrcodelanet
 {
 }

@@ -8,13 +8,13 @@
 
 namespace Laminas\Barcode\Object;
 
-use Laminas\Barcode\Barcode\Royalmail as BaseRoyalmail;
+use Laminas\Barcode\Barcode\Royalmail as BarcodeRoyalmail;
 
 /**
  * Class for generate Royal maim barcode
  *
  * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode namespace instead.
  */
-class Royalmail extends BaseRoyalmail
+class Royalmail extends BarcodeRoyalmail
 {
 }

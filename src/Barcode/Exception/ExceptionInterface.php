@@ -8,11 +8,11 @@
 
 namespace Laminas\Barcode\Barcode\Exception;
 
-use Laminas\Barcode\Object\Exception\ExceptionInterface as BaseExceptionInterface;
+use Laminas\Barcode\Object\Exception\ExceptionInterface as ObjectExceptionInterface;
 
 /**
  * Base exception interface for barcode objects
  */
-interface ExceptionInterface extends BaseExceptionInterface
+interface ExceptionInterface extends ObjectExceptionInterface
 {
 }
