@@ -8,9 +8,11 @@
 
 namespace Laminas\Barcode\Barcode\Exception;
 
+use Laminas\Barcode\Object\Exception\InvalidArgumentException as BaseInvalidArgumentException;
+
 /**
  * Exception for Laminas\Barcode component.
  */
-class BarcodeValidationException extends InvalidArgumentException
+class BarcodeValidationException extends BaseInvalidArgumentException
 {
 }

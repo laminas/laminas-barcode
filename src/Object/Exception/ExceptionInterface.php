@@ -6,13 +6,15 @@
  * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Laminas\Barcode\Barcode\Exception;
+namespace Laminas\Barcode\Object\Exception;
 
-use Laminas\Barcode\Object\Exception\ExceptionInterface as BaseExceptionInterface;
+use Laminas\Barcode\Exception\ExceptionInterface as Exception;
 
 /**
  * Base exception interface for barcode objects
+ *
+ * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode\Exception namespace instead.
  */
-interface ExceptionInterface extends BaseExceptionInterface
+interface ExceptionInterface extends Exception
 {
 }
