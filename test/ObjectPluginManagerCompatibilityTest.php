@@ -10,7 +10,7 @@ namespace LaminasTest\Barcode;
 
 use Laminas\Barcode\Exception\InvalidArgumentException;
 use Laminas\Barcode\Object\AbstractObject;
-use Laminas\Barcode\ObjectPluginManager;
+use Laminas\Barcode\BarcodePluginManager;
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\ServiceManager\Test\CommonPluginManagerTrait;
 use PHPUnit\Framework\TestCase;
@@ -21,7 +21,7 @@ class ObjectPluginManagerCompatibilityTest extends TestCase
 
     protected function getPluginManager()
     {
-        return new ObjectPluginManager(new ServiceManager());
+        return new BarcodePluginManager(new ServiceManager());
     }
 
     protected function getV2InvalidPluginException()

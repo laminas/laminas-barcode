@@ -32,7 +32,7 @@ abstract class Barcode
     /**
      * The parser plugin manager
      *
-     * @var ObjectPluginManager
+     * @var BarcodePluginManager
      */
     protected static $objectPlugins;
 
@@ -46,12 +46,12 @@ abstract class Barcode
     /**
      * Get the parser plugin manager
      *
-     * @return ObjectPluginManager
+     * @return BarcodePluginManager
      */
     public static function getObjectPluginManager()
     {
-        if (! static::$objectPlugins instanceof ObjectPluginManager) {
-            static::$objectPlugins = new ObjectPluginManager(new ServiceManager);
+        if (! static::$objectPlugins instanceof BarcodePluginManager) {
+            static::$objectPlugins = new BarcodePluginManager(new ServiceManager);
         }
 
         return static::$objectPlugins;

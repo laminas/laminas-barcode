@@ -19,7 +19,7 @@ use Laminas\ServiceManager\Factory\InvokableFactory;
  * Object\AbstractObject. Additionally, it registers a number of default
  * barcode parsers.
  */
-class ObjectPluginManager extends AbstractPluginManager
+class BarcodePluginManager extends AbstractPluginManager
 {
     /**
      * @var bool Ensure services are not shared (v2 property)
