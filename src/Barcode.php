@@ -51,7 +51,7 @@ abstract class Barcode
     public static function getObjectPluginManager()
     {
         if (! static::$objectPlugins instanceof BarcodePluginManager) {
-            static::$objectPlugins = new BarcodePluginManager(new ServiceManager);
+            static::$objectPlugins = new ObjectPluginManager(new ServiceManager);
         }
 
         return static::$objectPlugins;
