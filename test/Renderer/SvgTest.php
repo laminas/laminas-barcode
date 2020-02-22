@@ -29,15 +29,13 @@ class SvgTest extends TestCommon
      */
     public function testSvgNoTransparency()
     {
-        $svgCompare = file_get_contents(__DIR__ . '/_files/svg_transparency.xml');
-
         Barcode\Barcode::setBarcodeFont(__DIR__ . '/../Object/_fonts/Vera.ttf');
         $barcode = new Code39(['text' => '0123456789']);
         $this->renderer->setBarcode($barcode);
 
         $this->assertFalse($this->renderer->getTransparentBackground());
         $svgOutput = $this->renderer->draw()->saveXML();
-        $this->assertNotEquals($svgCompare, $svgOutput);
+        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/_files/svg_no_transparency.xml', $svgOutput);
     }
 
     /**
@@ -47,28 +45,24 @@ class SvgTest extends TestCommon
      */
     public function testSvgTransparency()
     {
-        $svgCompare = file_get_contents(__DIR__ . '/_files/svg_transparency.xml');
-
         Barcode\Barcode::setBarcodeFont(__DIR__ . '/../Object/_fonts/Vera.ttf');
         $barcode = new Code39(['text' => '0123456789']);
         $this->renderer->setBarcode($barcode);
         $this->renderer->setTransparentBackground(true);
         $this->assertTrue($this->renderer->getTransparentBackground());
         $svgOutput = $this->renderer->draw()->saveXML();
-        $this->assertEquals($svgCompare, $svgOutput);
+        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/_files/svg_transparency.xml', $svgOutput);
     }
 
     public function testSvgOrientation()
     {
-        $svgCompare = file_get_contents(__DIR__ . '/_files/svg_oriented.xml');
-
         Barcode\Barcode::setBarcodeFont(__DIR__ . '/../Object/_fonts/Vera.ttf');
         $barcode = new Code39(['text' => '0123456789', 'orientation' => 270]);
         $this->renderer->setBarcode($barcode);
         $this->renderer->setTransparentBackground(true);
         $this->assertTrue($this->renderer->getTransparentBackground());
         $svgOutput = $this->renderer->draw()->saveXML();
-        $this->assertEquals($svgCompare, $svgOutput);
+        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/_files/svg_oriented.xml', $svgOutput);
     }
 
     public function testType()
