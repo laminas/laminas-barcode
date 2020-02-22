@@ -3,6 +3,7 @@
 namespace LaminasTest\Barcode\Object;
 
 use Laminas\Barcode\Object as OldNamespace;
+use \Laminas\Barcode\Exception;
 use PHPUnit\Framework\TestCase;
 
 class ObjectInheritanceTest extends TestCase
@@ -119,5 +120,44 @@ class ObjectInheritanceTest extends TestCase
     {
         $mock = $this->createMock(OldNamespace\Upce::class);
         $this->assertInstanceOf(OldNamespace\Ean13::class, $mock);
+    }
+
+    public function testBarcodeValidationExceptionExtendsInvalidArgumentException()
+    {
+        $mock = $this->createMock(OldNamespace\Exception\BarcodeValidationException::class);
+        $this->assertInstanceOf(OldNamespace\Exception\InvalidArgumentException::class, $mock);
+    }
+
+    public function testExceptionInterfaceExtendsExceptionInterface()
+    {
+        $mock = $this->createMock(OldNamespace\Exception\ExceptionInterface::class);
+        $this->assertInstanceOf(Exception\ExceptionInterface::class, $mock);
+    }
+
+    public function testExtensionNotLoadedExceptionExtendsRuntimeException()
+    {
+        $mock = $this->createMock(OldNamespace\Exception\ExtensionNotLoadedException::class);
+        $this->assertInstanceOf(OldNamespace\Exception\RuntimeException::class, $mock);
+    }
+
+    public function testInvalidArgumentExceptionExtendsInvalidArgumentException()
+    {
+        $mock = $this->createMock(OldNamespace\Exception\InvalidArgumentException::class);
+        $this->assertInstanceOf(Exception\InvalidArgumentException::class, $mock);
+        $this->assertInstanceOf(OldNamespace\Exception\ExceptionInterface::class, $mock);
+    }
+
+    public function testOutOfRangeExceptionExtendsOutOfRangeException()
+    {
+        $mock = $this->createMock(OldNamespace\Exception\OutOfRangeException::class);
+        $this->assertInstanceOf(Exception\OutOfRangeException::class, $mock);
+        $this->assertInstanceOf(OldNamespace\Exception\ExceptionInterface::class, $mock);
+    }
+
+    public function testRuntimeExceptionExtendsRuntimeException()
+    {
+        $mock = $this->createMock(OldNamespace\Exception\RuntimeException::class);
+        $this->assertInstanceOf(Exception\RuntimeException::class, $mock);
+        $this->assertInstanceOf(OldNamespace\Exception\ExceptionInterface::class, $mock);
     }
 }
