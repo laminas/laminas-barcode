@@ -35,6 +35,9 @@ class ImageTest extends TestCommon
         $this->assertSame('image', $this->renderer->getType());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGoodImageResource()
     {
         $imageResource = imagecreatetruecolor(1, 1);
