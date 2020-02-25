@@ -38,7 +38,8 @@ class ImageTest extends TestCommon
     public function testGoodImageResource()
     {
         $imageResource = imagecreatetruecolor(1, 1);
-        $this->renderer->setResource($imageResource);
+        $renderer = $this->renderer->setResource($imageResource);
+        $this->assertSame($this->renderer, $renderer);
     }
 
     public function testObjectImageResource()
