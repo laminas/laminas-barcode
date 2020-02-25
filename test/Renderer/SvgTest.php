@@ -106,6 +106,9 @@ class SvgTest extends TestCommon
         $this->renderer->setWidth(-1);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGoodSvgResource()
     {
         $svgResource = new \DOMDocument();
