@@ -14,19 +14,19 @@ implementations. These options can be set in three ways:
 ## Different ways to parameterize a barcode object
 
 ```php
-use Laminas\Barcode\Object;
+use Laminas\Barcode\Barcode;
 
 $options = ['text' => 'ZEND-FRAMEWORK', 'barHeight' => 40];
 
 // Case 1: constructor
-$barcode = new Object\Code39($options);
+$barcode = new Barcode\Code39($options);
 
 // Case 2: setOptions()
-$barcode = new Object\Code39();
+$barcode = new Barcode\Code39();
 $barcode->setOptions($options);
 
 // Case 3: individual setters
-$barcode = new Object\Code39();
+$barcode = new Barcode\Code39();
 $barcode->setText('ZEND-FRAMEWORK')
     ->setBarHeight(40);
 ```
