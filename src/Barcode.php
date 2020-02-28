@@ -50,6 +50,16 @@ abstract class Barcode
      */
     public static function getObjectPluginManager()
     {
+        return self::getBarcodePluginManager();
+    }
+
+    /**
+     * Get the parser plugin manager
+     *
+     * @return BarcodePluginManager
+     */
+    public static function getBarcodePluginManager()
+    {
         if (! static::$objectPlugins instanceof BarcodePluginManager) {
             static::$objectPlugins = new ObjectPluginManager(new ServiceManager);
         }

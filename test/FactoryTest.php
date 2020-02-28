@@ -236,7 +236,7 @@ class FactoryTest extends TestCase
 
     public function testBarcodeObjectFactoryWithNamespace()
     {
-        $plugins = Barcode\Barcode::getObjectPluginManager();
+        $plugins = Barcode\Barcode::getBarcodePluginManager();
         $plugins->setInvokableClass('barcodeNamespace', Object\TestAsset\BarcodeNamespace::class);
         $barcode = Barcode\Barcode::makeBarcode('barcodeNamespace');
         $this->assertInstanceOf(Object\TestAsset\BarcodeNamespace::class, $barcode);
@@ -244,7 +244,7 @@ class FactoryTest extends TestCase
 
     public function testBarcodeObjectFactoryWithNamespaceExtendStandardLibray()
     {
-        $plugins = Barcode\Barcode::getObjectPluginManager();
+        $plugins = Barcode\Barcode::getBarcodePluginManager();
         $plugins->setInvokableClass('error', \LaminasTest\Barcode\Object\TestAsset\Error::class);
         $barcode = Barcode\Barcode::makeBarcode('error');
         $this->assertInstanceOf(\LaminasTest\Barcode\Object\TestAsset\Error::class, $barcode);
@@ -252,7 +252,7 @@ class FactoryTest extends TestCase
 
     public function testBarcodeObjectFactoryWithNamespaceButWithoutExtendingObjectAbstract()
     {
-        $plugins = Barcode\Barcode::getObjectPluginManager();
+        $plugins = Barcode\Barcode::getBarcodePluginManager();
         $plugins->setInvokableClass(
             'barcodeNamespaceWithoutExtendingObjectAbstract',
             Object\TestAsset\BarcodeNamespaceWithoutExtendingObjectAbstract::class
