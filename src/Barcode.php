@@ -34,7 +34,7 @@ abstract class Barcode
      *
      * @var BarcodePluginManager
      */
-    protected static $objectPlugins;
+    protected static $barcodePlugins;
 
     /**
      * The renderer plugin manager
@@ -60,11 +60,11 @@ abstract class Barcode
      */
     public static function getBarcodePluginManager()
     {
-        if (! static::$objectPlugins instanceof BarcodePluginManager) {
-            static::$objectPlugins = new ObjectPluginManager(new ServiceManager);
+        if (! static::$barcodePlugins instanceof BarcodePluginManager) {
+            static::$barcodePlugins = new ObjectPluginManager(new ServiceManager);
         }
 
-        return static::$objectPlugins;
+        return static::$barcodePlugins;
     }
 
     /**
