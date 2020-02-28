@@ -48,9 +48,9 @@ class FactoryTest extends TestCase
         // Reset plugin managers
         $r = new ReflectionClass(Barcode\Barcode::class);
 
-        $rObjectPlugins = $r->getProperty('objectPlugins');
-        $rObjectPlugins->setAccessible(true);
-        $rObjectPlugins->setValue(null);
+        $rBarcodePlugins = $r->getProperty('barcodePlugins');
+        $rBarcodePlugins->setAccessible(true);
+        $rBarcodePlugins->setValue(null);
 
         $rRendererPlugins = $r->getProperty('rendererPlugins');
         $rRendererPlugins->setAccessible(true);
