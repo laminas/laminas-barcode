@@ -8,10 +8,12 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Object\AbstractObject;
+
 /**
  * Class for generate Ean13 barcode
  */
-class Ean13 extends AbstractBarcode
+class Ean13 extends AbstractObject
 {
     /**
      * Coding map

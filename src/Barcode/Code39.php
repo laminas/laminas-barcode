@@ -8,10 +8,12 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Object\AbstractObject;
+
 /**
  * Class for generate Code39 barcode
  */
-class Code39 extends AbstractBarcode
+class Code39 extends AbstractObject
 {
     /**
      * Coding map

@@ -8,10 +8,12 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Object\AbstractObject;
+
 /**
  * Class for generate Barcode
  */
-class Error extends AbstractBarcode
+class Error extends AbstractObject
 {
     /**
      * All texts are accepted

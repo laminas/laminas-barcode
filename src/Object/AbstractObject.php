@@ -8,11 +8,13 @@
 
 namespace Laminas\Barcode\Object;
 
+use Laminas\Barcode\Barcode\AbstractBarcode as BarcodeAbstract;
+
 /**
- * Interface for generate Barcode
+ * Class for generate Barcode
  *
- * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode\BarcodeInterface instead.
+ * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode\AbstractBarcode instead.
  */
-interface ObjectInterface
+abstract class AbstractObject extends BarcodeAbstract
 {
 }

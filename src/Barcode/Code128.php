@@ -8,10 +8,12 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Object\AbstractObject;
+
 /**
  * Class for generate Code128 barcode
  */
-class Code128 extends AbstractBarcode
+class Code128 extends AbstractObject
 {
     /**
      * Drawing of checksum

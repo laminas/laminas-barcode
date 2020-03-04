@@ -8,10 +8,12 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Object\AbstractObject;
+
 /**
  * Class for generate Postnet barcode
  */
-class Postnet extends AbstractBarcode
+class Postnet extends AbstractObject
 {
     /**
      * Coding map

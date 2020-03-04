@@ -8,10 +8,12 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Object\AbstractObject;
+
 /**
  * Class for generate Royal maim barcode
  */
-class Royalmail extends AbstractBarcode
+class Royalmail extends AbstractObject
 {
     /**
      * Coding map

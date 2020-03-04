@@ -8,10 +8,12 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Object\AbstractObject;
+
 /**
  * Class for generate Codabar barcode
  */
-class Codabar extends AbstractBarcode
+class Codabar extends AbstractObject
 {
     /**
      * Coding map

@@ -8,10 +8,12 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Object\ObjectInterface;
+
 /**
  * Interface for generate Barcode
  */
-interface BarcodeInterface
+interface BarcodeInterface extends ObjectInterface
 {
     /**
      * Constructor

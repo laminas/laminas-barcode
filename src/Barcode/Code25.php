@@ -8,10 +8,12 @@
 
 namespace Laminas\Barcode\Barcode;
 
+use Laminas\Barcode\Object\AbstractObject;
+
 /**
  * Class for generate Interleaved 2 of 5 barcode
  */
-class Code25 extends AbstractBarcode
+class Code25 extends AbstractObject
 {
     /**
      * Coding map
