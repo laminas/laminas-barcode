@@ -6,7 +6,7 @@
  * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
-namespace Laminas\Barcode\Object;
+namespace Laminas\Barcode\Barcode;
 
 use Laminas\Barcode;
 use Laminas\Stdlib\ArrayUtils;
@@ -15,10 +15,8 @@ use Traversable;
 
 /**
  * Class for generate Barcode
- *
- * @deprecated Deprecated in 2.8 and will be removed in 3.0. Use Laminas\Barcode\Barcode\AbstractBarcode instead.
  */
-abstract class AbstractObject implements ObjectInterface
+abstract class AbstractBarcode implements BarcodeInterface
 {
     /**
      * Namespace of the barcode for autoloading
