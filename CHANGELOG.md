@@ -24,7 +24,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 2.8.2 - TBD
+## 2.8.2 - 2020-03-29
 
 ### Added
 
@@ -44,7 +44,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- Fixed `replace` version constraint in composer.json so repository can be used as replacement of `zendframework/zend-barcode:^2.8.0`.
 
 ## 2.8.1 - 2020-01-24
 
