@@ -61,6 +61,6 @@
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
     "replace": {
-        "zendframework/zend-barcode": "self.version"
+        "zendframework/zend-barcode": "^2.8.0"
     }
 }
