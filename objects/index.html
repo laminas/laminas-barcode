@@ -317,7 +317,7 @@ implementations. These options can be set in three ways:</p>
 <li>Via individual setters for each configuration type.</li>
 </ul>
 <h2 id="different-ways-to-parameterize-a-barcode-object">Different ways to parameterize a barcode object</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Barcode\Object;
+<pre class="highlight"><code class="language-php">use Laminas\Barcode\Object;
 
 $options = ['text' =&gt; 'ZEND-FRAMEWORK', 'barHeight' =&gt; 40];
 
@@ -332,6 +332,7 @@ $barcode-&gt;setOptions($options);
 $barcode = new Object\Code39();
 $barcode-&gt;setText('ZEND-FRAMEWORK')
     -&gt;setBarHeight(40);</code></pre>
+
 <h2 id="common-options">Common Options</h2>
 <p>In the following list, the values have no units; as such, we will use the
 generic term "unit." For example, the default value of the "thin bar" is "1
@@ -468,20 +469,22 @@ options have a corresponding getter prefixed with "get" (e.g. <code>getBarHeight
 <p>With barcodes where checksum is mandatory
 (<em>EAN</em> 8, <em>EAN</em> 13, <em>ITF</em> 14, Leitcode, Identcode, <em>UPC</em>-A, <em>UPC</em>-E, Postnet, Royalmail)
 you can provide text with checksum:</p>
-<pre class=codehilite><code class=language-php>$barcode = new Ean13([
+<pre class="highlight"><code class="language-php">$barcode = new Ean13([
     'text' =&gt; '1234567890128',
     'providedChecksum' =&gt; true,
 ]);</code></pre>
+
 <p>where <code>8</code> is checksum. Without checksum it will be:</p>
-<pre class=codehilite><code class=language-php>$barcode = new Ean13([
+<pre class="highlight"><code class="language-php">$barcode = new Ean13([
     'text' =&gt; '123456789012',
 ]);</code></pre>
+
 <p>and the final result of the rendered barcode is the same.</p>
 <h3>Setting a common font for all objects</h3>
 <p>You can set a common font for all your objects by using the static method
 <code>Laminas\Barcode\Barcode::setBarcodeFont()</code>. This value can be always be overridden
 for individual objects by using the <code>setFont()</code> method.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Barcode\Barcode;
+<pre class="highlight"><code class="language-php">use Laminas\Barcode\Barcode;
 
 // In your bootstrap:
 Barcode::setBarcodeFont('my_font.ttf');
@@ -502,6 +505,7 @@ Barcode::render(
         'font' =&gt; 3,
     ]
 ); // will use the 3rd GD internal font</code></pre>
+
 <h2 id="common-additional-getters">Common Additional Getters</h2>
 <div class="table-responsive"><table>
 <thead>

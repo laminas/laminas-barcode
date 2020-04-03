@@ -312,7 +312,7 @@ method accepts five arguments:</p>
 instance, and binds them.</p>
 <p>In this first example, we will use the <strong>Code39</strong> barcode type together with the
 <strong>Image</strong> renderer.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Barcode\Barcode;
+<pre class="highlight"><code class="language-php">use Laminas\Barcode\Barcode;
 
 // Only the text to draw is required.
 $barcodeOptions = ['text' =&gt; 'ZEND-FRAMEWORK'];
@@ -325,11 +325,12 @@ $renderer = Barcode::factory(
     $barcodeOptions,
     $rendererOptions
 );</code></pre>
+
 <h3>Using laminas-config</h3>
 <p>You may pass a <code>Laminas\Config\Config</code> instance to the factory in order to create
 the necessary objects. The following example is functionally equivalent to the
 previous.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Config\Config;
+<pre class="highlight"><code class="language-php">use Laminas\Config\Config;
 use Laminas\Barcode\Barcode;
 
 // Using a single Laminas\Config\Config object:
@@ -340,13 +341,15 @@ $config = new Config([
     'rendererParams' =&gt; ['imageType' =&gt; 'gif'],
 ]);
 
-$renderer = Barcode::factory($config);</code></pre>
+$renderer = Barcode::factory($config);
+</code></pre>
+
 <h2 id="drawing-a-barcode">Drawing a barcode</h2>
 <p>When you <strong>draw</strong> the barcode, you retrieve the resource in which the barcode is
 drawn. To draw a barcode, call the <code>draw()</code> of the renderer, or use the proxy
 method provided by <code>Laminas\Barcode\Barcode</code>.</p>
 <h3>Drawing a barcode with the renderer object</h3>
-<pre class=codehilite><code class=language-php>use Laminas\Barcode\Barcode;
+<pre class="highlight"><code class="language-php">use Laminas\Barcode\Barcode;
 
 // Only the text to draw is required.
 $barcodeOptions = ['text' =&gt; 'ZEND-FRAMEWORK'];
@@ -361,10 +364,12 @@ $renderer = Barcode::factory(
     $barcodeOptions,
     $rendererOptions
 );
-$imageResource = $renderer-&gt;draw();</code></pre>
+$imageResource = $renderer-&gt;draw();
+</code></pre>
+
 <h3>Drawing a barcode with Laminas\Barcode\Barcode::draw()</h3>
 <p>The static <code>draw()</code> method is a shortcut for calling <code>factory()</code> + <code>draw()</code>:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Barcode\Barcode;
+<pre class="highlight"><code class="language-php">use Laminas\Barcode\Barcode;
 
 // Only the text to draw is required.
 $barcodeOptions = ['text' =&gt; 'ZEND-FRAMEWORK'];
@@ -378,7 +383,9 @@ $imageResource = Barcode::draw(
     'image',
     $barcodeOptions,
     $rendererOptions
-);</code></pre>
+);
+</code></pre>
+
 <h2 id="rendering-a-barcode">Rendering a barcode</h2>
 <p>In the previous section, we were <em>drawing</em>, which <em>returns</em> the resource
 representing the barcode, but does not actually <em>emit</em> it (e.g., to the
@@ -386,7 +393,7 @@ browser).</p>
 <p>To emit the barcode, call the <code>render()</code> method of the renderer, or use
 the proxy method provided by <code>Laminas\Barcode\Barcode</code>.</p>
 <h3>Rendering a barcode with the renderer object</h3>
-<pre class=codehilite><code class=language-php>use Laminas\Barcode\Barcode;
+<pre class="highlight"><code class="language-php">use Laminas\Barcode\Barcode;
 
 // Only the text to draw is required
 $barcodeOptions = ['text' =&gt; 'ZEND-FRAMEWORK'];
@@ -400,11 +407,13 @@ Barcode::factory(
     'image',
     $barcodeOptions,
     $rendererOptions
-)-&gt;render();</code></pre>
+)-&gt;render();
+</code></pre>
+
 <p>This will generate the following barcode:</p>
 <p><img alt="image" src="../images/laminas.barcode.introduction.example-1.png" class="img-responsive"/></p>
 <h3>Rendering a barcode with Laminas\Barcode\Barcode::render()</h3>
-<pre class=codehilite><code class=language-php>use Laminas\Barcode\Barcode;
+<pre class="highlight"><code class="language-php">use Laminas\Barcode\Barcode;
 
 // Only the text to draw is required
 $barcodeOptions = ['text' =&gt; 'ZEND-FRAMEWORK'];
@@ -418,7 +427,9 @@ Barcode::render(
     'image',
     $barcodeOptions,
     $rendererOptions
-);</code></pre>
+);
+</code></pre>
+
 <p>This will generate the same barcode as the previous example.</p>
 
 
