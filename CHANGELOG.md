@@ -2,27 +2,33 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.9.0 - TBD
+## 2.9.0 - 2021-02-10
+
+
+-----
+
+### Release Notes for [2.9.0](https://github.com/laminas/laminas-barcode/milestone/3)
 
 ### Added
 
-- Nothing.
-
-### Changed
-
-- Nothing.
-
-### Deprecated
-
-- Nothing.
+- Adds support for PHP 8.
 
 ### Removed
 
-- Nothing.
+- Removes support for PHP versions prior to 7.3.0.
 
-### Fixed
+- Removes support for laminas/laminas-servicemanager versions prior to 3.6.0.
 
-- Nothing.
+### 2.9.0
+
+- Total issues resolved: **1**
+- Total pull requests resolved: **1**
+- Total contributors: **2**
+
+#### Enhancement
+
+ - [10: PHP 8 Support](https://github.com/laminas/laminas-barcode/pull/10) thanks to @weierophinney
+ - [9: PHP 8.0 support](https://github.com/laminas/laminas-barcode/issues/9) thanks to @boesing
 
 ## 2.8.2 - 2020-03-29
 
