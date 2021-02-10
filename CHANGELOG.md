@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.8.3 - TBD
+## 2.9.0 - TBD
 
 ### Added
 
@@ -121,7 +121,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - [zendframework/zend-barcode#46](https://github.com/zendframework/zend-barcode/pull/46) fixes
   generating checksum for EAN5 and Identcode/Leitcode. These barcodes
-  have fixed length and checksum generator must use also leading zeros. 
+  have fixed length and checksum generator must use also leading zeros.
 
 - [zendframework/zend-barcode#47](https://github.com/zendframework/zend-barcode/pull/47) fixes
   text length for EAN2 and EAN5 by adding leading zeros.
