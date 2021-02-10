@@ -19,7 +19,7 @@ method accepts five arguments:
 
 On success, the factory method returns an instance of the renderer.
 
-### Getting a Renderer with Laminas\\Barcode\\Barcode::factory()
+## Getting a Renderer with Laminas\\Barcode\\Barcode::factory()
 
 `Laminas\Barcode\Barcode::factory()` instantiates both the barcode and renderer
 instance, and binds them.

@@ -44,7 +44,6 @@ options have a corresponding getter prefixed with "get" (e.g. `getBarHeight`).
 
 Available options are:
 
-
 Option               | Data Type                   | Default Value         | Description
 :------------------- | :-------------------------: | :-------------------: | :----------
 `barcodeNamespace`   | string                      | `Laminas\Barcode\Object` | Namespace of the barcode; for example, if you need to extend the embedding objects.
