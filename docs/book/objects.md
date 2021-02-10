@@ -161,19 +161,19 @@ exception caught by the component.
 
 ![image](images/laminas.barcode.objects.details.codabar.png)
 
-* **Name:** Codabar (or Code 2 of 7)
-* **Allowed characters:** `0123456789-\$:/.+` with `ABCD` as start and stop characters
-* **Checksum:** none
-* **Length:** variable
+- **Name:** Codabar (or Code 2 of 7)
+- **Allowed characters:** `0123456789-\$:/.+` with `ABCD` as start and stop characters
+- **Checksum:** none
+- **Length:** variable
 
 ### Laminas\\Barcode\\Object\\Code25
 
 ![image](images/laminas.barcode.objects.details.code25.png)
 
-* **Name:** Code 25 (or Code 2 of 5 or Code 25 Industrial)
-* **Allowed characters:** `0123456789`
-* **Checksum:** optional (modulo 10)
-* **Length:** variable
+- **Name:** Code 25 (or Code 2 of 5 or Code 25 Industrial)
+- **Allowed characters:** `0123456789`
+- **Checksum:** optional (modulo 10)
+- **Length:** variable
 
 ### Laminas\\Barcode\\Object\\Code25interleaved
 
@@ -182,10 +182,10 @@ exception caught by the component.
 This barcode extends `Laminas\Barcode\Object\Code25` (Code 2 of 5), with the
 following changes:
 
-* **Name:** Code 2 of 5 Interleaved
-* **Allowed characters:** `0123456789`
-* **Checksum:** optional (modulo 10)
-* **Length:** variable (always even number of characters)
+- **Name:** Code 2 of 5 Interleaved
+- **Allowed characters:** `0123456789`
+- **Checksum:** optional (modulo 10)
+- **Length:** variable (always even number of characters)
 
 It also defines the following additional option:
 
@@ -203,10 +203,10 @@ will automatically prepend the missing zero to the barcode text.
 This barcode extends `Laminas\Barcode\Object\Ean5` (*EAN* 5), with the following
 changes:
 
-* **Name:** *EAN*-2
-* **Allowed characters:** `0123456789`
-* **Checksum:** Used internally, but not displayed
-* **Length:** 2 characters
+- **Name:** *EAN*-2
+- **Allowed characters:** `0123456789`
+- **Checksum:** Used internally, but not displayed
+- **Length:** 2 characters
 
 If the number of characters is lower than 2, `Laminas\Barcode\Object\Ean2` will
 automatically prepend the missing zero to the barcode text.
@@ -218,10 +218,10 @@ automatically prepend the missing zero to the barcode text.
 This barcode extends `Laminas\Barcode\Object\Ean13` (*EAN* 13), with the following
 changes:
 
-* **Name:** *EAN*-5
-* **Allowed characters:** `0123456789`
-* **Checksum:** Used internally, but not displayed
-* **Length:** 5 characters
+- **Name:** *EAN*-5
+- **Allowed characters:** `0123456789`
+- **Checksum:** Used internally, but not displayed
+- **Length:** 5 characters
 
 If the number of characters is lower than 5, `Laminas\Barcode\Object\Ean5` will
 automatically prepend zeroes to the barcode text until it reaches 5 characters.
@@ -233,10 +233,10 @@ automatically prepend zeroes to the barcode text until it reaches 5 characters.
 This barcode extends `Laminas\Barcode\Object\Ean13` (*EAN* 13), with the following
 changes:
 
-* **Name:** *EAN*-8
-* **Allowed characters:** `0123456789`
-* **Checksum:** mandatory (modulo 10)
-* **Length:** 8 characters (including checksum)
+- **Name:** *EAN*-8
+- **Allowed characters:** `0123456789`
+- **Checksum:** mandatory (modulo 10)
+- **Length:** 8 characters (including checksum)
 
 If the number of characters is lower than 8, `Laminas\Barcode\Object\Ean8` will
 automatically prepend zeros to the barcode text until it reaches 8 characters.
@@ -245,10 +245,10 @@ automatically prepend zeros to the barcode text until it reaches 8 characters.
 
 ![image](images/laminas.barcode.objects.details.ean13.png)
 
-* **Name:** *EAN*-13
-* **Allowed characters:** `0123456789`
-* **Checksum:** mandatory (modulo 10)
-* **Length:** 13 characters (including checksum)
+- **Name:** *EAN*-13
+- **Allowed characters:** `0123456789`
+- **Checksum:** mandatory (modulo 10)
+- **Length:** 13 characters (including checksum)
 
 If the number of characters is lower than 13, `Laminas\Barcode\Object\Ean13` will
 automatically prepend zeros to the barcode text until it reaches 13 characters.
@@ -259,10 +259,10 @@ The option `withQuietZones` has no effect with this barcode.
 
 ![image](images/laminas.barcode.introduction.example-1.png)
 
-* **Name:** Code 39
-* **Allowed characters:** `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ -.\$/+%`
-* **Checksum:** optional (modulo 43)
-* **Length:** variable
+- **Name:** Code 39
+- **Allowed characters:** `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ -.\$/+%`
+- **Checksum:** optional (modulo 43)
+- **Length:** variable
 
 `Laminas\Barcode\Object\Code39` automatically adds the start and stop characters
 (`*`) for you.
@@ -274,10 +274,10 @@ The option `withQuietZones` has no effect with this barcode.
 This barcode extends `Laminas\Barcode\Object\Code25interleaved` (Code 2 of 5
 Interleaved), inheriting its capabilities and defining some of its own.
 
-* **Name:** Identcode (Deutsche Post Identcode)
-* **Allowed characters:** `0123456789`
-* **Checksum:** mandatory (modulo 10 different from Code25)
-* **Length:** 12 characters (including checksum)
+- **Name:** Identcode (Deutsche Post Identcode)
+- **Allowed characters:** `0123456789`
+- **Checksum:** mandatory (modulo 10 different from Code25)
+- **Length:** 12 characters (including checksum)
 
 If the number of characters is lower than 12, `Laminas\Barcode\Object\Identcode`
 will automatically prepend missing zeros to the barcode text.
@@ -289,10 +289,10 @@ will automatically prepend missing zeros to the barcode text.
 This barcode extends `Laminas\Barcode\Object\Code25interleaved` (Code 2 of 5
 Interleaved), inheriting its capabilities and defining some of its own.
 
-* **Name:** *ITF*-14
-* **Allowed characters:** `0123456789`
-* **Checksum:** mandatory (modulo 10)
-* **Length:** 14 characters (including checksum)
+- **Name:** *ITF*-14
+- **Allowed characters:** `0123456789`
+- **Checksum:** mandatory (modulo 10)
+- **Length:** 14 characters (including checksum)
 
 If the number of characters is lower than 14, `Laminas\Barcode\Object\Itf14` will
 automatically prepend missing zeros to the barcode text.
@@ -304,10 +304,10 @@ automatically prepend missing zeros to the barcode text.
 This barcode extends `Laminas\Barcode\Object\Identcode` (Deutsche Post Identcode),
 inheriting its capabilities and defining some of its own:
 
-* **Name:** Leitcode (Deutsche Post Leitcode)
-* **Allowed characters:** `0123456789`
-* **Checksum:** mandatory (modulo 10 different from Code25)
-* **Length:** 14 characters (including checksum)
+- **Name:** Leitcode (Deutsche Post Leitcode)
+- **Allowed characters:** `0123456789`
+- **Checksum:** mandatory (modulo 10 different from Code25)
+- **Length:** 14 characters (including checksum)
 
 If the number of characters is lower than 14, `Laminas\Barcode\Object\Leitcode`
 will automatically prepend missing zeros to the barcode text.
@@ -316,28 +316,28 @@ will automatically prepend missing zeros to the barcode text.
 
 ![image](images/laminas.barcode.objects.details.planet.png)
 
-* **Name:** Planet (PostaL Alpha Numeric Encoding Technique)
-* **Allowed characters:** `0123456789`
-* **Checksum:** mandatory (modulo 10)
-* **Length:** 12 or 14 characters (including checksum)
+- **Name:** Planet (PostaL Alpha Numeric Encoding Technique)
+- **Allowed characters:** `0123456789`
+- **Checksum:** mandatory (modulo 10)
+- **Length:** 12 or 14 characters (including checksum)
 
 ### Laminas\\Barcode\\Object\\Postnet
 
 ![image](images/laminas.barcode.objects.details.postnet.png)
 
-* **Name:** Postnet (POSTal Numeric Encoding Technique)
-* **Allowed characters:** `0123456789`
-* **Checksum:** mandatory (modulo 10)
-* **Length:** 6, 7, 10, or 12 characters (including checksum)
+- **Name:** Postnet (POSTal Numeric Encoding Technique)
+- **Allowed characters:** `0123456789`
+- **Checksum:** mandatory (modulo 10)
+- **Length:** 6, 7, 10, or 12 characters (including checksum)
 
 ### Laminas\\Barcode\\Object\\Royalmail
 
 ![image](images/laminas.barcode.objects.details.royalmail.png)
 
-* **Name:** Royal Mail or *RM4SCC* (Royal Mail 4-State Customer Code)
-* **Allowed characters:** `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ`
-* **Checksum:** mandatory
-* **Length:** variable
+- **Name:** Royal Mail or *RM4SCC* (Royal Mail 4-State Customer Code)
+- **Allowed characters:** `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ`
+- **Checksum:** mandatory
+- **Length:** variable
 
 ### Laminas\\Barcode\\Object\\Upca
 
@@ -346,10 +346,10 @@ will automatically prepend missing zeros to the barcode text.
 This barcode extends `Laminas\Barcode\Object\Ean13` (*EAN*-13), inheriting some of
 its capabilities and defining some of its own.
 
-* **Name:** *UPC*-A (Universal Product Code)
-* **Allowed characters:** `0123456789`
-* **Checksum:** mandatory (modulo 10)
-* **Length:** 12 characters (including checksum)
+- **Name:** *UPC*-A (Universal Product Code)
+- **Allowed characters:** `0123456789`
+- **Checksum:** mandatory (modulo 10)
+- **Length:** 12 characters (including checksum)
 
 If the number of characters is lower than 12, `Laminas\Barcode\Object\Upca` will
 automatically prepend missing zeros to the barcode text.
@@ -364,10 +364,10 @@ This barcode extends `Laminas\Barcode\Object\Upca` (*UPC*-A), inheriting some of
 its capabilities and defining some of its own. In particular, the first
 character of the text to encode is the system (0 or 1).
 
-* **Name:** *UPC*-E (Universal Product Code)
-* **Allowed characters:** `0123456789`
-* **Checksum:** mandatory (modulo 10)
-* **Length:** 8 characters (including checksum)
+- **Name:** *UPC*-E (Universal Product Code)
+- **Allowed characters:** `0123456789`
+- **Checksum:** mandatory (modulo 10)
+- **Length:** 8 characters (including checksum)
 
 If the number of characters is lower than 8, `Laminas\Barcode\Object\Upce` will
 automatically prepend missing zeros to the barcode text.
