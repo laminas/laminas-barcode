@@ -26,12 +26,12 @@ abstract class TestCommon extends TestCase
         return include_once(__DIR__ . "/TestAsset/$fileName.php");
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->object = $this->getBarcodeObject();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->object = null;
     }

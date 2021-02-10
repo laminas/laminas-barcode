@@ -29,7 +29,7 @@ abstract class TestCommon extends TestCase
 
     abstract protected function getRendererObject($options = null);
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->originaltimezone = date_default_timezone_get();
 
@@ -41,7 +41,7 @@ abstract class TestCommon extends TestCase
         $this->renderer = $this->getRendererObject();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Barcode\Barcode::setBarcodeFont(null);
         if (! empty($this->originaltimezone)) {

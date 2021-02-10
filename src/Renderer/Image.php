@@ -8,6 +8,7 @@
 
 namespace Laminas\Barcode\Renderer;
 
+use GdImage;
 use Laminas\Barcode\Exception\RendererCreationException;
 use Laminas\Stdlib\ErrorHandler;
 
@@ -142,7 +143,7 @@ class Image extends AbstractRenderer
      */
     public function setResource($image)
     {
-        if (gettype($image) != 'resource' || get_resource_type($image) != 'gd') {
+        if (! $this->isGdImage($image)) {
             throw new Exception\InvalidArgumentException(
                 'Invalid image resource provided to setResource()'
             );
@@ -441,5 +442,17 @@ class Image extends AbstractRenderer
                 $text
             );
         }
+    }
+
+    /**
+     * @param mixed $value
+     */
+    private function isGdImage($value): bool
+    {
+        if (PHP_MAJOR_VERSION === 8) {
+            return $value instanceof GdImage;
+        }
+
+        return gettype($value) === 'resource' && get_resource_type($value) === 'gd';
     }
 }

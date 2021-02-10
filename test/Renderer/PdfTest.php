@@ -17,7 +17,7 @@ use ZendPdf as Pdf;
  */
 class PdfTest extends TestCommon
 {
-    public function setUp()
+    public function setUp(): void
     {
         if (! getenv('TESTS_LAMINAS_BARCODE_PDF_SUPPORT')) {
             $this->markTestSkipped('Enable TESTS_LAMINAS_BARCODE_PDF_SUPPORT to test PDF render');

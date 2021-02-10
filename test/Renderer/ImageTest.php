@@ -11,13 +11,16 @@ namespace LaminasTest\Barcode\Renderer;
 use Laminas\Barcode;
 use Laminas\Barcode\Object\Code39;
 use Laminas\Barcode\Renderer as RendererNS;
+use LaminasTest\Barcode\AssertIsGdImageTrait;
 
 /**
  * @group      Laminas_Barcode
  */
 class ImageTest extends TestCommon
 {
-    public function setUp()
+    use AssertIsGdImageTrait;
+
+    public function setUp(): void
     {
         if (! extension_loaded('gd')) {
             $this->markTestSkipped('\LaminasTest\Barcode\Renderer\ImageTest requires the GD extension');
@@ -106,8 +109,7 @@ class ImageTest extends TestCommon
         $barcode = new Code39(['text' => '0123456789']);
         $this->renderer->setBarcode($barcode);
         $resource = $this->renderer->draw();
-        $this->assertInternalType('resource', $resource, 'Image must be a resource');
-        $this->assertEquals('gd', get_resource_type($resource), 'Image must be a GD resource');
+        $this->assertIsGdImage($resource, 'Image must be a GD resource');
     }
 
     public function testDrawWithExistantResourceReturnResource()
@@ -118,8 +120,7 @@ class ImageTest extends TestCommon
         $imageResource = imagecreatetruecolor(500, 500);
         $this->renderer->setResource($imageResource);
         $resource = $this->renderer->draw();
-        $this->assertInternalType('resource', $resource, 'Image must be a resource');
-        $this->assertEquals('gd', get_resource_type($resource), 'Image must be a GD resource');
+        $this->assertIsGdImage($resource, 'Image must be a GD resource');
         $this->assertSame($resource, $imageResource);
     }
 
