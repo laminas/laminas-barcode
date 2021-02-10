@@ -31,6 +31,8 @@ use ZendPdf\PdfDocument;
  */
 class FactoryTest extends TestCase
 {
+    use AssertIsGdImageTrait;
+
     /**
      * Stores the original set timezone
      * @var string
@@ -378,8 +380,7 @@ class FactoryTest extends TestCase
             $this->markTestSkipped('GD extension is required to run this test');
         }
         $resource = Barcode\Barcode::draw('code25', 'image', ['text' => '012345']);
-        $this->assertIsResource($resource, 'Image must be a resource');
-        $this->assertEquals('gd', get_resource_type($resource), 'Image must be a GD resource');
+        $this->assertIsGdImage($resource, 'Image must be a GD resource');
     }
 
     public function testProxyBarcodeRendererDrawAsImageAutomaticallyRenderImageIfException()
@@ -388,8 +389,7 @@ class FactoryTest extends TestCase
             $this->markTestSkipped('GD extension is required to run this test');
         }
         $resource = Barcode\Barcode::draw('code25', 'image');
-        $this->assertIsResource($resource, 'Image must be a resource');
-        $this->assertEquals('gd', get_resource_type($resource), 'Image must be a GD resource');
+        $this->assertIsGdImage($resource, 'Image must be a GD resource');
     }
 
     public function testProxyBarcodeRendererDrawAsPdf()
