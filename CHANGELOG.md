@@ -24,27 +24,28 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 2.8.2 - 2020-03-29
-
-### Added
-
-- Nothing.
-
-### Changed
-
-- Nothing.
-
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
+## 2.8.2 - 2021-12-17
 
 ### Fixed
 
 - Fixed `replace` version constraint in composer.json so repository can be used as replacement of `zendframework/zend-barcode:^2.8.0`.
+
+
+-----
+
+### Release Notes for [2.8.2](https://github.com/laminas/laminas-barcode/milestone/4)
+
+next bugfix release (mini)
+
+### 2.8.2
+
+- Total issues resolved: **0**
+- Total pull requests resolved: **1**
+- Total contributors: **1**
+
+#### Bug
+
+ - [6: Get rid of risky tests - adds `doesNotPerformAssertions ` annotation](https://github.com/laminas/laminas-barcode/pull/6) thanks to @simivar
 
 ## 2.8.1 - 2020-01-24
 
