@@ -22,8 +22,7 @@
         "php": "^7.3 || ~8.0.0",
         "laminas/laminas-servicemanager": "^3.6.0",
         "laminas/laminas-stdlib": "^2.7.7 || ^3.1",
-        "laminas/laminas-validator": "^2.10.1",
-        "laminas/laminas-zendframework-bridge": "^1.0"
+        "laminas/laminas-validator": "^2.10.1"
     },
     "require-dev": {
         "laminas/laminas-coding-standard": "~1.0.0",
@@ -54,7 +53,7 @@
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
-    "replace": {
-        "zendframework/zend-barcode": "^2.8.0"
+    "conflict": {
+        "zendframework/zend-barcode": "*"
     }
 }
