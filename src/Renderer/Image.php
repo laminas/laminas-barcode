@@ -71,7 +71,7 @@ class Image extends AbstractRenderer
      */
     public function __construct($options = null)
     {
-        if (!function_exists('gd_info')) {
+        if (! function_exists('gd_info')) {
             throw new RendererCreationException(__CLASS__ . ' requires the GD extension');
         }
 
@@ -87,7 +87,7 @@ class Image extends AbstractRenderer
      */
     public function setHeight($value)
     {
-        if (!is_numeric($value) || intval($value) < 0) {
+        if (! is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
                 'Image height must be greater than or equals 0'
             );
@@ -116,7 +116,7 @@ class Image extends AbstractRenderer
      */
     public function setWidth($value)
     {
-        if (!is_numeric($value) || intval($value) < 0) {
+        if (! is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
                 'Image width must be greater than or equals 0'
             );
@@ -145,7 +145,7 @@ class Image extends AbstractRenderer
      */
     public function setResource($image)
     {
-        if (!$this->isGdImage($image)) {
+        if (! $this->isGdImage($image)) {
             throw new Exception\InvalidArgumentException(
                 'Invalid image resource provided to setResource()'
             );
@@ -168,7 +168,7 @@ class Image extends AbstractRenderer
             $value = 'jpeg';
         }
 
-        if (!in_array($value, $this->allowedImageType)) {
+        if (! in_array($value, $this->allowedImageType)) {
             throw new Exception\InvalidArgumentException(
                 sprintf(
                     'Invalid type "%s" provided to setImageType()',
@@ -419,7 +419,7 @@ class Image extends AbstractRenderer
             }
             imagestring($this->resource, $font, $positionX, $positionY, $text, $color);
         } else {
-            if (!function_exists('imagettfbbox')) {
+            if (! function_exists('imagettfbbox')) {
                 throw new Exception\RuntimeException(
                     'A font was provided, but this instance of PHP does not have TTF (FreeType) support'
                 );
