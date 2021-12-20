@@ -380,7 +380,6 @@ class FactoryTest extends TestCase
             $this->markTestSkipped('GD extension is required to run this test');
         }
         $resource = Barcode\Barcode::draw('code25', 'image', ['text' => '012345']);
-        $this->expectNotToPerformAssertions();
         $this->assertIsGdImage($resource, 'Image must be a GD resource');
     }
 
@@ -390,7 +389,6 @@ class FactoryTest extends TestCase
             $this->markTestSkipped('GD extension is required to run this test');
         }
         $resource = Barcode\Barcode::draw('code25', 'image');
-        $this->expectNotToPerformAssertions();
         $this->assertIsGdImage($resource, 'Image must be a GD resource');
     }
 

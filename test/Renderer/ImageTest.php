@@ -109,7 +109,6 @@ class ImageTest extends TestCommon
         $barcode = new Code39(['text' => '0123456789']);
         $this->renderer->setBarcode($barcode);
         $resource = $this->renderer->draw();
-        $this->expectNotToPerformAssertions();
         $this->assertIsGdImage($resource, 'Image must be a GD resource');
     }
 

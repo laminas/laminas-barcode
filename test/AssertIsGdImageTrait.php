@@ -20,14 +20,14 @@ trait AssertIsGdImageTrait
         );
 
         if (PHP_MAJOR_VERSION === 8) {
-            if (! $value instanceof GdImage) {
-                Assert::fail($message);
-            }
+            Assert::assertInstanceOf(GdImage::class, $value);
             return;
         }
 
         if (! is_resource($value) || get_resource_type($value) !== 'gd') {
             Assert::fail($message);
         }
+
+        Assert::assertTrue(true);
     }
 }
