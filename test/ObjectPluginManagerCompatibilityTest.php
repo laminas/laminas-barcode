@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\Barcode;
 
 use Laminas\Barcode\Exception\InvalidArgumentException;
@@ -19,16 +13,25 @@ class ObjectPluginManagerCompatibilityTest extends TestCase
 {
     use CommonPluginManagerTrait;
 
+    /**
+     * @return ObjectPluginManager
+     */
     protected function getPluginManager()
     {
         return new ObjectPluginManager(new ServiceManager());
     }
 
+    /**
+     * @return string
+     */
     protected function getV2InvalidPluginException()
     {
         return InvalidArgumentException::class;
     }
 
+    /**
+     * @return string
+     */
     protected function getInstanceOf()
     {
         return AbstractObject::class;

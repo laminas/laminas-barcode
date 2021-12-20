@@ -1,20 +1,19 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\Barcode\Object;
 
 use Laminas\Barcode;
+use Traversable;
 
 /**
  * @group      Laminas_Barcode
  */
-class CodabarTest extends TestCommon
+class CodabarTest extends AbstractTest
 {
+    /**
+     * @param array|Traversable $options
+     * @return Barcode\Object\Codabar
+     */
     protected function getBarcodeObject($options = null)
     {
         return new Barcode\Object\Codabar($options);

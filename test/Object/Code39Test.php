@@ -1,20 +1,20 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\Barcode\Object;
 
 use Laminas\Barcode;
+use Laminas\Barcode\Object\Exception\ExceptionInterface;
+use Traversable;
 
 /**
  * @group      Laminas_Barcode
  */
-class Code39Test extends TestCommon
+class Code39Test extends AbstractTest
 {
+    /**
+     * @param array|Traversable $options
+     * @return Barcode\Object\Code39
+     */
     protected function getBarcodeObject($options = null)
     {
         return new Barcode\Object\Code39($options);
@@ -75,7 +75,7 @@ class Code39Test extends TestCommon
 
     public function testBadTextDetectedIfChecksumWished()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setText('&');
         $this->object->setWithChecksum(true);
         $this->object->getText();
@@ -89,7 +89,7 @@ class Code39Test extends TestCommon
 
     public function testCheckParamsWithLowRatio()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setText('TEST');
         $this->object->setBarThinWidth(21);
         $this->object->setBarThickWidth(40);
@@ -98,7 +98,7 @@ class Code39Test extends TestCommon
 
     public function testCheckParamsWithHighRatio()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setText('TEST');
         $this->object->setBarThinWidth(20);
         $this->object->setBarThickWidth(61);

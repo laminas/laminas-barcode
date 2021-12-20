@@ -1,20 +1,20 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\Barcode\Object;
 
 use Laminas\Barcode;
+use Laminas\Barcode\Object\Exception\ExceptionInterface;
+use Traversable;
 
 /**
  * @group      Laminas_Barcode
  */
-class Code25interleavedTest extends TestCommon
+class Code25interleavedTest extends AbstractTest
 {
+    /**
+     * @param array|Traversable $options
+     * @return Barcode\Object\Code25interleaved
+     */
     protected function getBarcodeObject($options = null)
     {
         return new Barcode\Object\Code25interleaved($options);
@@ -108,7 +108,7 @@ class Code25interleavedTest extends TestCommon
 
     public function testBadTextDetectedIfChecksumWished()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setText('a');
         $this->object->setWithChecksum(true);
         $this->object->getText();
@@ -122,7 +122,7 @@ class Code25interleavedTest extends TestCommon
 
     public function testCheckParamsWithLowRatio()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setText('0123456789');
         $this->object->setBarThinWidth(21);
         $this->object->setBarThickWidth(40);
@@ -131,7 +131,7 @@ class Code25interleavedTest extends TestCommon
 
     public function testCheckParamsWithHighRatio()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setText('0123456789');
         $this->object->setBarThinWidth(20);
         $this->object->setBarThickWidth(61);

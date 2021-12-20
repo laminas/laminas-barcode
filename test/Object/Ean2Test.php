@@ -1,20 +1,19 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\Barcode\Object;
 
 use Laminas\Barcode;
+use Traversable;
 
 /**
  * @group      Laminas_Barcode
  */
-class Ean2Test extends TestCommon
+class Ean2Test extends AbstractTest
 {
+    /**
+     * @param array|Traversable $options
+     * @return Barcode\Object\Ean2
+     */
     protected function getBarcodeObject($options = null)
     {
         return new Barcode\Object\Ean2($options);
@@ -77,7 +76,6 @@ class Ean2Test extends TestCommon
         $this->object->setText('43');
         $this->assertTrue($this->object->checkParams());
     }
-
 
     public function testGetKnownWidthWithoutOrientation()
     {

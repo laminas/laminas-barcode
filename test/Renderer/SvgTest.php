@@ -1,22 +1,23 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\Barcode\Renderer;
 
+use DOMDocument;
 use Laminas\Barcode;
 use Laminas\Barcode\Object\Code39;
+use Laminas\Barcode\Renderer\Exception\ExceptionInterface;
 use Laminas\Barcode\Renderer\Svg;
+use Traversable;
 
 /**
  * @group      Laminas_Barcode
  */
-class SvgTest extends TestCommon
+class SvgTest extends AbstractTest
 {
+    /**
+     * @param array|Traversable $options
+     * @return Svg
+     */
     protected function getRendererObject($options = null)
     {
         return new Svg($options);
@@ -81,7 +82,7 @@ class SvgTest extends TestCommon
 
     public function testBadHeight()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->renderer->setHeight(-1);
     }
 
@@ -96,7 +97,7 @@ class SvgTest extends TestCommon
 
     public function testBadWidth()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->renderer->setWidth(-1);
     }
 
@@ -105,7 +106,7 @@ class SvgTest extends TestCommon
      */
     public function testGoodSvgResource()
     {
-        $svgResource = new \DOMDocument();
+        $svgResource = new DOMDocument();
         $this->renderer->setResource($svgResource, 10);
     }
 
@@ -124,7 +125,7 @@ class SvgTest extends TestCommon
         Barcode\Barcode::setBarcodeFont(__DIR__ . '/../Object/_fonts/Vera.ttf');
         $barcode = new Code39(['text' => '0123456789']);
         $this->renderer->setBarcode($barcode);
-        $svgResource = new \DOMDocument();
+        $svgResource = new DOMDocument();
         $rootElement = $svgResource->createElement('svg');
         $rootElement->setAttribute('xmlns', "http://www.w3.org/2000/svg");
         $rootElement->setAttribute('version', '1.1');
@@ -138,9 +139,12 @@ class SvgTest extends TestCommon
         Barcode\Barcode::setBarcodeFont('');
     }
 
+    /**
+     * @return Svg
+     */
     protected function getRendererWithWidth500AndHeight300()
     {
-        $svg = new \DOMDocument();
+        $svg         = new DOMDocument();
         $rootElement = $svg->createElement('svg');
         $rootElement->setAttribute('xmlns', "http://www.w3.org/2000/svg");
         $rootElement->setAttribute('version', '1.1');

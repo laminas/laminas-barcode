@@ -1,12 +1,8 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Barcode\Object;
+
+use function preg_replace;
 
 /**
  * Class for generate Identcode barcode
@@ -15,16 +11,18 @@ class Leitcode extends Identcode
 {
     /**
      * Default options for Leitcode barcode
+     *
      * @return void
      */
     protected function getDefaultOptions()
     {
-        $this->barcodeLength = 14;
+        $this->barcodeLength     = 14;
         $this->mandatoryChecksum = true;
     }
 
     /**
      * Retrieve text to display
+     *
      * @return string
      */
     public function getTextToDisplay()

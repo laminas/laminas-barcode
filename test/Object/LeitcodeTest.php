@@ -1,21 +1,22 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\Barcode\Object;
 
+use Generator;
 use Laminas\Barcode;
 use Laminas\Barcode\Object\Exception\BarcodeValidationException;
+use Laminas\Barcode\Object\Exception\ExceptionInterface;
+use Traversable;
 
 /**
  * @group      Laminas_Barcode
  */
-class LeitcodeTest extends TestCommon
+class LeitcodeTest extends AbstractTest
 {
+    /**
+     * @param array|Traversable $options
+     * @return Barcode\Object\Leitcode
+     */
     protected function getBarcodeObject($options = null)
     {
         return new Barcode\Object\Leitcode($options);
@@ -26,6 +27,9 @@ class LeitcodeTest extends TestCommon
         $this->assertSame('leitcode', $this->object->getType());
     }
 
+    /**
+     * @return Generator
+     */
     public function checksum()
     {
         yield ['0123456789012', 8];
@@ -94,7 +98,7 @@ class LeitcodeTest extends TestCommon
 
     public function testBadTextDetectedIfChecksumWished()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setText('a');
         $this->object->setWithChecksum(true);
         $this->object->getText();
@@ -105,7 +109,6 @@ class LeitcodeTest extends TestCommon
         $this->object->setText('0000123456789');
         $this->assertTrue($this->object->checkParams());
     }
-
 
     public function testGetKnownWidthWithoutOrientation()
     {

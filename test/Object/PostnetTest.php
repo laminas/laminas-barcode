@@ -1,21 +1,21 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\Barcode\Object;
 
 use Laminas\Barcode;
 use Laminas\Barcode\Object\Exception\BarcodeValidationException;
+use Laminas\Barcode\Object\Exception\ExceptionInterface;
+use Traversable;
 
 /**
  * @group      Laminas_Barcode
  */
-class PostnetTest extends TestCommon
+class PostnetTest extends AbstractTest
 {
+    /**
+     * @param array|Traversable $options
+     * @return Barcode\Object\Postnet
+     */
     protected function getBarcodeObject($options = null)
     {
         return new Barcode\Object\Postnet($options);
@@ -42,7 +42,7 @@ class PostnetTest extends TestCommon
 
     public function testSetTextWithoutGoodNumberOfCharacters()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setText('1234');
         $this->object->getText();
     }
@@ -75,7 +75,7 @@ class PostnetTest extends TestCommon
 
     public function testBadTextDetectedIfChecksumWished()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setText('a');
         $this->object->setWithChecksum(true);
         $this->object->getText();
@@ -86,7 +86,6 @@ class PostnetTest extends TestCommon
         $this->object->setText('012345');
         $this->assertTrue($this->object->checkParams());
     }
-
 
     public function testGetKnownWidthWithoutOrientation()
     {

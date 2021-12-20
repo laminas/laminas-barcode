@@ -7,6 +7,15 @@ namespace LaminasTest\Barcode;
 use GdImage;
 use PHPUnit\Framework\Assert;
 
+use function get_class;
+use function get_resource_type;
+use function gettype;
+use function is_object;
+use function is_resource;
+use function sprintf;
+
+use const PHP_MAJOR_VERSION;
+
 trait AssertIsGdImageTrait
 {
     /**

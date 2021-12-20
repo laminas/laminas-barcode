@@ -2,8 +2,6 @@
 
 /**
  * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
  */
 
 namespace Laminas\Barcode\Renderer;
@@ -11,6 +9,39 @@ namespace Laminas\Barcode\Renderer;
 use GdImage;
 use Laminas\Barcode\Exception\RendererCreationException;
 use Laminas\Stdlib\ErrorHandler;
+use Traversable;
+
+use function ceil;
+use function cos;
+use function function_exists;
+use function get_resource_type;
+use function gettype;
+use function header;
+use function imagecolorallocate;
+use function imagecolortransparent;
+use function imagecreatetruecolor;
+use function imagedestroy;
+use function imagefilledpolygon;
+use function imagefilledrectangle;
+use function imagefontheight;
+use function imagefontwidth;
+use function imagepolygon;
+use function imagestring;
+use function imagesx;
+use function imagesy;
+use function imagettfbbox;
+use function imagettftext;
+use function in_array;
+use function intval;
+use function is_numeric;
+use function pi;
+use function sin;
+use function sprintf;
+use function strlen;
+
+use const E_WARNING;
+use const PHP_MAJOR_VERSION;
+use const PHP_VERSION_ID;
 
 /**
  * Class for rendering the barcode as image
@@ -19,6 +50,7 @@ class Image extends AbstractRenderer
 {
     /**
      * List of authorized output format
+     *
      * @var array
      */
     protected $allowedImageType = [
@@ -29,36 +61,42 @@ class Image extends AbstractRenderer
 
     /**
      * Image format
+     *
      * @var string
      */
     protected $imageType = 'png';
 
     /**
      * Resource for the image
+     *
      * @var resource
      */
-    protected $resource = null;
+    protected $resource;
 
     /**
      * Resource for the font and bars color of the image
+     *
      * @var int
      */
-    protected $imageForeColor = null;
+    protected $imageForeColor;
 
     /**
      * Resource for the background color of the image
+     *
      * @var int
      */
-    protected $imageBackgroundColor = null;
+    protected $imageBackgroundColor;
 
     /**
      * Height of the rendered image wanted by user
+     *
      * @var int
      */
     protected $userHeight = 0;
 
     /**
      * Width of the rendered image wanted by user
+     *
      * @var int
      */
     protected $userWidth = 0;
@@ -66,13 +104,13 @@ class Image extends AbstractRenderer
     /**
      * Constructor
      *
-     * @param array|\Traversable $options
+     * @param array|Traversable $options
      * @throws RendererCreationException
      */
     public function __construct($options = null)
     {
         if (! function_exists('gd_info')) {
-            throw new RendererCreationException(__CLASS__ . ' requires the GD extension');
+            throw new RendererCreationException(self::class . ' requires the GD extension');
         }
 
         parent::__construct($options);
@@ -164,7 +202,7 @@ class Image extends AbstractRenderer
      */
     public function setImageType($value)
     {
-        if ($value == 'jpg') {
+        if ($value === 'jpg') {
             $value = 'jpeg';
         }
 
@@ -199,23 +237,23 @@ class Image extends AbstractRenderer
      */
     protected function initRenderer()
     {
-        $barcodeWidth = $this->barcode->getWidth(true);
+        $barcodeWidth  = $this->barcode->getWidth(true);
         $barcodeHeight = $this->barcode->getHeight(true);
 
         if (null === $this->resource) {
-            $width = $barcodeWidth;
+            $width  = $barcodeWidth;
             $height = $barcodeHeight;
-            if ($this->userWidth && $this->barcode->getType() != 'error') {
+            if ($this->userWidth && $this->barcode->getType() !== 'error') {
                 $width = $this->userWidth;
             }
-            if ($this->userHeight && $this->barcode->getType() != 'error') {
+            if ($this->userHeight && $this->barcode->getType() !== 'error') {
                 $height = $this->userHeight;
             }
 
             // Cast width and height to ensure they are correct type for image
             // operations
-            $width = (int)$width;
-            $height = (int)$height;
+            $width  = (int) $width;
+            $height = (int) $height;
 
             $this->resource = imagecreatetruecolor($width, $height);
 
@@ -223,7 +261,7 @@ class Image extends AbstractRenderer
             imagefilledrectangle($this->resource, 0, 0, $width - 1, $height - 1, $white);
         }
 
-        $foreColor = $this->barcode->getForeColor();
+        $foreColor            = $this->barcode->getForeColor();
         $this->imageForeColor = imagecolorallocate(
             $this->resource,
             ($foreColor & 0xFF0000) >> 16,
@@ -231,7 +269,7 @@ class Image extends AbstractRenderer
             $foreColor & 0x0000FF
         );
 
-        $backgroundColor = $this->barcode->getBackgroundColor();
+        $backgroundColor            = $this->barcode->getBackgroundColor();
         $this->imageBackgroundColor = imagecolorallocate(
             $this->resource,
             ($backgroundColor & 0xFF0000) >> 16,
@@ -241,7 +279,7 @@ class Image extends AbstractRenderer
 
         // JPEG does not support transparency, if transparentBackground is true and
         // image type is JPEG, ignore transparency
-        if ($this->getImageType() != "jpeg" && $this->transparentBackground) {
+        if ($this->getImageType() !== "jpeg" && $this->transparentBackground) {
             imagecolortransparent($this->resource, $this->imageBackgroundColor);
         }
 
@@ -251,8 +289,8 @@ class Image extends AbstractRenderer
             $this->resource,
             $this->leftOffset,
             $this->topOffset,
-            (int)($this->leftOffset + $barcodeWidth - 1),
-            (int)($this->topOffset + $barcodeHeight - 1),
+            (int) ($this->leftOffset + $barcodeWidth - 1),
+            (int) ($this->topOffset + $barcodeHeight - 1),
             $this->imageBackgroundColor
         );
     }
@@ -434,7 +472,7 @@ class Image extends AbstractRenderer
                     $width = ($box[2] - $box[0]) / 2;
                     break;
                 case 'right':
-                    $width = ($box[2] - $box[0]);
+                    $width = $box[2] - $box[0];
                     break;
             }
             imagettftext(
@@ -455,6 +493,7 @@ class Image extends AbstractRenderer
      * @param array $points
      * @param int $numPoints
      * @param int $color
+     * @param bool $filled
      * @return void
      */
     protected function imageFilledPolygonWrapper($image, array $points, $numPoints, $color, $filled)

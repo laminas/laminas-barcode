@@ -1,17 +1,38 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Barcode\Object;
 
 use Laminas\Barcode;
+use Laminas\Barcode\Object\Exception\ExceptionInterface;
 use Laminas\Stdlib\ArrayUtils;
 use Laminas\Validator\Barcode as BarcodeValidator;
 use Traversable;
+
+use function abs;
+use function cos;
+use function extension_loaded;
+use function floatval;
+use function floor;
+use function hexdec;
+use function imagefontheight;
+use function implode;
+use function intval;
+use function is_array;
+use function is_int;
+use function is_numeric;
+use function is_string;
+use function method_exists;
+use function min;
+use function pi;
+use function preg_match;
+use function round;
+use function sin;
+use function sprintf;
+use function str_repeat;
+use function strlen;
+use function strtolower;
+use function substr;
+use function trim;
 
 /**
  * Class for generate Barcode
@@ -37,21 +58,21 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @var string
      */
-    protected $type = null;
+    protected $type;
 
     /**
      * Height of the object
      *
      * @var int
      */
-    protected $height = null;
+    protected $height;
 
     /**
      * Width of the object
      *
      * @var int
      */
-    protected $width = null;
+    protected $width;
 
     /**
      * Height of the bar
@@ -130,7 +151,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @var int
      */
-    protected $offsetTop = null;
+    protected $offsetTop;
 
     /**
      * Offset from the left the object
@@ -138,14 +159,14 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @var int
      */
-    protected $offsetLeft = null;
+    protected $offsetLeft;
 
     /**
      * Text to display
      *
      * @var string
      */
-    protected $text = null;
+    protected $text;
 
     /**
      * Display (or not) human readable text
@@ -168,7 +189,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @var int|string
      */
-    protected $font = null;
+    protected $font;
 
     /**
      * Font size
@@ -203,7 +224,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @var int | string
      */
-    protected $barcodeLength = null;
+    protected $barcodeLength;
 
     /**
      * Activate automatic addition of leading zeros
@@ -243,9 +264,9 @@ abstract class AbstractObject implements ObjectInterface
         if (is_array($options)) {
             $this->setOptions($options);
         }
-        $this->type = strtolower(substr(get_class($this), strlen($this->barcodeNamespace) + 1));
+        $this->type = strtolower(substr(static::class, strlen($this->barcodeNamespace) + 1));
         if ($this->mandatoryChecksum) {
-            $this->withChecksum = true;
+            $this->withChecksum       = true;
             $this->withChecksumInText = true;
         }
     }
@@ -311,7 +332,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int $value
      * @return self Provides a fluent interface
-     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function setBarHeight($value)
     {
@@ -339,7 +360,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int $value
      * @return self Provides a fluent interface
-     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function setBarThinWidth($value)
     {
@@ -367,7 +388,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int $value
      * @return self Provides a fluent interface
-     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function setBarThickWidth($value)
     {
@@ -396,7 +417,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int|float|string|bool $value
      * @return self Provides a fluent interface
-     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function setFactor($value)
     {
@@ -425,7 +446,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param string $value
      * @return self Provides a fluent interface
-     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function setForeColor($value)
     {
@@ -456,7 +477,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int $value
      * @return self Provides a fluent interface
-     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function setBackgroundColor($value)
     {
@@ -533,7 +554,7 @@ abstract class AbstractObject implements ObjectInterface
      */
     public function setReverseColor()
     {
-        $tmp                    = $this->foreColor;
+        $tmp                   = $this->foreColor;
         $this->foreColor       = $this->backgroundColor;
         $this->backgroundColor = $tmp;
         return $this;
@@ -544,7 +565,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int|float|string|bool $value
      * @return self Provides a fluent interface
-     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function setOrientation($value)
     {
@@ -605,8 +626,8 @@ abstract class AbstractObject implements ObjectInterface
                     $text = str_repeat('0', $length - strlen($text)) . $text;
                 }
             } else {
-                if ($this->barcodeLength == 'even') {
-                    $text = ((strlen($text) - $omitChecksum) % 2 ? '0' . $text : $text);
+                if ($this->barcodeLength === 'even') {
+                    $text = (strlen($text) - $omitChecksum) % 2 ? '0' . $text : $text;
                 }
             }
         }
@@ -667,7 +688,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param  bool $value
      * @return self Provides a fluent interface
-     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function setStretchText($value)
     {
@@ -720,7 +741,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param  bool $value
      * @return self Provides a fluent interface
-     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function setWithChecksumInText($value)
     {
@@ -767,7 +788,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int|string $value
      * @return self Provides a fluent interface
-     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function setFont($value)
     {
@@ -809,7 +830,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param float $value
      * @return self Provides a fluent interface
-     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function setFontSize($value)
     {
@@ -830,6 +851,7 @@ abstract class AbstractObject implements ObjectInterface
 
     /**
      * Retrieve the size of the font in case of TTF
+     *
      * @return float
      */
     public function getFontSize()
@@ -944,7 +966,7 @@ abstract class AbstractObject implements ObjectInterface
      * Check if a text is really provided to barcode
      *
      * @param string|null $value
-     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     protected function checkText($value = null)
     {
@@ -964,7 +986,7 @@ abstract class AbstractObject implements ObjectInterface
      *
      * @param int $min
      * @param int $max
-     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     protected function checkRatio($min = 2, $max = 3)
     {
@@ -982,11 +1004,11 @@ abstract class AbstractObject implements ObjectInterface
     /**
      * Drawing with an angle is just allow TTF font
      *
-     * @throws \Laminas\Barcode\Object\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     protected function checkFontAndOrientation()
     {
-        if (is_numeric($this->font) && $this->orientation != 0) {
+        if (is_numeric($this->font) && $this->orientation !== 0) {
             throw new Exception\RuntimeException(
                 'Only drawing with TTF font allow orientation of the barcode.'
             );
@@ -1032,7 +1054,7 @@ abstract class AbstractObject implements ObjectInterface
      */
     protected function calculateBarcodeHeight()
     {
-        $textHeight = 0;
+        $textHeight  = 0;
         $extraHeight = 0;
         if ($this->drawText) {
             $textHeight += $this->fontSize;
@@ -1177,7 +1199,7 @@ abstract class AbstractObject implements ObjectInterface
             $point1,
             $point2,
             $point3,
-            $point4
+            $point4,
         ], $this->backgroundColor);
 
         $xpos     += $this->getQuietZone();
@@ -1242,7 +1264,7 @@ abstract class AbstractObject implements ObjectInterface
             if ($this->stretchText) {
                 $textLength = strlen($text);
                 $space      = ($this->calculateWidth() - 2 * $this->getQuietZone()) / $textLength;
-                for ($i = 0; $i < $textLength; $i ++) {
+                for ($i = 0; $i < $textLength; $i++) {
                     $leftPosition = $this->getQuietZone() + $space * ($i + 0.5);
                     $this->addText(
                         $text[$i],
@@ -1292,18 +1314,18 @@ abstract class AbstractObject implements ObjectInterface
      */
     protected function validateSpecificText($value, $options = [])
     {
-        $validatorName = (isset($options['validator'])) ? $options['validator'] : $this->getType();
+        $validatorName = $options['validator'] ?? $this->getType();
 
         $validator = new BarcodeValidator([
-            'adapter'  => $validatorName,
+            'adapter'     => $validatorName,
             'usechecksum' => $this->providedChecksum,
         ]);
 
         $checksumCharacter = '';
-        $withChecksum = false;
+        $withChecksum      = false;
         if ($this->mandatoryChecksum && ! $this->providedChecksum) {
             $checksumCharacter = $this->substituteChecksumCharacter;
-            $withChecksum = true;
+            $withChecksum      = true;
         }
 
         $value = $this->addLeadingZeros($value, $withChecksum) . $checksumCharacter;

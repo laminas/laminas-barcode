@@ -1,20 +1,20 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\Barcode\Object;
 
+use Generator;
 use Laminas\Barcode;
+use Traversable;
 
 /**
  * @group      Laminas_Barcode
  */
-class Ean5Test extends TestCommon
+class Ean5Test extends AbstractTest
 {
+    /**
+     * @param array|Traversable $options
+     * @return Barcode\Object\Ean5
+     */
     protected function getBarcodeObject($options = null)
     {
         return new Barcode\Object\Ean5($options);
@@ -25,6 +25,9 @@ class Ean5Test extends TestCommon
         $this->assertSame('ean5', $this->object->getType());
     }
 
+    /**
+     * @return Generator
+     */
     public function checksum()
     {
         yield ['45678', 2];
@@ -34,8 +37,8 @@ class Ean5Test extends TestCommon
 
     /**
      * @dataProvider checksum
-     * @var string $text
-     * @var int $checksum
+     * @param string $text
+     * @param int $checksum
      */
     public function testChecksum($text, $checksum)
     {
@@ -89,7 +92,6 @@ class Ean5Test extends TestCommon
         $this->object->setText('45678');
         $this->assertTrue($this->object->checkParams());
     }
-
 
     public function testGetKnownWidthWithoutOrientation()
     {

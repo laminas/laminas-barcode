@@ -1,12 +1,9 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Barcode\Object;
+
+use function strlen;
+use function substr;
 
 /**
  * Class for generate Interleaved 2 of 5 barcode
@@ -15,12 +12,14 @@ class Code25interleaved extends Code25
 {
     /**
      * Drawing of bearer bars
+     *
      * @var bool
      */
     private $withBearerBars = false;
 
     /**
      * Default options for Code25interleaved barcode
+     *
      * @return void
      */
     protected function getDefaultOptions()
@@ -30,6 +29,7 @@ class Code25interleaved extends Code25
 
     /**
      * Activate/deactivate drawing of bearer bars
+     *
      * @param  bool $value
      * @return self Provides a fluent interface
      */
@@ -41,6 +41,7 @@ class Code25interleaved extends Code25
 
     /**
      * Retrieve if bearer bars are enabled
+     *
      * @return bool
      */
     public function getWithBearerBars()
@@ -50,6 +51,7 @@ class Code25interleaved extends Code25
 
     /**
      * Width of the barcode (in pixels)
+     *
      * @return int
      */
     protected function calculateBarcodeWidth()
@@ -64,6 +66,7 @@ class Code25interleaved extends Code25
 
     /**
      * Prepare array to draw barcode
+     *
      * @return array
      */
     protected function prepareBarcode()
@@ -87,16 +90,16 @@ class Code25interleaved extends Code25
             $char2 = substr($text, $i + 1, 1);
 
             // Interleave
-            for ($ibar = 0; $ibar < 5; $ibar ++) {
+            for ($ibar = 0; $ibar < 5; $ibar++) {
                 // Draws char1 bar (fore color)
-                $barWidth = (substr($this->codingMap[$char1], $ibar, 1))
+                $barWidth = substr($this->codingMap[$char1], $ibar, 1)
                           ? $this->barThickWidth
                           : $this->barThinWidth;
 
                 $barcodeTable[] = [1, $barWidth, 0, 1];
 
                 // Left space corresponding to char2 (background color)
-                $barWidth = (substr($this->codingMap[$char2], $ibar, 1))
+                $barWidth       = substr($this->codingMap[$char2], $ibar, 1)
                           ? $this->barThickWidth
                           : $this->barThinWidth;
                 $barcodeTable[] = [0, $barWidth, 0, 1];

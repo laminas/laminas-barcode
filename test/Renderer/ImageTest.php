@@ -1,22 +1,24 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\Barcode\Renderer;
 
 use Laminas\Barcode;
 use Laminas\Barcode\Object\Code39;
 use Laminas\Barcode\Renderer as RendererNS;
+use Laminas\Barcode\Renderer\Exception\ExceptionInterface;
 use LaminasTest\Barcode\AssertIsGdImageTrait;
+use stdClass;
+use Traversable;
+
+use function extension_loaded;
+use function function_exists;
+use function imagecolortransparent;
+use function imagecreatetruecolor;
 
 /**
  * @group      Laminas_Barcode
  */
-class ImageTest extends TestCommon
+class ImageTest extends AbstractTest
 {
     use AssertIsGdImageTrait;
 
@@ -28,6 +30,10 @@ class ImageTest extends TestCommon
         parent::setUp();
     }
 
+    /**
+     * @param array|Traversable $options
+     * @return RendererNS\Image
+     */
     protected function getRendererObject($options = null)
     {
         return new RendererNS\Image($options);
@@ -49,8 +55,8 @@ class ImageTest extends TestCommon
 
     public function testObjectImageResource()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
-        $imageResource = new \stdClass();
+        $this->expectException(ExceptionInterface::class);
+        $imageResource = new stdClass();
         $this->renderer->setResource($imageResource);
     }
 
@@ -65,7 +71,7 @@ class ImageTest extends TestCommon
 
     public function testBadHeight()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->renderer->setHeight(- 1);
     }
 
@@ -80,14 +86,18 @@ class ImageTest extends TestCommon
 
     public function testBadWidth()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->renderer->setWidth(- 1);
     }
 
     public function testAllowedImageType()
     {
-        $types = ['gif' => 'gif' , 'jpg' => 'jpeg' , 'jpeg' => 'jpeg' ,
-                       'png' => 'png'];
+        $types = [
+            'gif'  => 'gif',
+            'jpg'  => 'jpeg',
+            'jpeg' => 'jpeg',
+            'png'  => 'png',
+        ];
         foreach ($types as $type => $expectedType) {
             $this->renderer->setImageType($type);
             $this->assertSame(
@@ -99,7 +109,7 @@ class ImageTest extends TestCommon
 
     public function testNonAllowedImageType()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->renderer->setImageType('other');
     }
 
@@ -135,7 +145,7 @@ class ImageTest extends TestCommon
 
     public function testBadUserHeightLessThanBarcodeHeight()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $barcode = new Code39(['text' => '0123456789']);
         $this->assertEquals(62, $barcode->getHeight());
         $this->renderer->setBarcode($barcode);
@@ -154,7 +164,7 @@ class ImageTest extends TestCommon
 
     public function testBadUserWidthLessThanBarcodeWidth()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $barcode = new Code39(['text' => '0123456789']);
         $this->assertEquals(211, $barcode->getWidth());
         $this->renderer->setBarcode($barcode);
@@ -174,7 +184,7 @@ class ImageTest extends TestCommon
 
     public function testBadHeightOfUserResource()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $barcode = new Code39(['text' => '0123456789']);
         $this->assertEquals(62, $barcode->getHeight());
         $this->renderer->setBarcode($barcode);
@@ -195,7 +205,7 @@ class ImageTest extends TestCommon
 
     public function testBadWidthOfUserResource()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $barcode = new Code39(['text' => '0123456789']);
         $this->assertEquals(211, $barcode->getWidth());
         $this->renderer->setBarcode($barcode);
@@ -206,7 +216,7 @@ class ImageTest extends TestCommon
 
     public function testNoFontWithOrientation()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         Barcode\Barcode::setBarcodeFont(null);
         $barcode = new Code39(['text' => '0123456789']);
         $barcode->setOrientation(1);
@@ -214,6 +224,9 @@ class ImageTest extends TestCommon
         $this->renderer->draw();
     }
 
+    /**
+     * @return RendererNS\Image
+     */
     protected function getRendererWithWidth500AndHeight300()
     {
         return $this->renderer->setHeight(300)->setWidth(500);
@@ -221,7 +234,7 @@ class ImageTest extends TestCommon
 
     public function testRendererWithUnkownInstructionProvideByObject()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         parent::testRendererWithUnkownInstructionProvideByObject();
     }
 

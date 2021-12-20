@@ -1,32 +1,35 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\Barcode\Renderer;
 
 use Laminas\Barcode;
 use Laminas\Barcode\Object\Code39;
+use Laminas\Barcode\Renderer\AbstractRenderer;
+use Laminas\Barcode\Renderer\Exception\ExceptionInterface;
 use Laminas\Config;
 use LaminasTest\Barcode\Object\TestAsset;
 use PHPUnit\Framework\TestCase;
+use Traversable;
 
-abstract class TestCommon extends TestCase
+use function date_default_timezone_get;
+use function date_default_timezone_set;
+
+abstract class AbstractTest extends TestCase
 {
-    /**
-     * @var \Laminas\Barcode\Renderer
-     */
-    protected $renderer = null;
+    /** @var AbstractRenderer */
+    protected $renderer;
 
     /**
      * Stores the original set timezone
+     *
      * @var string
      */
     private $originaltimezone;
 
+    /**
+     * @param array|Traversable $options
+     * @return AbstractRenderer
+     */
     abstract protected function getRendererObject($options = null);
 
     public function setUp(): void
@@ -64,13 +67,13 @@ abstract class TestCommon extends TestCase
 
     public function testModuleSizeAsString()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->renderer->setModuleSize('abc');
     }
 
     public function testModuleSizeLessThan0()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->renderer->setModuleSize(-0.5);
     }
 
@@ -95,7 +98,7 @@ abstract class TestCommon extends TestCase
 
     public function testBadHorizontalPosition()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->renderer->setHorizontalPosition('none');
     }
 
@@ -112,7 +115,7 @@ abstract class TestCommon extends TestCase
 
     public function testBadVerticalPosition()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->renderer->setVerticalPosition('none');
     }
 
@@ -127,7 +130,7 @@ abstract class TestCommon extends TestCase
 
     public function testBadLeftOffset()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->renderer->setLeftOffset(- 1);
     }
 
@@ -142,24 +145,28 @@ abstract class TestCommon extends TestCase
 
     public function testBadTopOffset()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->renderer->setTopOffset(- 1);
     }
 
     public function testConstructorWithArray()
     {
         $renderer = $this->getRendererObject(
-            ['automaticRenderError' => true,
-            'unkownProperty' => 'aValue']
+            [
+                'automaticRenderError' => true,
+                'unkownProperty'       => 'aValue',
+            ]
         );
         $this->assertEquals(true, $renderer->getAutomaticRenderError());
     }
 
     public function testConstructorWithLaminasConfig()
     {
-        $config = new Config\Config(
-            ['automaticRenderError' => true,
-            'unkownProperty' => 'aValue']
+        $config   = new Config\Config(
+            [
+                'automaticRenderError' => true,
+                'unkownProperty'       => 'aValue',
+            ]
         );
         $renderer = $this->getRendererObject($config);
         $this->assertEquals(true, $renderer->getAutomaticRenderError());
@@ -169,8 +176,10 @@ abstract class TestCommon extends TestCase
     {
         $this->assertEquals(false, $this->renderer->getAutomaticRenderError());
         $this->renderer->setOptions(
-            ['automaticRenderError' => true,
-            'unkownProperty' => 'aValue']
+            [
+                'automaticRenderError' => true,
+                'unkownProperty'       => 'aValue',
+            ]
         );
         $this->assertEquals(true, $this->renderer->getAutomaticRenderError());
     }
@@ -183,7 +192,7 @@ abstract class TestCommon extends TestCase
 
     public function testRendererWithUnkownInstructionProvideByObject()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $object = new TestAsset\BarcodeTest();
         $object->setText('test');
         $object->addTestInstruction(['type' => 'unknown']);
@@ -193,7 +202,7 @@ abstract class TestCommon extends TestCase
 
     public function testBarcodeObjectProvided()
     {
-        $this->expectException('\Laminas\Barcode\Renderer\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->renderer->draw();
     }
 
