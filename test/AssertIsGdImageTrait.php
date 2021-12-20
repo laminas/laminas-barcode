@@ -7,6 +7,7 @@ namespace LaminasTest\Barcode;
 use GdImage;
 use PHPUnit\Framework\Assert;
 
+use function get_class;
 use function get_resource_type;
 use function gettype;
 use function is_object;

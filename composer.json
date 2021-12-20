@@ -28,8 +28,7 @@
         "laminas/laminas-coding-standard": "~2.3.0",
         "laminas/laminas-config": "^3.7.0",
         "laminas/laminas-pdf": "dev-master",
-        "phpunit/phpunit": "^9.3.7",
-        "staabm/annotate-pull-request-from-checkstyle": "^1.7"
+        "phpunit/phpunit": "^9.3.7"
     },
     "autoload": {
         "psr-4": {

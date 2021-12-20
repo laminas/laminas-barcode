@@ -11,6 +11,7 @@ use zend\barcode\renderer\image;
 use zend\barcode\renderer\pdf;
 use zend\barcode\renderer\svg;
 
+use function get_class;
 use function gettype;
 use function is_object;
 use function sprintf;
