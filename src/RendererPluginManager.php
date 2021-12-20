@@ -38,29 +38,24 @@ class RendererPluginManager extends AbstractPluginManager
      */
     protected $aliases = [
         'image' => Renderer\Image::class,
-        'pdf'   => Renderer\Pdf::class,
         'svg'   => Renderer\Svg::class,
 
         // Legacy Zend Framework aliases
         \Zend\Barcode\Renderer\Image::class => Renderer\Image::class,
-        \Zend\Barcode\Renderer\Pdf::class => Renderer\Pdf::class,
         \Zend\Barcode\Renderer\Svg::class => Renderer\Svg::class,
 
         // v2 normalized FQCNs
         'zendbarcoderendererimage' => Renderer\Image::class,
-        'zendbarcoderendererpdf' => Renderer\Pdf::class,
         'zendbarcoderenderersvg' => Renderer\Svg::class,
     ];
 
     protected $factories = [
         Renderer\Image::class => InvokableFactory::class,
-        Renderer\Pdf::class   => InvokableFactory::class,
         Renderer\Svg::class   => InvokableFactory::class,
 
         // v2 canonical FQCNs
 
         'laminasbarcoderendererimage' => InvokableFactory::class,
-        'laminasbarcoderendererpdf'   => InvokableFactory::class,
         'laminasbarcoderenderersvg'   => InvokableFactory::class,
     ];
 

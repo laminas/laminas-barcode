@@ -581,7 +581,7 @@ abstract class AbstractObject implements ObjectInterface
      */
     public function getText()
     {
-        $text = $this->text;
+        $text = $this->text ?? '';
         if ($this->withChecksum && ! $this->providedChecksum) {
             $text .= $this->getChecksum($this->text);
         }
@@ -949,7 +949,7 @@ abstract class AbstractObject implements ObjectInterface
     protected function checkText($value = null)
     {
         if ($value === null) {
-            $value = $this->text;
+            $value = $this->text ?? '';
         }
         if (! strlen($value)) {
             throw new Exception\RuntimeException(

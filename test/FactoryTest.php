@@ -77,8 +77,8 @@ class FactoryTest extends TestCase
      */
     public function testMinimalFactoryWithRenderer()
     {
-        $renderer = Barcode\Barcode::factory('code39', 'pdf');
-        $this->assertInstanceOf(Pdf::class, $renderer);
+        $renderer = Barcode\Barcode::factory('code39', 'svg');
+        $this->assertInstanceOf(Renderer\Svg::class, $renderer);
         $this->assertInstanceOf(Code39::class, $renderer->getBarcode());
     }
 
@@ -380,6 +380,7 @@ class FactoryTest extends TestCase
             $this->markTestSkipped('GD extension is required to run this test');
         }
         $resource = Barcode\Barcode::draw('code25', 'image', ['text' => '012345']);
+        $this->expectNotToPerformAssertions();
         $this->assertIsGdImage($resource, 'Image must be a GD resource');
     }
 
@@ -389,6 +390,7 @@ class FactoryTest extends TestCase
             $this->markTestSkipped('GD extension is required to run this test');
         }
         $resource = Barcode\Barcode::draw('code25', 'image');
+        $this->expectNotToPerformAssertions();
         $this->assertIsGdImage($resource, 'Image must be a GD resource');
     }
 

@@ -71,7 +71,7 @@ class Image extends AbstractRenderer
      */
     public function __construct($options = null)
     {
-        if (! function_exists('gd_info')) {
+        if (!function_exists('gd_info')) {
             throw new RendererCreationException(__CLASS__ . ' requires the GD extension');
         }
 
@@ -82,17 +82,18 @@ class Image extends AbstractRenderer
      * Set height of the result image
      *
      * @param null|int $value
-     * @throws Exception\OutOfRangeException
      * @return self Provides a fluent interface
+     * @throws Exception\OutOfRangeException
      */
     public function setHeight($value)
     {
-        if (! is_numeric($value) || intval($value) < 0) {
+        if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
                 'Image height must be greater than or equals 0'
             );
         }
         $this->userHeight = intval($value);
+
         return $this;
     }
 
@@ -110,17 +111,18 @@ class Image extends AbstractRenderer
      * Set barcode width
      *
      * @param mixed $value
-     * @throws Exception\OutOfRangeException
      * @return self Provides a fluent interface
+     * @throws Exception\OutOfRangeException
      */
     public function setWidth($value)
     {
-        if (! is_numeric($value) || intval($value) < 0) {
+        if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
                 'Image width must be greater than or equals 0'
             );
         }
         $this->userWidth = intval($value);
+
         return $this;
     }
 
@@ -143,12 +145,13 @@ class Image extends AbstractRenderer
      */
     public function setResource($image)
     {
-        if (! $this->isGdImage($image)) {
+        if (!$this->isGdImage($image)) {
             throw new Exception\InvalidArgumentException(
                 'Invalid image resource provided to setResource()'
             );
         }
         $this->resource = $image;
+
         return $this;
     }
 
@@ -156,8 +159,8 @@ class Image extends AbstractRenderer
      * Set the image type to produce (png, jpeg, gif)
      *
      * @param string $value
-     * @throws Exception\InvalidArgumentException
      * @return self Provides a fluent interface
+     * @throws Exception\InvalidArgumentException
      */
     public function setImageType($value)
     {
@@ -165,14 +168,17 @@ class Image extends AbstractRenderer
             $value = 'jpeg';
         }
 
-        if (! in_array($value, $this->allowedImageType)) {
-            throw new Exception\InvalidArgumentException(sprintf(
-                'Invalid type "%s" provided to setImageType()',
-                $value
-            ));
+        if (!in_array($value, $this->allowedImageType)) {
+            throw new Exception\InvalidArgumentException(
+                sprintf(
+                    'Invalid type "%s" provided to setImageType()',
+                    $value
+                )
+            );
         }
 
         $this->imageType = $value;
+
         return $this;
     }
 
@@ -193,7 +199,7 @@ class Image extends AbstractRenderer
      */
     protected function initRenderer()
     {
-        $barcodeWidth  = $this->barcode->getWidth(true);
+        $barcodeWidth = $this->barcode->getWidth(true);
         $barcodeHeight = $this->barcode->getHeight(true);
 
         if (null === $this->resource) {
@@ -208,8 +214,8 @@ class Image extends AbstractRenderer
 
             // Cast width and height to ensure they are correct type for image
             // operations
-            $width  = (int) $width;
-            $height = (int) $height;
+            $width = (int)$width;
+            $height = (int)$height;
 
             $this->resource = imagecreatetruecolor($width, $height);
 
@@ -245,8 +251,8 @@ class Image extends AbstractRenderer
             $this->resource,
             $this->leftOffset,
             $this->topOffset,
-            (int) ($this->leftOffset + $barcodeWidth - 1),
-            (int) ($this->topOffset + $barcodeHeight - 1),
+            (int)($this->leftOffset + $barcodeWidth - 1),
+            (int)($this->topOffset + $barcodeHeight - 1),
             $this->imageBackgroundColor
         );
     }
@@ -264,8 +270,8 @@ class Image extends AbstractRenderer
     /**
      * Check barcode dimensions
      *
-     * @throws Exception\RuntimeException
      * @return void
+     * @throws Exception\RuntimeException
      */
     protected function checkDimensions()
     {
@@ -279,11 +285,13 @@ class Image extends AbstractRenderer
             if ($this->userHeight) {
                 $height = $this->barcode->getHeight(true);
                 if ($this->userHeight < $height) {
-                    throw new Exception\RuntimeException(sprintf(
-                        "Barcode is define outside the image (calculated: '%d', provided: '%d')",
-                        $height,
-                        $this->userHeight
-                    ));
+                    throw new Exception\RuntimeException(
+                        sprintf(
+                            "Barcode is define outside the image (calculated: '%d', provided: '%d')",
+                            $height,
+                            $this->userHeight
+                        )
+                    );
                 }
             }
         }
@@ -297,11 +305,13 @@ class Image extends AbstractRenderer
             if ($this->userWidth) {
                 $width = $this->barcode->getWidth(true);
                 if ($this->userWidth < $width) {
-                    throw new Exception\RuntimeException(sprintf(
-                        "Barcode is define outside the image (calculated: '%d', provided: '%d')",
-                        $width,
-                        $this->userWidth
-                    ));
+                    throw new Exception\RuntimeException(
+                        sprintf(
+                            "Barcode is define outside the image (calculated: '%d', provided: '%d')",
+                            $width,
+                            $this->userWidth
+                        )
+                    );
                 }
             }
         }
@@ -329,7 +339,7 @@ class Image extends AbstractRenderer
      *
      * @param array $points
      * @param int $color
-     * @param  bool $filled
+     * @param bool $filled
      */
     protected function drawPolygon($points, $color, $filled = true)
     {
@@ -351,11 +361,7 @@ class Image extends AbstractRenderer
             $color & 0x0000FF
         );
 
-        if ($filled) {
-            imagefilledpolygon($this->resource, $newPoints, 4, $allocatedColor);
-        } else {
-            imagepolygon($this->resource, $newPoints, 4, $allocatedColor);
-        }
+        $this->imageFilledPolygonWrapper($this->resource, $newPoints, 4, $allocatedColor, $filled);
     }
 
     /**
@@ -413,7 +419,7 @@ class Image extends AbstractRenderer
             }
             imagestring($this->resource, $font, $positionX, $positionY, $text, $color);
         } else {
-            if (! function_exists('imagettfbbox')) {
+            if (!function_exists('imagettfbbox')) {
                 throw new Exception\RuntimeException(
                     'A font was provided, but this instance of PHP does not have TTF (FreeType) support'
                 );
@@ -441,6 +447,26 @@ class Image extends AbstractRenderer
                 $font,
                 $text
             );
+        }
+    }
+
+    /**
+     * @param GdImage|resource $image
+     * @param array $points
+     * @param int $numPoints
+     * @param int $color
+     * @return void
+     */
+    protected function imageFilledPolygonWrapper($image, array $points, $numPoints, $color, $filled)
+    {
+        if ($filled) {
+            if (version_compare(PHP_VERSION, '8.1.0') === -1) {
+                imagefilledpolygon($image, $points, $numPoints, $color);
+            } else {
+                imagefilledpolygon($image, $points, $color);
+            }
+        } else {
+            imagepolygon($this->resource, $points, $numPoints, $color);
         }
     }
 
