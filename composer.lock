@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f18117eefb21ef5459c44cfb7b8b052",
+    "content-hash": "010afb589e0506c4883fff72fc9b3bfb",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -505,6 +505,102 @@
                 }
             ],
             "time": "2021-10-01T16:07:46+00:00"
+        },
+        {
+            "name": "laminas/laminas-memory",
+            "version": "2.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laminas/laminas-memory.git",
+                "reference": "3cb5cfcb81005218d0dcb6232710ddc8d643ef92"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laminas/laminas-memory/zipball/3cb5cfcb81005218d0dcb6232710ddc8d643ef92",
+                "reference": "3cb5cfcb81005218d0dcb6232710ddc8d643ef92",
+                "shasum": ""
+            },
+            "require": {
+                "laminas/laminas-zendframework-bridge": "^1.0",
+                "php": ">=5.3.23"
+            },
+            "replace": {
+                "zendframework/zend-memory": "self.version"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "1.7.*",
+                "laminas/laminas-cache": "~2.5",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "laminas/laminas-cache": "To support swap the memory objects"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev",
+                    "dev-develop": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laminas\\Memory\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "homepage": "https://laminas.dev",
+            "keywords": [
+                "laminas",
+                "memory"
+            ],
+            "support": {
+                "chat": "https://laminas.dev/chat",
+                "docs": "https://docs.laminas.dev/laminas-memory/",
+                "forum": "https://discourse.laminas.dev",
+                "issues": "https://github.com/laminas/laminas-memory/issues",
+                "rss": "https://github.com/laminas/laminas-memory/releases.atom",
+                "source": "https://github.com/laminas/laminas-memory"
+            },
+            "time": "2019-12-31T17:24:50+00:00"
+        },
+        {
+            "name": "laminas/laminas-pdf",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pelex/ZendPdf.git",
+                "reference": "d706e80087ef57303daefe90ba1a3d6e601f5c94"
+            },
+            "require": {
+                "laminas/laminas-memory": ">=2.0.0",
+                "laminas/laminas-stdlib": ">=2.0.0",
+                "php": ">=5.3.3"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "ZendPdf\\": "library/"
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Zend Pdf Component",
+            "homepage": "http://packages.zendframework.com/",
+            "keywords": [
+                "pdf",
+                "zf2"
+            ],
+            "time": "2021-12-20T11:25:28+00:00"
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
@@ -2678,7 +2774,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "laminas/laminas-pdf": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

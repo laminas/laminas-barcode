@@ -77,8 +77,8 @@ class FactoryTest extends TestCase
      */
     public function testMinimalFactoryWithRenderer()
     {
-        $renderer = Barcode\Barcode::factory('code39', 'svg');
-        $this->assertInstanceOf(Renderer\Svg::class, $renderer);
+        $renderer = Barcode\Barcode::factory('code39', 'pdf');
+        $this->assertInstanceOf(Pdf::class, $renderer);
         $this->assertInstanceOf(Code39::class, $renderer->getBarcode());
     }
 
