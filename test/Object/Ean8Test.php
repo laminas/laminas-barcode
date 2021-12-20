@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaminasTest\Barcode\Object;
 
 use Laminas\Barcode\Object\Ean8;

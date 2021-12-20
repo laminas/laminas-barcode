@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\Barcode\Renderer;
 
 use DOMDocument;
@@ -154,8 +156,8 @@ class Svg extends AbstractRenderer
             $this->rootElement            = $this->resource->createElement('svg');
             $this->rootElement->setAttribute('xmlns', "http://www.w3.org/2000/svg");
             $this->rootElement->setAttribute('version', '1.1');
-            $this->rootElement->setAttribute('width', $width);
-            $this->rootElement->setAttribute('height', $height);
+            $this->rootElement->setAttribute('width', (string) $width);
+            $this->rootElement->setAttribute('height', (string) $height);
 
             $this->appendRootElement(
                 'title',
@@ -216,7 +218,7 @@ class Svg extends AbstractRenderer
     {
         $element = $this->resource->createElement($tagName);
         foreach ($attributes as $k => $v) {
-            $element->setAttribute($k, $v);
+            $element->setAttribute($k, (string) $v);
         }
         if ($textContent !== null) {
             $element->appendChild(new DOMText((string) $textContent));

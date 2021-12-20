@@ -1,8 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- */
+declare(strict_types=1);
 
 namespace Laminas\Barcode\Renderer;
 
@@ -287,8 +285,8 @@ class Image extends AbstractRenderer
 
         imagefilledrectangle(
             $this->resource,
-            $this->leftOffset,
-            $this->topOffset,
+            (int) $this->leftOffset,
+            (int) $this->topOffset,
             (int) ($this->leftOffset + $barcodeWidth - 1),
             (int) ($this->topOffset + $barcodeHeight - 1),
             $this->imageBackgroundColor
@@ -444,6 +442,7 @@ class Image extends AbstractRenderer
             }
             $fontWidth = imagefontwidth($font);
             $positionY = $position[1] - imagefontheight($font) + 1;
+            $positionX = $position[0];
             switch ($alignment) {
                 case 'left':
                     $positionX = $position[0];
@@ -455,7 +454,7 @@ class Image extends AbstractRenderer
                     $positionX = $position[0] - ($fontWidth * strlen($text));
                     break;
             }
-            imagestring($this->resource, $font, $positionX, $positionY, $text, $color);
+            imagestring($this->resource, $font, (int) $positionX, (int) $positionY, $text, $color);
         } else {
             if (! function_exists('imagettfbbox')) {
                 throw new Exception\RuntimeException(
@@ -479,8 +478,8 @@ class Image extends AbstractRenderer
                 $this->resource,
                 $size,
                 $orientation,
-                $position[0] - ($width * cos(pi() * $orientation / 180)),
-                $position[1] + ($width * sin(pi() * $orientation / 180)),
+                (int) ($position[0] - ($width * cos(pi() * $orientation / 180))),
+                (int) ($position[1] + ($width * sin(pi() * $orientation / 180))),
                 $allocatedColor,
                 $font,
                 $text

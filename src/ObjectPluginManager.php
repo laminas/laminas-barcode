@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\Barcode;
 
 use Laminas\ServiceManager\AbstractPluginManager;
@@ -24,7 +26,6 @@ use Zend\Barcode\Object\Royalmail;
 use Zend\Barcode\Object\Upca;
 use Zend\Barcode\Object\Upce;
 
-use function get_class;
 use function gettype;
 use function is_object;
 use function sprintf;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\Barcode\Renderer;
 
 use Laminas\Barcode\Barcode;

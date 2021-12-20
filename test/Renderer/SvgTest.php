@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaminasTest\Barcode\Renderer;
 
 use DOMDocument;
@@ -129,8 +131,8 @@ class SvgTest extends AbstractTest
         $rootElement = $svgResource->createElement('svg');
         $rootElement->setAttribute('xmlns', "http://www.w3.org/2000/svg");
         $rootElement->setAttribute('version', '1.1');
-        $rootElement->setAttribute('width', 500);
-        $rootElement->setAttribute('height', 300);
+        $rootElement->setAttribute('width', '500');
+        $rootElement->setAttribute('height', '300');
         $svgResource->appendChild($rootElement);
         $this->renderer->setResource($svgResource);
         $resource = $this->renderer->draw();
@@ -148,8 +150,8 @@ class SvgTest extends AbstractTest
         $rootElement = $svg->createElement('svg');
         $rootElement->setAttribute('xmlns', "http://www.w3.org/2000/svg");
         $rootElement->setAttribute('version', '1.1');
-        $rootElement->setAttribute('width', 500);
-        $rootElement->setAttribute('height', 300);
+        $rootElement->setAttribute('width', '500');
+        $rootElement->setAttribute('height', '300');
         $svg->appendChild($rootElement);
         return $this->renderer->setResource($svg);
     }

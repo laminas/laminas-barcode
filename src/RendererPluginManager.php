@@ -1,15 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\Barcode;
 
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\Factory\InvokableFactory;
-use Zend\Barcode\Renderer\Image;
-use Zend\Barcode\Renderer\Pdf;
-use Zend\Barcode\Renderer\Svg;
+use zend\barcode\renderer\image;
+use zend\barcode\renderer\pdf;
+use zend\barcode\renderer\svg;
 
-use function get_class;
 use function gettype;
 use function is_object;
 use function sprintf;
@@ -40,9 +41,9 @@ class RendererPluginManager extends AbstractPluginManager
         'svg'   => Renderer\Svg::class,
 
         // Legacy Zend Framework aliases
-        Image::class => Renderer\Image::class,
-        Pdf::class   => Renderer\Pdf::class,
-        Svg::class   => Renderer\Svg::class,
+        image::class => Renderer\Image::class,
+        pdf::class   => Renderer\Pdf::class,
+        svg::class   => Renderer\Svg::class,
 
         // v2 normalized FQCNs
         'zendbarcoderendererimage' => Renderer\Image::class,
