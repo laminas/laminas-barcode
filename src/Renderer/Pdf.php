@@ -24,7 +24,7 @@ class Pdf extends AbstractRenderer
 {
     /**
      * PDF resource
-     * @var TCPDF
+     * @var PdfDocument
      */
     protected $resource = null;
 
