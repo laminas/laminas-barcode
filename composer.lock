@@ -508,40 +508,33 @@
         },
         {
             "name": "laminas/laminas-memory",
-            "version": "2.5.1",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-memory.git",
-                "reference": "3cb5cfcb81005218d0dcb6232710ddc8d643ef92"
+                "reference": "134db5ce89030fcdc0425c807d2382a340fb97df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-memory/zipball/3cb5cfcb81005218d0dcb6232710ddc8d643ef92",
-                "reference": "3cb5cfcb81005218d0dcb6232710ddc8d643ef92",
+                "url": "https://api.github.com/repos/laminas/laminas-memory/zipball/134db5ce89030fcdc0425c807d2382a340fb97df",
+                "reference": "134db5ce89030fcdc0425c807d2382a340fb97df",
                 "shasum": ""
             },
             "require": {
-                "laminas/laminas-zendframework-bridge": "^1.0",
-                "php": ">=5.3.23"
+                "php": "^7.3 || ~8.0.0"
             },
-            "replace": {
-                "zendframework/zend-memory": "self.version"
+            "conflict": {
+                "zendframework/zend-memory": "*"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "1.7.*",
-                "laminas/laminas-cache": "~2.5",
-                "phpunit/phpunit": "~4.0"
+                "laminas/laminas-cache": "^2.7",
+                "laminas/laminas-coding-standard": "~1.0.0",
+                "phpunit/phpunit": "^9.3"
             },
             "suggest": {
-                "laminas/laminas-cache": "To support swap the memory objects"
+                "laminas/laminas-cache": "To support swapping memory objects into and out of non-memory cache storage"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.5-dev",
-                    "dev-develop": "2.6-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Laminas\\Memory\\": "src/"
@@ -551,6 +544,7 @@
             "license": [
                 "BSD-3-Clause"
             ],
+            "description": "Manage data in an environment with limited memory",
             "homepage": "https://laminas.dev",
             "keywords": [
                 "laminas",
@@ -564,7 +558,13 @@
                 "rss": "https://github.com/laminas/laminas-memory/releases.atom",
                 "source": "https://github.com/laminas/laminas-memory"
             },
-            "time": "2019-12-31T17:24:50+00:00"
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
+            ],
+            "time": "2021-12-06T00:59:28+00:00"
         },
         {
             "name": "laminas/laminas-pdf",
