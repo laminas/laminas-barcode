@@ -27,7 +27,6 @@
     "require-dev": {
         "laminas/laminas-coding-standard": "~2.3.0",
         "laminas/laminas-config": "^3.7.0",
-        "laminas/laminas-pdf": "dev-master",
         "phpunit/phpunit": "^9.3.7"
     },
     "autoload": {
@@ -52,11 +51,5 @@
     },
     "conflict": {
         "zendframework/zend-barcode": "*"
-    },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/pelex/ZendPdf.git"
-        }
-    ]
+    }
 }
