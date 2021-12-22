@@ -59,9 +59,9 @@ class without the namespace (e.g.  `Laminas\Barcode\Renderer\Image` returns
 The image renderer will draw the instruction list of the barcode object in an
 image resource.  The default width of a module is 1 pixel.
 
-> ### GD extension required
+> MISSING: **Installation Requirements**
 >
-> The GD extension is required for the image renderer.
+> The [PHP extension GD](https://www.php.net/manual/book.image.php) is required for the image renderer, so be sure to have it installed before getting started.
 
 Available options are:
 
@@ -73,14 +73,18 @@ Option      | Data Type | Default Value | Description
 
 ## Laminas\\Barcode\\Renderer\\Pdf
 
-> ### Deprecated
+> WARNING: **Deprecated**
 >
-> - since 2.8.0, to be removed in 3.0.0.
+> Deprecated since 2.8.0, will be removed in 3.0.0.
 >
-> The PDF Renderer is using the now abandoned ZendPdf library. Because of that,
-> we are deprecating the PDF renderer, and plan to release a new extension
-> library providing PDF renderering capabilities using a 3rd party PDF library
-> in the future.
+> The PDF renderer is marked as deprecated because it uses the abandoned [zendframework/zendpdf](https://github.com/zendframework/zendpdf) component.
+
+> MISSING: **Installation Requirements**
+> The PDF renderer depends on the [zendframework/zendpdf](https://github.com/zendframework/zendpdf) component, so be sure to have it installed before getting started:
+>
+> ```bash
+> $ composer require zendframework/zendpdf
+> ```
 
 The PDF renderer will draw the instruction list of the barcode object in a PDF
 document. The default width of a module is 0.5 point.
