@@ -22,7 +22,7 @@ class Royalmail extends AbstractObject
      * - 2 = Tracker and Descender
      * - 3 = Tracker
      *
-     * @var array
+     * @var string[]
      */
     protected $codingMap = [
         '0' => '3300',
@@ -63,7 +63,7 @@ class Royalmail extends AbstractObject
         'Z' => '0033',
     ];
 
-    /** @var array */
+    /** @var int[] */
     protected $rows = [
         '0' => 1,
         '1' => 1,
@@ -103,7 +103,7 @@ class Royalmail extends AbstractObject
         'Z' => 0,
     ];
 
-    /** @var array */
+    /** @var int[] */
     protected $columns = [
         '0' => 1,
         '1' => 2,

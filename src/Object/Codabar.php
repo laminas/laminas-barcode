@@ -18,7 +18,7 @@ class Codabar extends AbstractObject
      * - 0 = space
      * - 1 = bar
      *
-     * @var array
+     * @var string[]
      */
     protected $codingMap = [
         '0' => "101010011",

@@ -18,7 +18,7 @@ class Code25 extends AbstractObject
      * - 0 = narrow bar
      * - 1 = wide bar
      *
-     * @var array
+     * @var string[]
      */
     protected $codingMap = [
         '0' => '00110',

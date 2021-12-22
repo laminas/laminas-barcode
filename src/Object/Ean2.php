@@ -9,7 +9,7 @@ namespace Laminas\Barcode\Object;
  */
 class Ean2 extends Ean5
 {
-    /** @var array */
+    /** @var string[][] */
     protected $parities = [
         0 => ['A', 'A'],
         1 => ['A', 'B'],

@@ -14,7 +14,7 @@ class Planet extends Postnet
      * - 0 = half bar
      * - 1 = complete bar
      *
-     * @var array
+     * @var string[]
      */
     protected $codingMap = [
         0 => "00111",

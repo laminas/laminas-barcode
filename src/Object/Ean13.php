@@ -18,7 +18,7 @@ class Ean13 extends AbstractObject
      * - 0 = narrow bar
      * - 1 = wide bar
      *
-     * @var array
+     * @var string[][]
      */
     protected $codingMap = [
         'A' => [
@@ -59,7 +59,7 @@ class Ean13 extends AbstractObject
         ],
     ];
 
-    /** @var array */
+    /** @var string[][] */
     protected $parities = [
         0 => ['A', 'A', 'A', 'A', 'A', 'A'],
         1 => ['A', 'A', 'B', 'A', 'B', 'B'],

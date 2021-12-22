@@ -14,7 +14,7 @@ use function str_split;
  */
 class Upce extends Ean13
 {
-    /** @var array */
+    /** @var string[][] */
     protected $parities = [
         0 => [
             0 => ['B', 'B', 'B', 'A', 'A', 'A'],

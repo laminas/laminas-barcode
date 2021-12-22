@@ -11,7 +11,7 @@ use function str_split;
  */
 class Ean5 extends Ean13
 {
-    /** @var array */
+    /** @var string[][] */
     protected $parities = [
         0 => ['B', 'B', 'A', 'A', 'A'],
         1 => ['B', 'A', 'B', 'A', 'A'],
