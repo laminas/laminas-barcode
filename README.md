@@ -18,7 +18,3 @@ allow you to draw barcodes based on the support required.
 
 - File issues at https://github.com/laminas/laminas-barcode/issues
 - Documentation is at https://docs.laminas.dev/laminas-barcode/
-
-`Laminas\Barcode\Renderer\Pdf` is using the now abandoned ZendPdf library. As such, this renderer is now deprecated. Add ZendPdf to composer.json if you want to use it:
-
-```composer require zendframework/zendpdf``` 
