@@ -360,10 +360,9 @@ abstract class AbstractRenderer implements RendererInterface
     /**
      * Set the barcode object
      *
-     * @param ObjectInterface $barcode
      * @return self Provides a fluent interface
      */
-    public function setBarcode($barcode)
+    public function setBarcode(ObjectInterface $barcode)
     {
         $this->barcode = $barcode;
         return $this;
@@ -417,7 +416,8 @@ abstract class AbstractRenderer implements RendererInterface
     protected function adjustPosition($supportHeight, $supportWidth)
     {
         $barcodeHeight = $this->barcode->getHeight(true) * $this->moduleSize;
-        if ($barcodeHeight !== $supportHeight && $this->topOffset === 0) {
+        // phpcs:ignore SlevomatCodingStandard.Operators.DisallowEqualOperators
+        if ($barcodeHeight != $supportHeight && $this->topOffset == 0) {
             switch ($this->verticalPosition) {
                 case 'middle':
                     $this->topOffset = floor(($supportHeight - $barcodeHeight) / 2);
@@ -432,7 +432,8 @@ abstract class AbstractRenderer implements RendererInterface
             }
         }
         $barcodeWidth = $this->barcode->getWidth(true) * $this->moduleSize;
-        if ($barcodeWidth !== $supportWidth && $this->leftOffset === 0) {
+        // phpcs:ignore SlevomatCodingStandard.Operators.DisallowEqualOperators
+        if ($barcodeWidth != $supportWidth && $this->leftOffset == 0) {
             switch ($this->horizontalPosition) {
                 case 'center':
                     $this->leftOffset = floor(($supportWidth - $barcodeWidth) / 2);
