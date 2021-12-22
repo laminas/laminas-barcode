@@ -493,19 +493,19 @@ class Image extends AbstractRenderer
      * @param int $numPoints
      * @param int $color
      * @param bool $filled
-     * @return void
+     * @return bool
      */
     protected function imageFilledPolygonWrapper($image, array $points, $numPoints, $color, $filled)
     {
-        if ($filled) {
-            if (PHP_VERSION_ID < 80100) {
-                imagefilledpolygon($image, $points, $numPoints, $color);
-            } else {
-                imagefilledpolygon($image, $points, $color);
-            }
-        } else {
-            imagepolygon($this->resource, $points, $numPoints, $color);
+        if (! $filled) {
+            return imagepolygon($this->resource, $points, $numPoints, $color);
         }
+
+        if (PHP_VERSION_ID < 80100) {
+            return imagefilledpolygon($image, $points, $numPoints, $color);
+        }
+
+        return imagefilledpolygon($image, $points, $color);
     }
 
     /**
