@@ -16,7 +16,8 @@ use function is_string;
 /**
  * Class for generate Barcode
  */
-class Barcode
+// phpcs:ignore WebimpressCodingStandard.NamingConventions.AbstractClass
+abstract class Barcode
 {
     /**
      * Default barcode TTF font name

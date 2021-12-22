@@ -7,24 +7,6 @@ namespace Laminas\Barcode;
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\Factory\InvokableFactory;
-use Zend\Barcode\Object\Codabar;
-use Zend\Barcode\Object\Code128;
-use Zend\Barcode\Object\Code25;
-use Zend\Barcode\Object\Code25interleaved;
-use Zend\Barcode\Object\Code39;
-use Zend\Barcode\Object\Ean13;
-use Zend\Barcode\Object\Ean2;
-use Zend\Barcode\Object\Ean5;
-use Zend\Barcode\Object\Ean8;
-use Zend\Barcode\Object\Error;
-use Zend\Barcode\Object\Identcode;
-use Zend\Barcode\Object\Itf14;
-use Zend\Barcode\Object\Leitcode;
-use Zend\Barcode\Object\Planet;
-use Zend\Barcode\Object\Postnet;
-use Zend\Barcode\Object\Royalmail;
-use Zend\Barcode\Object\Upca;
-use Zend\Barcode\Object\Upce;
 
 use function get_class;
 use function gettype;
@@ -49,7 +31,7 @@ class ObjectPluginManager extends AbstractPluginManager
     /**
      * Default set of symmetric adapters
      *
-     * @var array
+     * {@inheritDoc}
      */
     protected $aliases = [
         'codabar'           => Object\Codabar::class,
@@ -72,24 +54,24 @@ class ObjectPluginManager extends AbstractPluginManager
         'upce'              => Object\Upce::class,
 
         // Legacy Zend Framework aliases
-        Codabar::class           => Object\Codabar::class,
-        Code128::class           => Object\Code128::class,
-        Code25::class            => Object\Code25::class,
-        Code25interleaved::class => Object\Code25interleaved::class,
-        Code39::class            => Object\Code39::class,
-        Ean13::class             => Object\Ean13::class,
-        Ean2::class              => Object\Ean2::class,
-        Ean5::class              => Object\Ean5::class,
-        Ean8::class              => Object\Ean8::class,
-        Error::class             => Object\Error::class,
-        Identcode::class         => Object\Identcode::class,
-        Itf14::class             => Object\Itf14::class,
-        Leitcode::class          => Object\Leitcode::class,
-        Planet::class            => Object\Planet::class,
-        Postnet::class           => Object\Postnet::class,
-        Royalmail::class         => Object\Royalmail::class,
-        Upca::class              => Object\Upca::class,
-        Upce::class              => Object\Upce::class,
+        'Zend\Barcode\Object\Codabar'           => Object\Codabar::class,
+        'Zend\Barcode\Object\Code128'           => Object\Code128::class,
+        'Zend\Barcode\Object\Code25'            => Object\Code25::class,
+        'Zend\Barcode\Object\Code25interleaved' => Object\Code25interleaved::class,
+        'Zend\Barcode\Object\Code39'            => Object\Code39::class,
+        'Zend\Barcode\Object\Ean13'             => Object\Ean13::class,
+        'Zend\Barcode\Object\Ean2'              => Object\Ean2::class,
+        'Zend\Barcode\Object\Ean5'              => Object\Ean5::class,
+        'Zend\Barcode\Object\Ean8'              => Object\Ean8::class,
+        'Zend\Barcode\Object\Error'             => Object\Error::class,
+        'Zend\Barcode\Object\Identcode'         => Object\Identcode::class,
+        'Zend\Barcode\Object\Itf14'             => Object\Itf14::class,
+        'Zend\Barcode\Object\Leitcode'          => Object\Leitcode::class,
+        'Zend\Barcode\Object\Planet'            => Object\Planet::class,
+        'Zend\Barcode\Object\Postnet'           => Object\Postnet::class,
+        'Zend\Barcode\Object\Royalmail'         => Object\Royalmail::class,
+        'Zend\Barcode\Object\Upca'              => Object\Upca::class,
+        'Zend\Barcode\Object\Upce'              => Object\Upce::class,
 
         // v2 normalized FQCNs
         'zendbarcodeobjectcodabar'           => Object\Codabar::class,
@@ -112,7 +94,7 @@ class ObjectPluginManager extends AbstractPluginManager
         'zendbarcodeobjectupce'              => Object\Upce::class,
     ];
 
-    /** @var array */
+    /** {@inheritDoc} */
     protected $factories = [
         Object\Codabar::class           => InvokableFactory::class,
         Object\Code128::class           => InvokableFactory::class,
@@ -154,17 +136,10 @@ class ObjectPluginManager extends AbstractPluginManager
         'laminasbarcodeobjectupce'              => InvokableFactory::class,
     ];
 
-    /** @var string */
+    /** {@inheritDoc} */
     protected $instanceOf = Object\AbstractObject::class;
 
-    /**
-     * Validate the plugin is of the expected type (v3).
-     *
-     * Validates against `$instanceOf`.
-     *
-     * @param mixed $plugin
-     * @throws InvalidServiceException
-     */
+    /** {@inheritDoc} */
     public function validate($plugin)
     {
         if (! $plugin instanceof $this->instanceOf) {

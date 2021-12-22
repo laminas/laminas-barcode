@@ -7,9 +7,6 @@ namespace Laminas\Barcode;
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\Factory\InvokableFactory;
-use zend\barcode\renderer\image;
-use zend\barcode\renderer\pdf;
-use zend\barcode\renderer\svg;
 
 use function get_class;
 use function gettype;
@@ -34,7 +31,7 @@ class RendererPluginManager extends AbstractPluginManager
     /**
      * Default set of barcode renderers
      *
-     * @var array
+     * {@inheritDoc}
      */
     protected $aliases = [
         'image' => Renderer\Image::class,
@@ -42,9 +39,9 @@ class RendererPluginManager extends AbstractPluginManager
         'svg'   => Renderer\Svg::class,
 
         // Legacy Zend Framework aliases
-        image::class => Renderer\Image::class,
-        pdf::class   => Renderer\Pdf::class,
-        svg::class   => Renderer\Svg::class,
+        '\Zend\Barcode\Renderer\Image' => Renderer\Image::class,
+        '\Zend\Barcode\Renderer\Pdf'   => Renderer\Pdf::class,
+        '\Zend\Barcode\Renderer\Svg'   => Renderer\Svg::class,
 
         // v2 normalized FQCNs
         'zendbarcoderendererimage' => Renderer\Image::class,
@@ -52,7 +49,9 @@ class RendererPluginManager extends AbstractPluginManager
         'zendbarcoderenderersvg'   => Renderer\Svg::class,
     ];
 
-    /** @var array */
+    /**
+     * {@inheritDoc}
+     */
     protected $factories = [
         Renderer\Image::class => InvokableFactory::class,
         Renderer\Pdf::class   => InvokableFactory::class,
@@ -64,16 +63,13 @@ class RendererPluginManager extends AbstractPluginManager
         'laminasbarcoderenderersvg'   => InvokableFactory::class,
     ];
 
-    /** @var string */
+    /**
+     * {@inheritDoc}
+     */
     protected $instanceOf = Renderer\AbstractRenderer::class;
 
     /**
-     * Validate the plugin is of the expected type (v3).
-     *
-     * Validates against `$instanceOf`.
-     *
-     * @param mixed $plugin
-     * @throws InvalidServiceException
+     * {@inheritDoc}
      */
     public function validate($plugin)
     {

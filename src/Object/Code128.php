@@ -30,7 +30,7 @@ class Code128 extends AbstractObject
     /** @var array */
     protected $convertedText = [];
 
-    /** @var array */
+    /** @var string[] */
     protected $codingMap = [
         0   => "11011001100",
         1   => "11001101100",
@@ -144,7 +144,7 @@ class Code128 extends AbstractObject
     /**
      * Character sets ABC
      *
-     * @var array
+     * @var string[][]
      */
     protected $charSets = [
         'A' => [
