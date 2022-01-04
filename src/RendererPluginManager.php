@@ -1,16 +1,17 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Barcode;
 
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\Factory\InvokableFactory;
+
+use function get_class;
+use function gettype;
+use function is_object;
+use function sprintf;
 
 /**
  * Plugin manager implementation for barcode renderers.
@@ -21,20 +22,16 @@ use Laminas\ServiceManager\Factory\InvokableFactory;
  */
 class RendererPluginManager extends AbstractPluginManager
 {
-    /**
-     * @var bool Ensure services are not shared (v2)
-     */
+    /** @var bool Ensure services are not shared (v2) */
     protected $shareByDefault = false;
 
-    /**
-     * @var bool Ensure services are not shared (v3)
-     */
+    /** @var bool Ensure services are not shared (v3) */
     protected $sharedByDefault = false;
 
     /**
      * Default set of barcode renderers
      *
-     * @var array
+     * {@inheritDoc}
      */
     protected $aliases = [
         'image' => Renderer\Image::class,
@@ -42,47 +39,49 @@ class RendererPluginManager extends AbstractPluginManager
         'svg'   => Renderer\Svg::class,
 
         // Legacy Zend Framework aliases
-        \Zend\Barcode\Renderer\Image::class => Renderer\Image::class,
-        \Zend\Barcode\Renderer\Pdf::class => Renderer\Pdf::class,
-        \Zend\Barcode\Renderer\Svg::class => Renderer\Svg::class,
+        '\Zend\Barcode\Renderer\Image' => Renderer\Image::class,
+        '\Zend\Barcode\Renderer\Pdf'   => Renderer\Pdf::class,
+        '\Zend\Barcode\Renderer\Svg'   => Renderer\Svg::class,
 
         // v2 normalized FQCNs
         'zendbarcoderendererimage' => Renderer\Image::class,
-        'zendbarcoderendererpdf' => Renderer\Pdf::class,
-        'zendbarcoderenderersvg' => Renderer\Svg::class,
+        'zendbarcoderendererpdf'   => Renderer\Pdf::class,
+        'zendbarcoderenderersvg'   => Renderer\Svg::class,
     ];
 
+    /**
+     * {@inheritDoc}
+     */
     protected $factories = [
         Renderer\Image::class => InvokableFactory::class,
         Renderer\Pdf::class   => InvokableFactory::class,
         Renderer\Svg::class   => InvokableFactory::class,
 
         // v2 canonical FQCNs
-
         'laminasbarcoderendererimage' => InvokableFactory::class,
         'laminasbarcoderendererpdf'   => InvokableFactory::class,
         'laminasbarcoderenderersvg'   => InvokableFactory::class,
     ];
 
+    /**
+     * {@inheritDoc}
+     */
     protected $instanceOf = Renderer\AbstractRenderer::class;
 
     /**
-     * Validate the plugin is of the expected type (v3).
-     *
-     * Validates against `$instanceOf`.
-     *
-     * @param mixed $plugin
-     * @throws InvalidServiceException
+     * {@inheritDoc}
      */
     public function validate($plugin)
     {
         if (! $plugin instanceof $this->instanceOf) {
-            throw new InvalidServiceException(sprintf(
-                '%s can only create instances of %s; %s is invalid',
-                get_class($this),
-                $this->instanceOf,
-                (is_object($plugin) ? get_class($plugin) : gettype($plugin))
-            ));
+            throw new InvalidServiceException(
+                sprintf(
+                    '%s can only create instances of %s; %s is invalid',
+                    static::class,
+                    $this->instanceOf,
+                    is_object($plugin) ? get_class($plugin) : gettype($plugin)
+                )
+            );
         }
     }
 
@@ -99,11 +98,15 @@ class RendererPluginManager extends AbstractPluginManager
         try {
             $this->validate($plugin);
         } catch (InvalidServiceException $e) {
-            throw new Exception\InvalidArgumentException(sprintf(
-                'Plugin of type %s is invalid; must extend %s',
-                (is_object($plugin) ? get_class($plugin) : gettype($plugin)),
-                Renderer\AbstractRenderer::class
-            ), $e->getCode(), $e);
+            throw new Exception\InvalidArgumentException(
+                sprintf(
+                    'Plugin of type %s is invalid; must extend %s',
+                    is_object($plugin) ? get_class($plugin) : gettype($plugin),
+                    Renderer\AbstractRenderer::class
+                ),
+                $e->getCode(),
+                $e
+            );
         }
     }
 }

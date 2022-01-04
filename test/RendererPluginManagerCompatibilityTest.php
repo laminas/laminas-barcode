@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace LaminasTest\Barcode;
 
@@ -19,17 +15,17 @@ class RendererPluginManagerCompatibilityTest extends TestCase
 {
     use CommonPluginManagerTrait;
 
-    protected function getPluginManager()
+    protected function getPluginManager(): RendererPluginManager
     {
         return new RendererPluginManager(new ServiceManager());
     }
 
-    protected function getV2InvalidPluginException()
+    protected function getV2InvalidPluginException(): string
     {
         return InvalidArgumentException::class;
     }
 
-    protected function getInstanceOf()
+    protected function getInstanceOf(): string
     {
         return AbstractRenderer::class;
     }

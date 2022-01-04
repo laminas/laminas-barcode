@@ -1,21 +1,21 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace LaminasTest\Barcode\Renderer;
 
 use Laminas\Barcode;
 use Laminas\Barcode\Object\Code39;
+use Traversable;
 use ZendPdf as Pdf;
+use ZendPdf\PdfDocument;
+
+use function getenv;
 
 /**
  * @group      Laminas_Barcode
  */
-class PdfTest extends TestCommon
+class PdfTest extends AbstractTest
 {
     public function setUp(): void
     {
@@ -25,9 +25,13 @@ class PdfTest extends TestCommon
         parent::setUp();
     }
 
+    /**
+     * @param array|Traversable $options
+     * @return Barcode\Renderer\Pdf
+     */
     protected function getRendererObject($options = null)
     {
-        return new \Laminas\Barcode\Renderer\Pdf($options);
+        return new Barcode\Renderer\Pdf($options);
     }
 
     public function testType()
@@ -47,7 +51,7 @@ class PdfTest extends TestCommon
         $barcode = new Code39(['text' => '0123456789']);
         $this->renderer->setBarcode($barcode);
         $resource = $this->renderer->draw();
-        $this->assertInstanceOf('ZendPdf\PdfDocument', $resource);
+        $this->assertInstanceOf(PdfDocument::class, $resource);
         Barcode\Barcode::setBarcodeFont('');
     }
 
@@ -59,14 +63,17 @@ class PdfTest extends TestCommon
         $pdfResource = new Pdf\PdfDocument();
         $this->renderer->setResource($pdfResource);
         $resource = $this->renderer->draw();
-        $this->assertInstanceOf('ZendPdf\PdfDocument', $resource);
+        $this->assertInstanceOf(PdfDocument::class, $resource);
         $this->assertSame($resource, $pdfResource);
         Barcode\Barcode::setBarcodeFont('');
     }
 
+    /**
+     * @return Barcode\Renderer\Pdf
+     */
     protected function getRendererWithWidth500AndHeight300()
     {
-        $pdf = new Pdf\PdfDocument();
+        $pdf          = new Pdf\PdfDocument();
         $pdf->pages[] = new Pdf\Page('500:300:');
         return $this->renderer->setResource($pdf);
     }
@@ -74,7 +81,7 @@ class PdfTest extends TestCommon
     public function testHorizontalPositionToCenter()
     {
         $renderer = $this->getRendererWithWidth500AndHeight300();
-        $barcode = new Code39(['text' => '0123456789']);
+        $barcode  = new Code39(['text' => '0123456789']);
         $this->assertEquals(211, $barcode->getWidth());
         $renderer->setBarcode($barcode);
         $renderer->setHorizontalPosition('center');
@@ -85,7 +92,7 @@ class PdfTest extends TestCommon
     public function testHorizontalPositionToRight()
     {
         $renderer = $this->getRendererWithWidth500AndHeight300();
-        $barcode = new Code39(['text' => '0123456789']);
+        $barcode  = new Code39(['text' => '0123456789']);
         $this->assertEquals(211, $barcode->getWidth());
         $renderer->setBarcode($barcode);
         $renderer->setHorizontalPosition('right');
@@ -96,7 +103,7 @@ class PdfTest extends TestCommon
     public function testVerticalPositionToMiddle()
     {
         $renderer = $this->getRendererWithWidth500AndHeight300();
-        $barcode = new Code39(['text' => '0123456789']);
+        $barcode  = new Code39(['text' => '0123456789']);
         $this->assertEquals(62, $barcode->getHeight());
         $renderer->setBarcode($barcode);
         $renderer->setVerticalPosition('middle');
@@ -107,7 +114,7 @@ class PdfTest extends TestCommon
     public function testVerticalPositionToBottom()
     {
         $renderer = $this->getRendererWithWidth500AndHeight300();
-        $barcode = new Code39(['text' => '0123456789']);
+        $barcode  = new Code39(['text' => '0123456789']);
         $this->assertEquals(62, $barcode->getHeight());
         $renderer->setBarcode($barcode);
         $renderer->setVerticalPosition('bottom');

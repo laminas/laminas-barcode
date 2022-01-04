@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Barcode\Object;
 
@@ -15,6 +11,7 @@ class Error extends AbstractObject
 {
     /**
      * All texts are accepted
+     *
      * @param string $value
      * @return bool
      */
@@ -25,6 +22,7 @@ class Error extends AbstractObject
 
     /**
      * Height is forced
+     *
      * @param bool $recalculate
      * @return int
      */
@@ -35,6 +33,7 @@ class Error extends AbstractObject
 
     /**
      * Width is forced
+     *
      * @param bool $recalculate
      * @return int
      */
@@ -46,6 +45,7 @@ class Error extends AbstractObject
     /**
      * Reset precedent instructions
      * and draw the error message
+     *
      * @return array
      */
     public function draw()
@@ -58,6 +58,7 @@ class Error extends AbstractObject
 
     /**
      * For compatibility reason
+     *
      * @return void
      */
     protected function prepareBarcode()
@@ -66,6 +67,7 @@ class Error extends AbstractObject
 
     /**
      * For compatibility reason
+     *
      * @return void
      */
     protected function checkSpecificParams()
@@ -74,6 +76,7 @@ class Error extends AbstractObject
 
     /**
      * For compatibility reason
+     *
      * @return void
      */
     protected function calculateBarcodeWidth()

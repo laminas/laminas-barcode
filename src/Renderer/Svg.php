@@ -1,16 +1,22 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Barcode\Renderer;
 
 use DOMDocument;
 use DOMElement;
 use DOMText;
+
+use function cos;
+use function header;
+use function implode;
+use function intval;
+use function is_numeric;
+use function pi;
+use function sin;
+use function sprintf;
+use function strtoupper;
 
 /**
  * Class for rendering the barcode as svg
@@ -19,36 +25,42 @@ class Svg extends AbstractRenderer
 {
     /**
      * Resource for the image
+     *
      * @var DOMDocument
      */
-    protected $resource = null;
+    protected $resource;
 
     /**
      * Root element of the XML structure
+     *
      * @var DOMElement
      */
-    protected $rootElement = null;
+    protected $rootElement;
 
     /**
      * Height of the rendered image wanted by user
+     *
      * @var int
      */
     protected $userHeight = 0;
 
     /**
      * Width of the rendered image wanted by user
+     *
      * @var int
      */
     protected $userWidth = 0;
 
     /**
      * Flag to determime if drawPolygon has been run once already
+     *
      * @var bool
      */
     protected $drawPolygonExecuted = false;
 
     /**
      * Set height of the result image
+     *
      * @param null|int $value
      * @throws Exception\OutOfRangeException
      * @return self Provides a fluent interface
@@ -105,7 +117,6 @@ class Svg extends AbstractRenderer
     /**
      * Set an image resource to draw the barcode inside
      *
-     * @param  DOMDocument $svg
      * @return self Provides a fluent interface
      */
     public function setResource(DOMDocument $svg)
@@ -124,29 +135,29 @@ class Svg extends AbstractRenderer
         $barcodeWidth  = $this->barcode->getWidth(true);
         $barcodeHeight = $this->barcode->getHeight(true);
 
-        $backgroundColor = $this->barcode->getBackgroundColor();
+        $backgroundColor      = $this->barcode->getBackgroundColor();
         $imageBackgroundColor = sprintf('rgb(%s)', implode(',', [
             ($backgroundColor & 0xFF0000) >> 16,
             ($backgroundColor & 0x00FF00) >> 8,
-            ($backgroundColor & 0x0000FF)
+            $backgroundColor & 0x0000FF,
         ]));
 
-        $width = $barcodeWidth;
+        $width  = $barcodeWidth;
         $height = $barcodeHeight;
-        if ($this->userWidth && $this->barcode->getType() != 'error') {
+        if ($this->userWidth && $this->barcode->getType() !== 'error') {
             $width = $this->userWidth;
         }
-        if ($this->userHeight && $this->barcode->getType() != 'error') {
+        if ($this->userHeight && $this->barcode->getType() !== 'error') {
             $height = $this->userHeight;
         }
         if ($this->resource === null) {
-            $this->resource = new DOMDocument('1.0', 'utf-8');
+            $this->resource               = new DOMDocument('1.0', 'utf-8');
             $this->resource->formatOutput = true;
-            $this->rootElement = $this->resource->createElement('svg');
+            $this->rootElement            = $this->resource->createElement('svg');
             $this->rootElement->setAttribute('xmlns', "http://www.w3.org/2000/svg");
             $this->rootElement->setAttribute('version', '1.1');
-            $this->rootElement->setAttribute('width', $width);
-            $this->rootElement->setAttribute('height', $height);
+            $this->rootElement->setAttribute('width', (string) $width);
+            $this->rootElement->setAttribute('height', (string) $height);
 
             $this->appendRootElement(
                 'title',
@@ -155,16 +166,18 @@ class Svg extends AbstractRenderer
             );
         } else {
             $this->readRootElement();
-            $width = $this->rootElement->getAttribute('width');
+            $width  = $this->rootElement->getAttribute('width');
             $height = $this->rootElement->getAttribute('height');
         }
         $this->adjustPosition($height, $width);
 
-        $rect = ['x' => $this->leftOffset,
-            'y' => $this->topOffset,
-            'width' => ($this->leftOffset + $barcodeWidth - 1),
-            'height' => ($this->topOffset + $barcodeHeight - 1),
-            'fill' => $imageBackgroundColor];
+        $rect = [
+            'x'      => $this->leftOffset,
+            'y'      => $this->topOffset,
+            'width'  => $this->leftOffset + $barcodeWidth - 1,
+            'height' => $this->topOffset + $barcodeHeight - 1,
+            'fill'   => $imageBackgroundColor,
+        ];
 
         if ($this->transparentBackground) {
             $rect['fill-opacity'] = 0;
@@ -205,7 +218,7 @@ class Svg extends AbstractRenderer
     {
         $element = $this->resource->createElement($tagName);
         foreach ($attributes as $k => $v) {
-            $element->setAttribute($k, $v);
+            $element->setAttribute($k, (string) $v);
         }
         if ($textContent !== null) {
             $element->appendChild(new DOMText((string) $textContent));
@@ -275,6 +288,7 @@ class Svg extends AbstractRenderer
 
     /**
      * Draw the barcode in the rendering resource
+     *
      * @return DOMDocument
      */
     public function draw()
@@ -305,11 +319,13 @@ class Svg extends AbstractRenderer
      */
     protected function drawPolygon($points, $color, $filled = true)
     {
-        $color = 'rgb(' . implode(',', [($color & 0xFF0000) >> 16,
-                                              ($color & 0x00FF00) >> 8,
-                                              ($color & 0x0000FF)]) . ')';
-        $orientation = $this->getBarcode()->getOrientation();
-        $newPoints = [
+        $color                = 'rgb(' . implode(',', [
+            ($color & 0xFF0000) >> 16,
+            ($color & 0x00FF00) >> 8,
+            $color & 0x0000FF,
+        ]) . ')';
+        $orientation          = $this->getBarcode()->getOrientation();
+        $newPoints            = [
             $points[0][0] + $this->leftOffset,
             $points[0][1] + $this->topOffset,
             $points[1][0] + $this->leftOffset,
@@ -319,10 +335,10 @@ class Svg extends AbstractRenderer
             $points[3][0] + $this->leftOffset + cos(-$orientation / 180 * pi()),
             $points[3][1] + $this->topOffset + sin($orientation / 180 * pi()),
         ];
-        $newPoints = implode(' ', $newPoints);
-        $attributes = [];
+        $newPoints            = implode(' ', $newPoints);
+        $attributes           = [];
         $attributes['points'] = $newPoints;
-        $attributes['fill'] = $color;
+        $attributes['fill']   = $color;
 
         // SVG passes a rect in as the first call to drawPolygon, we'll need to intercept
         // this and set transparency if necessary.
@@ -349,14 +365,16 @@ class Svg extends AbstractRenderer
      */
     protected function drawText($text, $size, $position, $font, $color, $alignment = 'center', $orientation = 0)
     {
-        $color = 'rgb(' . implode(',', [($color & 0xFF0000) >> 16,
-                                              ($color & 0x00FF00) >> 8,
-                                              ($color & 0x0000FF)]) . ')';
-        $attributes = [];
+        $color           = 'rgb(' . implode(',', [
+            ($color & 0xFF0000) >> 16,
+            ($color & 0x00FF00) >> 8,
+            $color & 0x0000FF,
+        ]) . ')';
+        $attributes      = [];
         $attributes['x'] = $position[0] + $this->leftOffset;
         $attributes['y'] = $position[1] + $this->topOffset;
         //$attributes['font-family'] = $font;
-        $attributes['color'] = $color;
+        $attributes['color']     = $color;
         $attributes['font-size'] = $size * 1.2;
         switch ($alignment) {
             case 'left':
@@ -369,7 +387,7 @@ class Svg extends AbstractRenderer
             default:
                 $textAnchor = 'middle';
         }
-        $attributes['style'] = 'text-anchor: ' . $textAnchor;
+        $attributes['style']     = 'text-anchor: ' . $textAnchor;
         $attributes['transform'] = 'rotate('
                                  . (- $orientation)
                                  . ', '

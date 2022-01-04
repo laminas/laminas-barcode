@@ -1,12 +1,10 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Barcode\Object;
+
+use function str_split;
 
 /**
  * Class for generate UpcA barcode
@@ -15,17 +13,19 @@ class Upca extends Ean13
 {
     /**
      * Default options for Postnet barcode
+     *
      * @return void
      */
     protected function getDefaultOptions()
     {
-        $this->barcodeLength = 12;
-        $this->mandatoryChecksum = true;
+        $this->barcodeLength       = 12;
+        $this->mandatoryChecksum   = true;
         $this->mandatoryQuietZones = true;
     }
 
     /**
      * Width of the barcode (in pixels)
+     *
      * @return int
      */
     protected function calculateBarcodeWidth()
@@ -39,13 +39,14 @@ class Upca extends Ean13
     }
 
         /**
-     * Prepare array to draw barcode
-     * @return array
-     */
+         * Prepare array to draw barcode
+         *
+         * @return array
+         */
     protected function prepareBarcode()
     {
         $barcodeTable = [];
-        $height = ($this->drawText) ? 1.1 : 1;
+        $height       = $this->drawText ? 1.1 : 1;
 
         // Start character (101)
         $barcodeTable[] = [1, $this->barThinWidth, 0, $height];
@@ -98,17 +99,18 @@ class Upca extends Ean13
 
     /**
      * Partial function to draw text
+     *
      * @return void
      */
     protected function drawText()
     {
         if ($this->drawText) {
-            $text = $this->getTextToDisplay();
+            $text           = $this->getTextToDisplay();
             $characterWidth = (7 * $this->barThinWidth) * $this->factor;
-            $leftPosition = $this->getQuietZone() - $characterWidth;
-            for ($i = 0; $i < $this->barcodeLength; $i ++) {
+            $leftPosition   = $this->getQuietZone() - $characterWidth;
+            for ($i = 0; $i < $this->barcodeLength; $i++) {
                 $fontSize = $this->fontSize;
-                if ($i == 0 || $i == 11) {
+                if ($i === 0 || $i === 11) {
                     $fontSize *= 0.8;
                 }
                 $this->addText(

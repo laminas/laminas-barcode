@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Barcode\Object;
 
@@ -13,15 +9,17 @@ namespace Laminas\Barcode\Object;
  */
 class Ean2 extends Ean5
 {
+    /** @var string[][] */
     protected $parities = [
-        0 => ['A','A'],
-        1 => ['A','B'],
-        2 => ['B','A'],
-        3 => ['B','B']
+        0 => ['A', 'A'],
+        1 => ['A', 'B'],
+        2 => ['B', 'A'],
+        3 => ['B', 'B'],
     ];
 
     /**
      * Default options for Ean2 barcode
+     *
      * @return void
      */
     protected function getDefaultOptions()
@@ -29,6 +27,10 @@ class Ean2 extends Ean5
         $this->barcodeLength = 2;
     }
 
+    /**
+     * @param int $i
+     * @return string
+     */
     protected function getParity($i)
     {
         $modulo = $this->getText() % 4;

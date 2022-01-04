@@ -1,12 +1,12 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Barcode\Object;
+
+use function count;
+use function str_split;
+use function strlen;
 
 /**
  * Class for generate Codabar barcode
@@ -17,25 +17,40 @@ class Codabar extends AbstractObject
      * Coding map
      * - 0 = space
      * - 1 = bar
-     * @var array
+     *
+     * @var string[]
      */
     protected $codingMap = [
-        '0' => "101010011",     '1' => "101011001",     '2' => "101001011",
-        '3' => "110010101",     '4' => "101101001",     '5' => "110101001",
-        '6' => "100101011",     '7' => "100101101",     '8' => "100110101",
-        '9' => "110100101",     '-' => "101001101",     '$' => "101100101",
-        ':' => "1101011011",    '/' => "1101101011",    '.' => "1101101101",
-        '+' => "1011011011",    'A' => "1011001001",    'B' => "1010010011",
-        'C' => "1001001011",    'D' => "1010011001"
+        '0' => "101010011",
+        '1' => "101011001",
+        '2' => "101001011",
+        '3' => "110010101",
+        '4' => "101101001",
+        '5' => "110101001",
+        '6' => "100101011",
+        '7' => "100101101",
+        '8' => "100110101",
+        '9' => "110100101",
+        '-' => "101001101",
+        '$' => "101100101",
+        ':' => "1101011011",
+        '/' => "1101101011",
+        '.' => "1101101101",
+        '+' => "1011011011",
+        'A' => "1011001001",
+        'B' => "1010010011",
+        'C' => "1001001011",
+        'D' => "1010011001",
     ];
 
     /**
      * Width of the barcode (in pixels)
+     *
      * @return int
      */
     protected function calculateBarcodeWidth()
     {
-        $quietZone       = $this->getQuietZone();
+        $quietZone   = $this->getQuietZone();
         $encodedData = 0;
         $barcodeChar = str_split($this->getText());
         if (count($barcodeChar) > 1) {
@@ -43,12 +58,13 @@ class Codabar extends AbstractObject
                 $encodedData += ((strlen($this->codingMap[$c]) + 1) * $this->barThinWidth) * $this->factor;
             }
         }
-        $encodedData -= (1 * $this->barThinWidth * $this->factor);
+        $encodedData -= 1 * $this->barThinWidth * $this->factor;
         return $quietZone + $encodedData + $quietZone;
     }
 
     /**
      * Partial check of Codabar barcode
+     *
      * @return void
      */
     protected function checkSpecificParams()
@@ -57,11 +73,12 @@ class Codabar extends AbstractObject
 
     /**
      * Prepare array to draw barcode
+     *
      * @return array
      */
     protected function prepareBarcode()
     {
-        $text = str_split($this->getText());
+        $text         = str_split($this->getText());
         $barcodeTable = [];
         foreach ($text as $char) {
             $barcodeChar = str_split($this->codingMap[$char]);

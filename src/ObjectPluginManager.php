@@ -1,16 +1,17 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Barcode;
 
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\Factory\InvokableFactory;
+
+use function get_class;
+use function gettype;
+use function is_object;
+use function sprintf;
 
 /**
  * Plugin manager implementation for barcode parsers.
@@ -21,20 +22,16 @@ use Laminas\ServiceManager\Factory\InvokableFactory;
  */
 class ObjectPluginManager extends AbstractPluginManager
 {
-    /**
-     * @var bool Ensure services are not shared (v2 property)
-     */
+    /** @var bool Ensure services are not shared (v2 property) */
     protected $shareByDefault = false;
 
-    /**
-     * @var bool Ensure services are not shared (v3 property)
-     */
+    /** @var bool Ensure services are not shared (v3 property) */
     protected $sharedByDefault = false;
 
     /**
      * Default set of symmetric adapters
      *
-     * @var array
+     * {@inheritDoc}
      */
     protected $aliases = [
         'codabar'           => Object\Codabar::class,
@@ -57,46 +54,47 @@ class ObjectPluginManager extends AbstractPluginManager
         'upce'              => Object\Upce::class,
 
         // Legacy Zend Framework aliases
-        \Zend\Barcode\Object\Codabar::class => Object\Codabar::class,
-        \Zend\Barcode\Object\Code128::class => Object\Code128::class,
-        \Zend\Barcode\Object\Code25::class => Object\Code25::class,
-        \Zend\Barcode\Object\Code25interleaved::class => Object\Code25interleaved::class,
-        \Zend\Barcode\Object\Code39::class => Object\Code39::class,
-        \Zend\Barcode\Object\Ean13::class => Object\Ean13::class,
-        \Zend\Barcode\Object\Ean2::class => Object\Ean2::class,
-        \Zend\Barcode\Object\Ean5::class => Object\Ean5::class,
-        \Zend\Barcode\Object\Ean8::class => Object\Ean8::class,
-        \Zend\Barcode\Object\Error::class => Object\Error::class,
-        \Zend\Barcode\Object\Identcode::class => Object\Identcode::class,
-        \Zend\Barcode\Object\Itf14::class => Object\Itf14::class,
-        \Zend\Barcode\Object\Leitcode::class => Object\Leitcode::class,
-        \Zend\Barcode\Object\Planet::class => Object\Planet::class,
-        \Zend\Barcode\Object\Postnet::class => Object\Postnet::class,
-        \Zend\Barcode\Object\Royalmail::class => Object\Royalmail::class,
-        \Zend\Barcode\Object\Upca::class => Object\Upca::class,
-        \Zend\Barcode\Object\Upce::class => Object\Upce::class,
+        'Zend\Barcode\Object\Codabar'           => Object\Codabar::class,
+        'Zend\Barcode\Object\Code128'           => Object\Code128::class,
+        'Zend\Barcode\Object\Code25'            => Object\Code25::class,
+        'Zend\Barcode\Object\Code25interleaved' => Object\Code25interleaved::class,
+        'Zend\Barcode\Object\Code39'            => Object\Code39::class,
+        'Zend\Barcode\Object\Ean13'             => Object\Ean13::class,
+        'Zend\Barcode\Object\Ean2'              => Object\Ean2::class,
+        'Zend\Barcode\Object\Ean5'              => Object\Ean5::class,
+        'Zend\Barcode\Object\Ean8'              => Object\Ean8::class,
+        'Zend\Barcode\Object\Error'             => Object\Error::class,
+        'Zend\Barcode\Object\Identcode'         => Object\Identcode::class,
+        'Zend\Barcode\Object\Itf14'             => Object\Itf14::class,
+        'Zend\Barcode\Object\Leitcode'          => Object\Leitcode::class,
+        'Zend\Barcode\Object\Planet'            => Object\Planet::class,
+        'Zend\Barcode\Object\Postnet'           => Object\Postnet::class,
+        'Zend\Barcode\Object\Royalmail'         => Object\Royalmail::class,
+        'Zend\Barcode\Object\Upca'              => Object\Upca::class,
+        'Zend\Barcode\Object\Upce'              => Object\Upce::class,
 
         // v2 normalized FQCNs
-        'zendbarcodeobjectcodabar' => Object\Codabar::class,
-        'zendbarcodeobjectcode128' => Object\Code128::class,
-        'zendbarcodeobjectcode25' => Object\Code25::class,
+        'zendbarcodeobjectcodabar'           => Object\Codabar::class,
+        'zendbarcodeobjectcode128'           => Object\Code128::class,
+        'zendbarcodeobjectcode25'            => Object\Code25::class,
         'zendbarcodeobjectcode25interleaved' => Object\Code25interleaved::class,
-        'zendbarcodeobjectcode39' => Object\Code39::class,
-        'zendbarcodeobjectean13' => Object\Ean13::class,
-        'zendbarcodeobjectean2' => Object\Ean2::class,
-        'zendbarcodeobjectean5' => Object\Ean5::class,
-        'zendbarcodeobjectean8' => Object\Ean8::class,
-        'zendbarcodeobjecterror' => Object\Error::class,
-        'zendbarcodeobjectidentcode' => Object\Identcode::class,
-        'zendbarcodeobjectitf14' => Object\Itf14::class,
-        'zendbarcodeobjectleitcode' => Object\Leitcode::class,
-        'zendbarcodeobjectplanet' => Object\Planet::class,
-        'zendbarcodeobjectpostnet' => Object\Postnet::class,
-        'zendbarcodeobjectroyalmail' => Object\Royalmail::class,
-        'zendbarcodeobjectupca' => Object\Upca::class,
-        'zendbarcodeobjectupce' => Object\Upce::class,
+        'zendbarcodeobjectcode39'            => Object\Code39::class,
+        'zendbarcodeobjectean13'             => Object\Ean13::class,
+        'zendbarcodeobjectean2'              => Object\Ean2::class,
+        'zendbarcodeobjectean5'              => Object\Ean5::class,
+        'zendbarcodeobjectean8'              => Object\Ean8::class,
+        'zendbarcodeobjecterror'             => Object\Error::class,
+        'zendbarcodeobjectidentcode'         => Object\Identcode::class,
+        'zendbarcodeobjectitf14'             => Object\Itf14::class,
+        'zendbarcodeobjectleitcode'          => Object\Leitcode::class,
+        'zendbarcodeobjectplanet'            => Object\Planet::class,
+        'zendbarcodeobjectpostnet'           => Object\Postnet::class,
+        'zendbarcodeobjectroyalmail'         => Object\Royalmail::class,
+        'zendbarcodeobjectupca'              => Object\Upca::class,
+        'zendbarcodeobjectupce'              => Object\Upce::class,
     ];
 
+    /** {@inheritDoc} */
     protected $factories = [
         Object\Codabar::class           => InvokableFactory::class,
         Object\Code128::class           => InvokableFactory::class,
@@ -118,7 +116,6 @@ class ObjectPluginManager extends AbstractPluginManager
         Object\Upce::class              => InvokableFactory::class,
 
         // v2 canonical FQCNs
-
         'laminasbarcodeobjectcodabar'           => InvokableFactory::class,
         'laminasbarcodeobjectcode128'           => InvokableFactory::class,
         'laminasbarcodeobjectcode25'            => InvokableFactory::class,
@@ -139,24 +136,18 @@ class ObjectPluginManager extends AbstractPluginManager
         'laminasbarcodeobjectupce'              => InvokableFactory::class,
     ];
 
+    /** {@inheritDoc} */
     protected $instanceOf = Object\AbstractObject::class;
 
-    /**
-     * Validate the plugin is of the expected type (v3).
-     *
-     * Validates against `$instanceOf`.
-     *
-     * @param mixed $plugin
-     * @throws InvalidServiceException
-     */
+    /** {@inheritDoc} */
     public function validate($plugin)
     {
         if (! $plugin instanceof $this->instanceOf) {
             throw new InvalidServiceException(sprintf(
                 '%s can only create instances of %s; %s is invalid',
-                get_class($this),
+                static::class,
                 $this->instanceOf,
-                (is_object($plugin) ? get_class($plugin) : gettype($plugin))
+                is_object($plugin) ? get_class($plugin) : gettype($plugin)
             ));
         }
     }
@@ -176,7 +167,7 @@ class ObjectPluginManager extends AbstractPluginManager
         } catch (InvalidServiceException $e) {
             throw new Exception\InvalidArgumentException(sprintf(
                 'Plugin of type %s is invalid; must extend %s',
-                (is_object($plugin) ? get_class($plugin) : gettype($plugin)),
+                is_object($plugin) ? get_class($plugin) : gettype($plugin),
                 Object\AbstractObject::class
             ), $e->getCode(), $e);
         }

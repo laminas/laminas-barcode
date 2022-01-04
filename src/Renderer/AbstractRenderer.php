@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Barcode\Renderer;
 
@@ -14,6 +10,17 @@ use Laminas\Barcode\Object\ObjectInterface;
 use Laminas\Stdlib\ArrayUtils;
 use Traversable;
 
+use function floatval;
+use function floor;
+use function in_array;
+use function intval;
+use function is_array;
+use function is_numeric;
+use function method_exists;
+use function strlen;
+use function strtolower;
+use function substr;
+
 /**
  * Class for rendering the barcode
  */
@@ -21,71 +28,84 @@ abstract class AbstractRenderer implements RendererInterface
 {
     /**
      * Namespace of the renderer for autoloading
+     *
      * @var string
      */
     protected $rendererNamespace = 'Laminas\Barcode\Renderer';
 
     /**
      * Renderer type
+     *
      * @var string
      */
-    protected $type = null;
+    protected $type;
 
     /**
      * Activate/Deactivate the automatic rendering of exception
+     *
      * @var bool
      */
     protected $automaticRenderError = false;
 
     /**
      * Offset of the barcode from the top of the rendering resource
+     *
      * @var int
      */
     protected $topOffset = 0;
 
     /**
      * Offset of the barcode from the left of the rendering resource
+     *
      * @var int
      */
     protected $leftOffset = 0;
 
     /**
      * Horizontal position of the barcode in the rendering resource
+     *
      * @var string
      */
     protected $horizontalPosition = 'left';
 
     /**
      * Vertical position of the barcode in the rendering resource
+     *
      * @var string
      */
     protected $verticalPosition = 'top';
 
     /**
      * Module size rendering
+     *
      * @var float
      */
     protected $moduleSize = 1;
 
     /**
      * Barcode object
+     *
      * @var ObjectInterface
      */
     protected $barcode;
 
     /**
      * Drawing resource
+     *
+     * @var AbstractRenderer
      */
     protected $resource;
 
     /**
      * Show a transparent background
+     *
      * @var Boolean
      */
     protected $transparentBackground = false;
 
     /**
      * Constructor
+     *
      * @param array|Traversable $options
      */
     public function __construct($options = null)
@@ -96,15 +116,18 @@ abstract class AbstractRenderer implements RendererInterface
         if (is_array($options)) {
             $this->setOptions($options);
         }
-        $this->type = strtolower(substr(
-            get_class($this),
-            strlen($this->rendererNamespace) + 1
-        ));
+        $this->type = strtolower(
+            substr(
+                static::class,
+                strlen($this->rendererNamespace) + 1
+            )
+        );
     }
 
     /**
      * Set renderer state from options array
-     * @param  array $options
+     *
+     * @param array $options
      * @return self Provides a fluent interface
      */
     public function setOptions($options)
@@ -144,7 +167,7 @@ abstract class AbstractRenderer implements RendererInterface
      * Set whether background should be transparent
      * Will work for SVG and Image (png and gif only)
      *
-     * @param $bool
+     * @param bool $bool
      * @return self Provides a fluent interface
      */
     public function setTransparentBackground($bool)
@@ -164,6 +187,7 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Retrieve renderer type
+     *
      * @return string
      */
     public function getType()
@@ -173,7 +197,8 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Manually adjust top position
-     * @param  int $value
+     *
+     * @param int $value
      * @return self Provides a fluent interface
      * @throws Exception\OutOfRangeException
      */
@@ -190,6 +215,7 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Retrieve vertical adjustment
+     *
      * @return int
      */
     public function getTopOffset()
@@ -199,7 +225,8 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Manually adjust left position
-     * @param  int $value
+     *
+     * @param int $value
      * @return self Provides a fluent interface
      * @throws Exception\OutOfRangeException
      */
@@ -216,6 +243,7 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Retrieve vertical adjustment
+     *
      * @return int
      */
     public function getLeftOffset()
@@ -225,7 +253,8 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Activate/Deactivate the automatic rendering of exception
-     * @param  bool $value
+     *
+     * @param bool $value
      * @return self Provides a fluent interface
      */
     public function setAutomaticRenderError($value)
@@ -236,7 +265,8 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Horizontal position of the barcode in the rendering resource
-     * @param  string $value
+     *
+     * @param string $value
      * @return self Provides a fluent interface
      * @throws Exception\UnexpectedValueException
      */
@@ -253,6 +283,7 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Horizontal position of the barcode in the rendering resource
+     *
      * @return string
      */
     public function getHorizontalPosition()
@@ -262,7 +293,8 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Vertical position of the barcode in the rendering resource
-     * @param  string $value
+     *
+     * @param string $value
      * @return self Provides a fluent interface
      * @throws Exception\UnexpectedValueException
      */
@@ -279,6 +311,7 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Vertical position of the barcode in the rendering resource
+     *
      * @return string
      */
     public function getVerticalPosition()
@@ -288,6 +321,7 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Set the size of a module
+     *
      * @param float $value
      * @return self Provides a fluent interface
      * @throws Exception\OutOfRangeException
@@ -305,6 +339,7 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Set the size of a module
+     *
      * @return float
      */
     public function getModuleSize()
@@ -314,6 +349,7 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Retrieve the automatic rendering of exception
+     *
      * @return bool
      */
     public function getAutomaticRenderError()
@@ -323,7 +359,7 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Set the barcode object
-     * @param  Object\ObjectInterface $barcode
+     *
      * @return self Provides a fluent interface
      */
     public function setBarcode(ObjectInterface $barcode)
@@ -334,7 +370,8 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Retrieve the barcode object
-     * @return Object\ObjectInterface
+     *
+     * @return ObjectInterface
      */
     public function getBarcode()
     {
@@ -343,6 +380,7 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Checking of parameters after all settings
+     *
      * @return bool
      */
     public function checkParams()
@@ -354,6 +392,7 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Check if a barcode object is correctly provided
+     *
      * @return void
      * @throws Exception\RuntimeException
      */
@@ -370,13 +409,14 @@ abstract class AbstractRenderer implements RendererInterface
      * Calculate the left and top offset of the barcode in the
      * rendering support
      *
-     * @param  float $supportHeight
-     * @param  float $supportWidth
+     * @param float $supportHeight
+     * @param float $supportWidth
      * @return void
      */
     protected function adjustPosition($supportHeight, $supportWidth)
     {
         $barcodeHeight = $this->barcode->getHeight(true) * $this->moduleSize;
+        // phpcs:ignore SlevomatCodingStandard.Operators.DisallowEqualOperators
         if ($barcodeHeight != $supportHeight && $this->topOffset == 0) {
             switch ($this->verticalPosition) {
                 case 'middle':
@@ -392,6 +432,7 @@ abstract class AbstractRenderer implements RendererInterface
             }
         }
         $barcodeWidth = $this->barcode->getWidth(true) * $this->moduleSize;
+        // phpcs:ignore SlevomatCodingStandard.Operators.DisallowEqualOperators
         if ($barcodeWidth != $supportWidth && $this->leftOffset == 0) {
             switch ($this->horizontalPosition) {
                 case 'center':
@@ -411,8 +452,8 @@ abstract class AbstractRenderer implements RendererInterface
     /**
      * Draw the barcode in the rendering resource
      *
+     * @return AbstractRenderer
      * @throws BarcodeException\ExceptionInterface
-     * @return mixed
      */
     public function draw()
     {
@@ -421,7 +462,7 @@ abstract class AbstractRenderer implements RendererInterface
             $this->initRenderer();
             $this->drawInstructionList();
         } catch (BarcodeException\ExceptionInterface $e) {
-            if ($this->automaticRenderError && ! ($e instanceof BarcodeException\RendererCreationException)) {
+            if ($this->automaticRenderError && ! $e instanceof BarcodeException\RendererCreationException) {
                 $barcode = Barcode::makeBarcode(
                     'error',
                     ['text' => $e->getMessage()]
@@ -474,26 +515,30 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Checking of parameters after all settings
+     *
      * @return void
      */
     abstract protected function checkSpecificParams();
 
     /**
      * Initialize the rendering resource
+     *
      * @return void
      */
     abstract protected function initRenderer();
 
     /**
      * Draw a polygon in the rendering resource
+     *
      * @param array $points
      * @param int $color
-     * @param  bool $filled
+     * @param bool $filled
      */
     abstract protected function drawPolygon($points, $color, $filled = true);
 
     /**
      * Draw a polygon in the rendering resource
+     *
      * @param string $text
      * @param float $size
      * @param array $position

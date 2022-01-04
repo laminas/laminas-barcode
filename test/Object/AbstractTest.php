@@ -1,29 +1,36 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace LaminasTest\Barcode\Object;
 
 use Laminas\Barcode;
+use Laminas\Barcode\Object\AbstractObject;
+use Laminas\Barcode\Object\Exception\ExceptionInterface;
 use Laminas\Config;
 use PHPUnit\Framework\TestCase;
+use Traversable;
 
-abstract class TestCommon extends TestCase
+use function extension_loaded;
+
+abstract class AbstractTest extends TestCase
 {
-    /**
-     * @var \Laminas\Barcode\Object\AbstractObject
-     */
-    protected $object = null;
+    /** @var AbstractObject */
+    protected $object;
 
+    /**
+     * @param array|Traversable $options
+     * @return Barcode\Object\AbstractObject
+     */
     abstract protected function getBarcodeObject($options = null);
 
+    /**
+     * @param string $fileName
+     * @return array
+     */
     protected function loadInstructionsFile($fileName)
     {
-        return include_once(__DIR__ . "/TestAsset/$fileName.php");
+        return include_once __DIR__ . "/TestAsset/$fileName.php";
     }
 
     public function setUp(): void
@@ -59,8 +66,10 @@ abstract class TestCommon extends TestCase
     public function testConstructorWithArray()
     {
         $object = $this->getBarcodeObject(
-            ['barHeight' => 150,
-            'unkownProperty' => 'aValue']
+            [
+                'barHeight'      => 150,
+                'unkownProperty' => 'aValue',
+            ]
         );
         $this->assertEquals(150, $object->getBarHeight());
     }
@@ -68,8 +77,10 @@ abstract class TestCommon extends TestCase
     public function testConstructorWithLaminasConfig()
     {
         $config = new Config\Config(
-            ['barHeight' => 150,
-            'unkownProperty' => 'aValue']
+            [
+                'barHeight'      => 150,
+                'unkownProperty' => 'aValue',
+            ]
         );
         $object = $this->getBarcodeObject($config);
         $this->assertEquals(150, $object->getBarHeight());
@@ -78,8 +89,10 @@ abstract class TestCommon extends TestCase
     public function testSetOptions()
     {
         $this->object->setOptions(
-            ['barHeight' => 150,
-            'unkownProperty' => 'aValue']
+            [
+                'barHeight'      => 150,
+                'unkownProperty' => 'aValue',
+            ]
         );
         $this->assertEquals(150, $this->object->getBarHeight());
     }
@@ -102,7 +115,7 @@ abstract class TestCommon extends TestCase
 
     public function testNegativeBarHeight()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setBarHeight(- 1);
     }
 
@@ -118,7 +131,7 @@ abstract class TestCommon extends TestCase
 
     public function testNegativeBarThinWidth()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setBarThinWidth(- 1);
     }
 
@@ -134,7 +147,7 @@ abstract class TestCommon extends TestCase
 
     public function testNegativeBarThickWidth()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setBarThickWidth(- 1);
     }
 
@@ -152,7 +165,7 @@ abstract class TestCommon extends TestCase
 
     public function testNegativeFactor()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setFactor(- 1);
     }
 
@@ -166,13 +179,13 @@ abstract class TestCommon extends TestCase
 
     public function testNegativeForeColor()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setForeColor(- 1);
     }
 
     public function testTooHighForeColor()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setForeColor(16777126);
     }
 
@@ -186,13 +199,13 @@ abstract class TestCommon extends TestCase
 
     public function testNegativeBackgroundColor()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setBackgroundColor(- 1);
     }
 
     public function testTooHighBackgroundColor()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setBackgroundColor(16777126);
     }
 
@@ -287,8 +300,8 @@ abstract class TestCommon extends TestCase
                 'GD extension is required to run this test'
             );
         }
-        $gdFontSize = [8 , 13 , 13 , 16 , 15];
-        for ($i = 1; $i <= 5; $i ++) {
+        $gdFontSize = [8, 13, 13, 16, 15];
+        for ($i = 1; $i <= 5; $i++) {
             $this->object->setFont($i);
             $this->assertSame($i, $this->object->getFont());
             $this->assertSame(
@@ -300,13 +313,13 @@ abstract class TestCommon extends TestCase
 
     public function testSetLowFontAsNumberForGdImage()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setFont(0);
     }
 
     public function testSetHighFontAsNumberForGdImage()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setFont(6);
     }
 
@@ -318,7 +331,7 @@ abstract class TestCommon extends TestCase
 
     public function testSetFontAsBoolean()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setFont(true);
     }
 
@@ -329,7 +342,7 @@ abstract class TestCommon extends TestCase
                 'GD extension must not be loaded to run this test'
             );
         }
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setFont(1);
     }
 
@@ -353,7 +366,7 @@ abstract class TestCommon extends TestCase
 
     public function testStringFontSize()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setFontSize('22a');
     }
 
@@ -366,25 +379,33 @@ abstract class TestCommon extends TestCase
 
     public function testAddInstruction()
     {
-        $object = new TestAsset\BarcodeTest();
-        $instructions = ['type' => 'text' , 'text' => 'text' , 'size' => 10 ,
-                'position' => [5 , 5] ,
-                'font' => 'my_font.ttf' ,
-                'color' => '#123456' ,
-                'alignment' => 'center' ,
-                'orientation' => 45];
+        $object       = new TestAsset\BarcodeTest();
+        $instructions = [
+            'type'        => 'text',
+            'text'        => 'text',
+            'size'        => 10,
+            'position'    => [5, 5],
+            'font'        => 'my_font.ttf',
+            'color'       => '#123456',
+            'alignment'   => 'center',
+            'orientation' => 45,
+        ];
         $object->addTestInstruction($instructions);
         $this->assertSame([$instructions], $object->getInstructions());
     }
 
     public function testAddPolygon()
     {
-        $object = new TestAsset\BarcodeTest();
-        $points = [];
-        $color = '#123456';
-        $filled = false;
-        $instructions = ['type' => 'polygon' , 'points' => $points ,
-                'color' => $color , 'filled' => $filled];
+        $object       = new TestAsset\BarcodeTest();
+        $points       = [];
+        $color        = '#123456';
+        $filled       = false;
+        $instructions = [
+            'type'   => 'polygon',
+            'points' => $points,
+            'color'  => $color,
+            'filled' => $filled,
+        ];
         $object->addTestPolygon($points, $color, $filled);
         $this->assertSame([$instructions], $object->getInstructions());
     }
@@ -393,30 +414,39 @@ abstract class TestCommon extends TestCase
     {
         $object = new TestAsset\BarcodeTest();
         $points = [];
-        $color = 123456;
+        $color  = 123456;
         $object->setForeColor($color);
-        $filled = false;
-        $instructions = ['type' => 'polygon' , 'points' => $points ,
-                'color' => $color , 'filled' => $filled];
+        $filled       = false;
+        $instructions = [
+            'type'   => 'polygon',
+            'points' => $points,
+            'color'  => $color,
+            'filled' => $filled,
+        ];
         $object->addTestPolygon($points, null, $filled);
         $this->assertSame([$instructions], $object->getInstructions());
     }
 
     public function testAddText()
     {
-        $object = new TestAsset\BarcodeTest();
-        $size = 10;
-        $text = 'foobar';
-        $position = [];
-        $font = 'my_font.ttf';
-        $color = '#123456';
-        $alignment = 'right';
-        $orientation = 45;
-        $instructions = ['type' => 'text' , 'text' => $text , 'size' => $size ,
-                'position' => $position ,
-                'font' => $font , 'color' => $color ,
-                'alignment' => $alignment ,
-                'orientation' => $orientation];
+        $object       = new TestAsset\BarcodeTest();
+        $size         = 10;
+        $text         = 'foobar';
+        $position     = [];
+        $font         = 'my_font.ttf';
+        $color        = '#123456';
+        $alignment    = 'right';
+        $orientation  = 45;
+        $instructions = [
+            'type'        => 'text',
+            'text'        => $text,
+            'size'        => $size,
+            'position'    => $position,
+            'font'        => $font,
+            'color'       => $color,
+            'alignment'   => $alignment,
+            'orientation' => $orientation,
+        ];
         $object->addTestText(
             $text,
             $size,
@@ -431,27 +461,32 @@ abstract class TestCommon extends TestCase
 
     public function testAddTextWithDefaultColor()
     {
-        $object = new TestAsset\BarcodeTest();
-        $size = 10;
-        $text = 'foobar';
+        $object   = new TestAsset\BarcodeTest();
+        $size     = 10;
+        $text     = 'foobar';
         $position = [];
-        $font = 'my_font.ttf';
-        $color = 123456;
+        $font     = 'my_font.ttf';
+        $color    = 123456;
         $object->setForeColor($color);
-        $alignment = 'right';
-        $orientation = 45;
-        $instructions = ['type' => 'text' , 'text' => $text , 'size' => $size ,
-                'position' => $position ,
-                'font' => $font , 'color' => $color ,
-                'alignment' => $alignment ,
-                'orientation' => $orientation];
+        $alignment    = 'right';
+        $orientation  = 45;
+        $instructions = [
+            'type'        => 'text',
+            'text'        => $text,
+            'size'        => $size,
+            'position'    => $position,
+            'font'        => $font,
+            'color'       => $color,
+            'alignment'   => $alignment,
+            'orientation' => $orientation,
+        ];
         $object->addTestText($text, $size, $position, $font, null, $alignment, $orientation);
         $this->assertSame([$instructions], $object->getInstructions());
     }
 
     public function testCheckParamsFontWithOrientation()
     {
-        $this->expectException('\Laminas\Barcode\Object\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->object->setText('0');
         $this->object->setFont(1);
         $this->object->setOrientation(45);

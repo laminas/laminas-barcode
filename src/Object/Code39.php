@@ -1,12 +1,15 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Barcode\Object;
+
+use function array_flip;
+use function array_keys;
+use function array_search;
+use function str_split;
+use function strlen;
+use function substr;
 
 /**
  * Class for generate Code39 barcode
@@ -15,7 +18,8 @@ class Code39 extends AbstractObject
 {
     /**
      * Coding map
-     * @var array
+     *
+     * @var string[]
      */
     protected $codingMap = [
         '0' => '000110100',
@@ -66,6 +70,7 @@ class Code39 extends AbstractObject
 
     /**
      * Partial check of Code39 barcode
+     *
      * @return void
      */
     protected function checkSpecificParams()
@@ -75,6 +80,7 @@ class Code39 extends AbstractObject
 
     /**
      * Width of the barcode (in pixels)
+     *
      * @return int
      */
     protected function calculateBarcodeWidth()
@@ -87,6 +93,7 @@ class Code39 extends AbstractObject
 
     /**
      * Set text to encode
+     *
      * @param string $value
      * @return self Provides a fluent interface
      */
@@ -98,6 +105,7 @@ class Code39 extends AbstractObject
 
     /**
      * Retrieve text to display
+     *
      * @return string
      */
     public function getText()
@@ -107,12 +115,13 @@ class Code39 extends AbstractObject
 
     /**
      * Retrieve text to display
+     *
      * @return string
      */
     public function getTextToDisplay()
     {
         $text = parent::getTextToDisplay();
-        if (substr($text, 0, 1) != '*' && substr($text, -1) != '*') {
+        if (substr($text, 0, 1) !== '*' && substr($text, -1) !== '*') {
             return '*' . $text . '*';
         }
 
@@ -121,6 +130,7 @@ class Code39 extends AbstractObject
 
     /**
      * Prepare array to draw barcode
+     *
      * @return array
      */
     protected function prepareBarcode()
@@ -134,7 +144,7 @@ class Code39 extends AbstractObject
                 /* visible, width, top, length */
                 $width          = $c ? $this->barThickWidth : $this->barThinWidth;
                 $barcodeTable[] = [(int) $visible, $width, 0, 1];
-                $visible = ! $visible;
+                $visible        = ! $visible;
             }
             $barcodeTable[] = [0, $this->barThinWidth];
         }
@@ -156,6 +166,6 @@ class Code39 extends AbstractObject
         foreach ($text as $character) {
             $checksum += $charset[$character];
         }
-        return array_search(($checksum % 43), $charset);
+        return array_search($checksum % 43, $charset);
     }
 }

@@ -1,16 +1,45 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Barcode\Renderer;
 
 use GdImage;
 use Laminas\Barcode\Exception\RendererCreationException;
 use Laminas\Stdlib\ErrorHandler;
+use Traversable;
+
+use function ceil;
+use function cos;
+use function function_exists;
+use function get_resource_type;
+use function gettype;
+use function header;
+use function imagecolorallocate;
+use function imagecolortransparent;
+use function imagecreatetruecolor;
+use function imagedestroy;
+use function imagefilledpolygon;
+use function imagefilledrectangle;
+use function imagefontheight;
+use function imagefontwidth;
+use function imagepolygon;
+use function imagestring;
+use function imagesx;
+use function imagesy;
+use function imagettfbbox;
+use function imagettftext;
+use function in_array;
+use function intval;
+use function is_numeric;
+use function pi;
+use function sin;
+use function sprintf;
+use function strlen;
+
+use const E_WARNING;
+use const PHP_MAJOR_VERSION;
+use const PHP_VERSION_ID;
 
 /**
  * Class for rendering the barcode as image
@@ -19,6 +48,7 @@ class Image extends AbstractRenderer
 {
     /**
      * List of authorized output format
+     *
      * @var array
      */
     protected $allowedImageType = [
@@ -29,36 +59,42 @@ class Image extends AbstractRenderer
 
     /**
      * Image format
+     *
      * @var string
      */
     protected $imageType = 'png';
 
     /**
      * Resource for the image
+     *
      * @var resource
      */
-    protected $resource = null;
+    protected $resource;
 
     /**
      * Resource for the font and bars color of the image
+     *
      * @var int
      */
-    protected $imageForeColor = null;
+    protected $imageForeColor;
 
     /**
      * Resource for the background color of the image
+     *
      * @var int
      */
-    protected $imageBackgroundColor = null;
+    protected $imageBackgroundColor;
 
     /**
      * Height of the rendered image wanted by user
+     *
      * @var int
      */
     protected $userHeight = 0;
 
     /**
      * Width of the rendered image wanted by user
+     *
      * @var int
      */
     protected $userWidth = 0;
@@ -66,13 +102,13 @@ class Image extends AbstractRenderer
     /**
      * Constructor
      *
-     * @param array|\Traversable $options
+     * @param array|Traversable $options
      * @throws RendererCreationException
      */
     public function __construct($options = null)
     {
         if (! function_exists('gd_info')) {
-            throw new RendererCreationException(__CLASS__ . ' requires the GD extension');
+            throw new RendererCreationException(self::class . ' requires the GD extension');
         }
 
         parent::__construct($options);
@@ -82,8 +118,8 @@ class Image extends AbstractRenderer
      * Set height of the result image
      *
      * @param null|int $value
-     * @throws Exception\OutOfRangeException
      * @return self Provides a fluent interface
+     * @throws Exception\OutOfRangeException
      */
     public function setHeight($value)
     {
@@ -93,6 +129,7 @@ class Image extends AbstractRenderer
             );
         }
         $this->userHeight = intval($value);
+
         return $this;
     }
 
@@ -110,8 +147,8 @@ class Image extends AbstractRenderer
      * Set barcode width
      *
      * @param mixed $value
-     * @throws Exception\OutOfRangeException
      * @return self Provides a fluent interface
+     * @throws Exception\OutOfRangeException
      */
     public function setWidth($value)
     {
@@ -121,6 +158,7 @@ class Image extends AbstractRenderer
             );
         }
         $this->userWidth = intval($value);
+
         return $this;
     }
 
@@ -149,6 +187,7 @@ class Image extends AbstractRenderer
             );
         }
         $this->resource = $image;
+
         return $this;
     }
 
@@ -156,23 +195,26 @@ class Image extends AbstractRenderer
      * Set the image type to produce (png, jpeg, gif)
      *
      * @param string $value
-     * @throws Exception\InvalidArgumentException
      * @return self Provides a fluent interface
+     * @throws Exception\InvalidArgumentException
      */
     public function setImageType($value)
     {
-        if ($value == 'jpg') {
+        if ($value === 'jpg') {
             $value = 'jpeg';
         }
 
         if (! in_array($value, $this->allowedImageType)) {
-            throw new Exception\InvalidArgumentException(sprintf(
-                'Invalid type "%s" provided to setImageType()',
-                $value
-            ));
+            throw new Exception\InvalidArgumentException(
+                sprintf(
+                    'Invalid type "%s" provided to setImageType()',
+                    $value
+                )
+            );
         }
 
         $this->imageType = $value;
+
         return $this;
     }
 
@@ -197,12 +239,12 @@ class Image extends AbstractRenderer
         $barcodeHeight = $this->barcode->getHeight(true);
 
         if (null === $this->resource) {
-            $width = $barcodeWidth;
+            $width  = $barcodeWidth;
             $height = $barcodeHeight;
-            if ($this->userWidth && $this->barcode->getType() != 'error') {
+            if ($this->userWidth && $this->barcode->getType() !== 'error') {
                 $width = $this->userWidth;
             }
-            if ($this->userHeight && $this->barcode->getType() != 'error') {
+            if ($this->userHeight && $this->barcode->getType() !== 'error') {
                 $height = $this->userHeight;
             }
 
@@ -217,7 +259,7 @@ class Image extends AbstractRenderer
             imagefilledrectangle($this->resource, 0, 0, $width - 1, $height - 1, $white);
         }
 
-        $foreColor = $this->barcode->getForeColor();
+        $foreColor            = $this->barcode->getForeColor();
         $this->imageForeColor = imagecolorallocate(
             $this->resource,
             ($foreColor & 0xFF0000) >> 16,
@@ -225,7 +267,7 @@ class Image extends AbstractRenderer
             $foreColor & 0x0000FF
         );
 
-        $backgroundColor = $this->barcode->getBackgroundColor();
+        $backgroundColor            = $this->barcode->getBackgroundColor();
         $this->imageBackgroundColor = imagecolorallocate(
             $this->resource,
             ($backgroundColor & 0xFF0000) >> 16,
@@ -235,7 +277,7 @@ class Image extends AbstractRenderer
 
         // JPEG does not support transparency, if transparentBackground is true and
         // image type is JPEG, ignore transparency
-        if ($this->getImageType() != "jpeg" && $this->transparentBackground) {
+        if ($this->getImageType() !== "jpeg" && $this->transparentBackground) {
             imagecolortransparent($this->resource, $this->imageBackgroundColor);
         }
 
@@ -243,8 +285,8 @@ class Image extends AbstractRenderer
 
         imagefilledrectangle(
             $this->resource,
-            $this->leftOffset,
-            $this->topOffset,
+            (int) $this->leftOffset,
+            (int) $this->topOffset,
             (int) ($this->leftOffset + $barcodeWidth - 1),
             (int) ($this->topOffset + $barcodeHeight - 1),
             $this->imageBackgroundColor
@@ -264,8 +306,8 @@ class Image extends AbstractRenderer
     /**
      * Check barcode dimensions
      *
-     * @throws Exception\RuntimeException
      * @return void
+     * @throws Exception\RuntimeException
      */
     protected function checkDimensions()
     {
@@ -279,11 +321,13 @@ class Image extends AbstractRenderer
             if ($this->userHeight) {
                 $height = $this->barcode->getHeight(true);
                 if ($this->userHeight < $height) {
-                    throw new Exception\RuntimeException(sprintf(
-                        "Barcode is define outside the image (calculated: '%d', provided: '%d')",
-                        $height,
-                        $this->userHeight
-                    ));
+                    throw new Exception\RuntimeException(
+                        sprintf(
+                            "Barcode is define outside the image (calculated: '%d', provided: '%d')",
+                            $height,
+                            $this->userHeight
+                        )
+                    );
                 }
             }
         }
@@ -297,11 +341,13 @@ class Image extends AbstractRenderer
             if ($this->userWidth) {
                 $width = $this->barcode->getWidth(true);
                 if ($this->userWidth < $width) {
-                    throw new Exception\RuntimeException(sprintf(
-                        "Barcode is define outside the image (calculated: '%d', provided: '%d')",
-                        $width,
-                        $this->userWidth
-                    ));
+                    throw new Exception\RuntimeException(
+                        sprintf(
+                            "Barcode is define outside the image (calculated: '%d', provided: '%d')",
+                            $width,
+                            $this->userWidth
+                        )
+                    );
                 }
             }
         }
@@ -329,7 +375,7 @@ class Image extends AbstractRenderer
      *
      * @param array $points
      * @param int $color
-     * @param  bool $filled
+     * @param bool $filled
      */
     protected function drawPolygon($points, $color, $filled = true)
     {
@@ -351,11 +397,7 @@ class Image extends AbstractRenderer
             $color & 0x0000FF
         );
 
-        if ($filled) {
-            imagefilledpolygon($this->resource, $newPoints, 4, $allocatedColor);
-        } else {
-            imagepolygon($this->resource, $newPoints, 4, $allocatedColor);
-        }
+        $this->imageFilledPolygonWrapper($this->resource, $newPoints, 4, $allocatedColor, $filled);
     }
 
     /**
@@ -400,6 +442,7 @@ class Image extends AbstractRenderer
             }
             $fontWidth = imagefontwidth($font);
             $positionY = $position[1] - imagefontheight($font) + 1;
+            $positionX = $position[0];
             switch ($alignment) {
                 case 'left':
                     $positionX = $position[0];
@@ -411,7 +454,7 @@ class Image extends AbstractRenderer
                     $positionX = $position[0] - ($fontWidth * strlen($text));
                     break;
             }
-            imagestring($this->resource, $font, $positionX, $positionY, $text, $color);
+            imagestring($this->resource, $font, (int) $positionX, (int) $positionY, $text, $color);
         } else {
             if (! function_exists('imagettfbbox')) {
                 throw new Exception\RuntimeException(
@@ -428,20 +471,41 @@ class Image extends AbstractRenderer
                     $width = ($box[2] - $box[0]) / 2;
                     break;
                 case 'right':
-                    $width = ($box[2] - $box[0]);
+                    $width = $box[2] - $box[0];
                     break;
             }
             imagettftext(
                 $this->resource,
                 $size,
                 $orientation,
-                $position[0] - ($width * cos(pi() * $orientation / 180)),
-                $position[1] + ($width * sin(pi() * $orientation / 180)),
+                (int) ($position[0] - ($width * cos(pi() * $orientation / 180))),
+                (int) ($position[1] + ($width * sin(pi() * $orientation / 180))),
                 $allocatedColor,
                 $font,
                 $text
             );
         }
+    }
+
+    /**
+     * @param GdImage|resource $image
+     * @param array $points
+     * @param int $numPoints
+     * @param int $color
+     * @param bool $filled
+     * @return bool
+     */
+    protected function imageFilledPolygonWrapper($image, array $points, $numPoints, $color, $filled)
+    {
+        if (! $filled) {
+            return imagepolygon($this->resource, $points, $numPoints, $color);
+        }
+
+        if (PHP_VERSION_ID < 80100) {
+            return imagefilledpolygon($image, $points, $numPoints, $color);
+        }
+
+        return imagefilledpolygon($image, $points, $color);
     }
 
     /**

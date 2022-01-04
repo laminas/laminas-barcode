@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Barcode\Object;
 
@@ -17,7 +13,8 @@ class Planet extends Postnet
      * Coding map
      * - 0 = half bar
      * - 1 = complete bar
-     * @var array
+     *
+     * @var string[]
      */
     protected $codingMap = [
         0 => "00111",
@@ -29,6 +26,6 @@ class Planet extends Postnet
         6 => "10011",
         7 => "01110",
         8 => "01101",
-        9 => "01011"
+        9 => "01011",
     ];
 }

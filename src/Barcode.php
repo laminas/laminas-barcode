@@ -1,21 +1,22 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Barcode;
 
 use Laminas\Barcode\Renderer\RendererInterface;
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\Stdlib\ArrayUtils;
+use Throwable;
 use Traversable;
+
+use function is_array;
+use function is_string;
 
 /**
  * Class for generate Barcode
  */
+// phpcs:ignore WebimpressCodingStandard.NamingConventions.AbstractClass
 abstract class Barcode
 {
     /**
@@ -27,7 +28,7 @@ abstract class Barcode
      *
      * @var string
      */
-    protected static $staticFont = null;
+    protected static $staticFont;
 
     /**
      * The parser plugin manager
@@ -51,7 +52,7 @@ abstract class Barcode
     public static function getObjectPluginManager()
     {
         if (! static::$objectPlugins instanceof ObjectPluginManager) {
-            static::$objectPlugins = new ObjectPluginManager(new ServiceManager);
+            static::$objectPlugins = new ObjectPluginManager(new ServiceManager());
         }
 
         return static::$objectPlugins;
@@ -65,7 +66,7 @@ abstract class Barcode
     public static function getRendererPluginManager()
     {
         if (! static::$rendererPlugins instanceof RendererPluginManager) {
-            static::$rendererPlugins = new RendererPluginManager(new ServiceManager);
+            static::$rendererPlugins = new RendererPluginManager(new ServiceManager());
         }
 
         return static::$rendererPlugins;
@@ -128,8 +129,8 @@ abstract class Barcode
         try {
             $barcode  = static::makeBarcode($barcode, $barcodeConfig);
             $renderer = static::makeRenderer($renderer, $rendererConfig);
-        } catch (\Exception $e) {
-            if ($automaticRenderError && ! ($e instanceof Exception\RendererCreationException)) {
+        } catch (Throwable $e) {
+            if ($automaticRenderError && ! $e instanceof Exception\RendererCreationException) {
                 $barcode  = static::makeBarcode('error', ['text' => $e->getMessage()]);
                 $renderer = static::makeRenderer($renderer, []);
             } else {
@@ -201,7 +202,7 @@ abstract class Barcode
      * @param mixed $renderer           String name of renderer class, or Traversable object.
      * @param mixed $rendererConfig     OPTIONAL; an array or Traversable object with renderer parameters.
      * @throws Exception\RendererCreationException
-     * @return Renderer\RendererInterface
+     * @return RendererInterface
      */
     public static function makeRenderer($renderer = 'image', $rendererConfig = [])
     {

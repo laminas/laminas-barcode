@@ -1,33 +1,33 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-barcode for the canonical source repository
- * @copyright https://github.com/laminas/laminas-barcode/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-barcode/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Barcode\Object;
+
+use function str_split;
 
 /**
  * Class for generate Ean5 barcode
  */
 class Ean5 extends Ean13
 {
+    /** @var string[][] */
     protected $parities = [
-        0 => ['B','B','A','A','A'],
-        1 => ['B','A','B','A','A'],
-        2 => ['B','A','A','B','A'],
-        3 => ['B','A','A','A','B'],
-        4 => ['A','B','B','A','A'],
-        5 => ['A','A','B','B','A'],
-        6 => ['A','A','A','B','B'],
-        7 => ['A','B','A','B','A'],
-        8 => ['A','B','A','A','B'],
-        9 => ['A','A','B','A','B']
+        0 => ['B', 'B', 'A', 'A', 'A'],
+        1 => ['B', 'A', 'B', 'A', 'A'],
+        2 => ['B', 'A', 'A', 'B', 'A'],
+        3 => ['B', 'A', 'A', 'A', 'B'],
+        4 => ['A', 'B', 'B', 'A', 'A'],
+        5 => ['A', 'A', 'B', 'B', 'A'],
+        6 => ['A', 'A', 'A', 'B', 'B'],
+        7 => ['A', 'B', 'A', 'B', 'A'],
+        8 => ['A', 'B', 'A', 'A', 'B'],
+        9 => ['A', 'A', 'B', 'A', 'B'],
     ];
 
     /**
      * Default options for Ean5 barcode
+     *
      * @return void
      */
     protected function getDefaultOptions()
@@ -37,6 +37,7 @@ class Ean5 extends Ean13
 
     /**
      * Width of the barcode (in pixels)
+     *
      * @return int
      */
     protected function calculateBarcodeWidth()
@@ -56,6 +57,7 @@ class Ean5 extends Ean13
 
     /**
      * Prepare array to draw barcode
+     *
      * @return array
      */
     protected function prepareBarcode()
@@ -70,7 +72,7 @@ class Ean5 extends Ean13
         $barcodeTable[] = [1, $this->barThinWidth, 0, 1];
 
         $firstCharacter = true;
-        $textTable = str_split($this->getText());
+        $textTable      = str_split($this->getText());
 
         // Characters
         for ($i = 0; $i < $this->barcodeLength; $i++) {
@@ -103,11 +105,11 @@ class Ean5 extends Ean13
 
         $checksum = 0;
 
-        for ($i = 0; $i < $this->barcodeLength; $i ++) {
-            $checksum += (int) $text[$i] * (($i % 2) ? 9 : 3);
+        for ($i = 0; $i < $this->barcodeLength; $i++) {
+            $checksum += (int) $text[$i] * ($i % 2 ? 9 : 3);
         }
 
-        return ($checksum % 10);
+        return $checksum % 10;
     }
 
     /**
@@ -122,6 +124,7 @@ class Ean5 extends Ean13
 
     /**
      * Retrieve text to encode
+     *
      * @return string
      */
     public function getText()

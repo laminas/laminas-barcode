@@ -19,19 +19,15 @@
         "sort-packages": true
     },
     "require": {
-        "php": "^7.3 || ~8.0.0",
-        "laminas/laminas-servicemanager": "^3.6.0",
-        "laminas/laminas-stdlib": "^2.7.7 || ^3.1",
-        "laminas/laminas-validator": "^2.10.1"
+        "php": "~7.4.0 || ~8.0.0 || ~8.1.0",
+        "laminas/laminas-servicemanager": "^3.10.0",
+        "laminas/laminas-stdlib": "^3.6.0",
+        "laminas/laminas-validator": "^2.15.1"
     },
     "require-dev": {
-        "laminas/laminas-coding-standard": "~1.0.0",
-        "laminas/laminas-config": "^2.6 || ^3.1",
-        "phpunit/phpunit": "^9.5.2",
-        "zendframework/zendpdf": "^2.0.2"
-    },
-    "suggest": {
-        "zendframework/zendpdf": "ZendPdf component"
+        "laminas/laminas-coding-standard": "~2.3.0",
+        "laminas/laminas-config": "^3.7.0",
+        "phpunit/phpunit": "^9.3.7"
     },
     "autoload": {
         "psr-4": {
