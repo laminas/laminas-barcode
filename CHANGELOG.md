@@ -2,27 +2,34 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.11.0 - TBD
+## 2.11.0 - 2022-01-04
+
+
+-----
+
+### Release Notes for [2.11.0](https://github.com/laminas/laminas-barcode/milestone/8)
 
 ### Added
 
-- Nothing.
-
-### Changed
-
-- Nothing.
-
-### Deprecated
-
-- Nothing.
+- This release adds support for PHP 8.1.
 
 ### Removed
 
-- Nothing.
+- This release removes support for PHP versions prior to 7.4.
 
-### Fixed
+### 2.11.0
 
-- Nothing.
+- Total issues resolved: **0**
+- Total pull requests resolved: **2**
+- Total contributors: **2**
+
+#### Documentation,Enhancement
+
+ - [16: Updates sections for installation requirements and deprecations](https://github.com/laminas/laminas-barcode/pull/16) thanks to @froschdesign
+
+#### Enhancement
+
+ - [15: Added PHP8.1 support.](https://github.com/laminas/laminas-barcode/pull/15) thanks to @pelex
 
 ## 2.9.1 - TBD
 
