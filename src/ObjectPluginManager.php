@@ -52,6 +52,7 @@ class ObjectPluginManager extends AbstractPluginManager
         'royalmail'         => Object\Royalmail::class,
         'upca'              => Object\Upca::class,
         'upce'              => Object\Upce::class,
+        'cepnet'           => Object\Cepnet::class,
 
         // Legacy Zend Framework aliases
         'Zend\Barcode\Object\Codabar'           => Object\Codabar::class,
@@ -72,6 +73,7 @@ class ObjectPluginManager extends AbstractPluginManager
         'Zend\Barcode\Object\Royalmail'         => Object\Royalmail::class,
         'Zend\Barcode\Object\Upca'              => Object\Upca::class,
         'Zend\Barcode\Object\Upce'              => Object\Upce::class,
+        'Zend\Barcode\Object\Cepnet'           => Object\Cepnet::class,
 
         // v2 normalized FQCNs
         'zendbarcodeobjectcodabar'           => Object\Codabar::class,
@@ -92,6 +94,7 @@ class ObjectPluginManager extends AbstractPluginManager
         'zendbarcodeobjectroyalmail'         => Object\Royalmail::class,
         'zendbarcodeobjectupca'              => Object\Upca::class,
         'zendbarcodeobjectupce'              => Object\Upce::class,
+        'zendbarcodeobjectcepnet'           => Object\Cepnet::class,
     ];
 
     /** {@inheritDoc} */
@@ -114,6 +117,7 @@ class ObjectPluginManager extends AbstractPluginManager
         Object\Royalmail::class         => InvokableFactory::class,
         Object\Upca::class              => InvokableFactory::class,
         Object\Upce::class              => InvokableFactory::class,
+        Object\Cepnet::class            => InvokableFactory::class,
 
         // v2 canonical FQCNs
         'laminasbarcodeobjectcodabar'           => InvokableFactory::class,
@@ -134,6 +138,7 @@ class ObjectPluginManager extends AbstractPluginManager
         'laminasbarcodeobjectroyalmail'         => InvokableFactory::class,
         'laminasbarcodeobjectupca'              => InvokableFactory::class,
         'laminasbarcodeobjectupce'              => InvokableFactory::class,
+        'laminasbarcodeobjectcepnet'            => InvokableFactory::class,
     ];
 
     /** {@inheritDoc} */
