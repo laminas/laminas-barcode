@@ -100,7 +100,7 @@ class RendererPluginManager extends AbstractPluginManager
             throw new Exception\InvalidArgumentException(
                 sprintf(
                     'Plugin of type %s is invalid; must extend %s',
-                    is_object($plugin) ? $plugin::class : gettype($plugin),
+                    is_object($plugin) ? get_class($plugin) : gettype($plugin),
                     Renderer\AbstractRenderer::class
                 ),
                 $e->getCode(),
