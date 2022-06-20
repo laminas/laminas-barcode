@@ -22,7 +22,9 @@
         "php": "~7.4.0 || ~8.0.0 || ~8.1.0",
         "laminas/laminas-servicemanager": "^3.10.0",
         "laminas/laminas-stdlib": "^3.6.0",
-        "laminas/laminas-validator": "^2.15.1"
+        "laminas/laminas-validator": "^2.15.1",
+        "picqer/php-barcode-generator": "^2.2",
+        "tecnickcom/tcpdf": "^6.4"
     },
     "require-dev": {
         "laminas/laminas-coding-standard": "~2.3.0",
