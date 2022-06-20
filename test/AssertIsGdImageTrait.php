@@ -24,7 +24,7 @@ trait AssertIsGdImageTrait
     {
         $message = $message ?: sprintf(
             'Failed asserting that %s is a GD image',
-            is_object($value) ? $value::class : gettype($value)
+            is_object($value) ? get_class($value) : gettype($value)
         );
 
         if (PHP_MAJOR_VERSION === 8) {

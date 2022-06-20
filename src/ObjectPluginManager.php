@@ -151,7 +151,7 @@ class ObjectPluginManager extends AbstractPluginManager
                 '%s can only create instances of %s; %s is invalid',
                 static::class,
                 $this->instanceOf,
-                is_object($plugin) ? $plugin::class : gettype($plugin)
+                is_object($plugin) ? get_class($plugin) : gettype($plugin)
             ));
         }
     }
@@ -171,7 +171,7 @@ class ObjectPluginManager extends AbstractPluginManager
         } catch (InvalidServiceException $e) {
             throw new Exception\InvalidArgumentException(sprintf(
                 'Plugin of type %s is invalid; must extend %s',
-                is_object($plugin) ? $plugin::class : gettype($plugin),
+                is_object($plugin) ? get_class($plugin) : gettype($plugin),
                 Object\AbstractObject::class
             ), $e->getCode(), $e);
         }

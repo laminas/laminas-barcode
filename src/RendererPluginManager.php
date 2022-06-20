@@ -78,7 +78,7 @@ class RendererPluginManager extends AbstractPluginManager
                     '%s can only create instances of %s; %s is invalid',
                     static::class,
                     $this->instanceOf,
-                    is_object($plugin) ? $plugin::class : gettype($plugin)
+                    is_object($plugin) ? get_class($plugin) : gettype($plugin)
                 )
             );
         }
