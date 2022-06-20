@@ -8,7 +8,6 @@ use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
-use function get_class;
 use function gettype;
 use function is_object;
 use function sprintf;
@@ -52,7 +51,7 @@ class ObjectPluginManager extends AbstractPluginManager
         'royalmail'         => Object\Royalmail::class,
         'upca'              => Object\Upca::class,
         'upce'              => Object\Upce::class,
-        'cepnet'           => Object\Cepnet::class,
+        'cepnet'            => Object\Cepnet::class,
 
         // Legacy Zend Framework aliases
         'Zend\Barcode\Object\Codabar'           => Object\Codabar::class,
@@ -73,7 +72,7 @@ class ObjectPluginManager extends AbstractPluginManager
         'Zend\Barcode\Object\Royalmail'         => Object\Royalmail::class,
         'Zend\Barcode\Object\Upca'              => Object\Upca::class,
         'Zend\Barcode\Object\Upce'              => Object\Upce::class,
-        'Zend\Barcode\Object\Cepnet'           => Object\Cepnet::class,
+        'Zend\Barcode\Object\Cepnet'            => Object\Cepnet::class,
 
         // v2 normalized FQCNs
         'zendbarcodeobjectcodabar'           => Object\Codabar::class,
@@ -94,7 +93,7 @@ class ObjectPluginManager extends AbstractPluginManager
         'zendbarcodeobjectroyalmail'         => Object\Royalmail::class,
         'zendbarcodeobjectupca'              => Object\Upca::class,
         'zendbarcodeobjectupce'              => Object\Upce::class,
-        'zendbarcodeobjectcepnet'           => Object\Cepnet::class,
+        'zendbarcodeobjectcepnet'            => Object\Cepnet::class,
     ];
 
     /** {@inheritDoc} */
@@ -152,7 +151,7 @@ class ObjectPluginManager extends AbstractPluginManager
                 '%s can only create instances of %s; %s is invalid',
                 static::class,
                 $this->instanceOf,
-                is_object($plugin) ? get_class($plugin) : gettype($plugin)
+                is_object($plugin) ? $plugin::class : gettype($plugin)
             ));
         }
     }
@@ -172,7 +171,7 @@ class ObjectPluginManager extends AbstractPluginManager
         } catch (InvalidServiceException $e) {
             throw new Exception\InvalidArgumentException(sprintf(
                 'Plugin of type %s is invalid; must extend %s',
-                is_object($plugin) ? get_class($plugin) : gettype($plugin),
+                is_object($plugin) ? $plugin::class : gettype($plugin),
                 Object\AbstractObject::class
             ), $e->getCode(), $e);
         }

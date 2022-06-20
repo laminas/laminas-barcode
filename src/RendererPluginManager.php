@@ -8,7 +8,6 @@ use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
-use function get_class;
 use function gettype;
 use function is_object;
 use function sprintf;
@@ -79,7 +78,7 @@ class RendererPluginManager extends AbstractPluginManager
                     '%s can only create instances of %s; %s is invalid',
                     static::class,
                     $this->instanceOf,
-                    is_object($plugin) ? get_class($plugin) : gettype($plugin)
+                    is_object($plugin) ? $plugin::class : gettype($plugin)
                 )
             );
         }
@@ -101,7 +100,7 @@ class RendererPluginManager extends AbstractPluginManager
             throw new Exception\InvalidArgumentException(
                 sprintf(
                     'Plugin of type %s is invalid; must extend %s',
-                    is_object($plugin) ? get_class($plugin) : gettype($plugin),
+                    is_object($plugin) ? $plugin::class : gettype($plugin),
                     Renderer\AbstractRenderer::class
                 ),
                 $e->getCode(),
