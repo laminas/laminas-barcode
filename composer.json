@@ -19,10 +19,13 @@
         "sort-packages": true,
         "platform": {
             "php": "8.0.99"
+        },
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
     "require": {
-        "php": "~7.4.0 || ~8.0.0 || ~8.1.0",
+        "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
         "laminas/laminas-servicemanager": "^3.10.0",
         "laminas/laminas-stdlib": "^3.6.0",
         "laminas/laminas-validator": "^2.15.1"
