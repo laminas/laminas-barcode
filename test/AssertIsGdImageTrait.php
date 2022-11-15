@@ -7,10 +7,8 @@ namespace LaminasTest\Barcode;
 use GdImage;
 use PHPUnit\Framework\Assert;
 
-use function get_class;
+use function get_debug_type;
 use function get_resource_type;
-use function gettype;
-use function is_object;
 use function is_resource;
 use function sprintf;
 
@@ -25,7 +23,7 @@ trait AssertIsGdImageTrait
     {
         $message = $message ?: sprintf(
             'Failed asserting that %s is a GD image',
-            is_object($value) ? get_class($value) : gettype($value)
+            get_debug_type($value)
         );
 
         if (PHP_MAJOR_VERSION === 8) {
