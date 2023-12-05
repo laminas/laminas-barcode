@@ -15,7 +15,7 @@ class RendererPluginManagerCompatibilityTest extends TestCase
 {
     use CommonPluginManagerTrait;
 
-    protected function getPluginManager(): RendererPluginManager
+    protected static function getPluginManager(): RendererPluginManager
     {
         return new RendererPluginManager(new ServiceManager());
     }
