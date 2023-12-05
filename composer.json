@@ -18,20 +18,20 @@
     "config": {
         "sort-packages": true,
         "platform": {
-            "php": "8.0.99"
+            "php": "8.1.99"
         },
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
     "require": {
-        "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
-        "laminas/laminas-servicemanager": "^3.10.0",
+        "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
+        "laminas/laminas-servicemanager": "^3.22",
         "laminas/laminas-stdlib": "^3.6.0",
         "laminas/laminas-validator": "^2.15.1"
     },
     "require-dev": {
-        "laminas/laminas-coding-standard": "~2.3.0",
+        "laminas/laminas-coding-standard": "~2.5.0",
         "laminas/laminas-config": "^3.7.0",
         "phpunit/phpunit": "^9.5"
     },

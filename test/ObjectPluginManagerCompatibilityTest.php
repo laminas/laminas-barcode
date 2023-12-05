@@ -18,7 +18,7 @@ class ObjectPluginManagerCompatibilityTest extends TestCase
     /**
      * @return ObjectPluginManager
      */
-    protected function getPluginManager()
+    protected static function getPluginManager()
     {
         return new ObjectPluginManager(new ServiceManager());
     }
