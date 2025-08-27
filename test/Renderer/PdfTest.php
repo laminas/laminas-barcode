@@ -15,7 +15,7 @@ use function getenv;
 /**
  * @group      Laminas_Barcode
  */
-class PdfTest extends AbstractTest
+class PdfTest extends AbstractTestCase
 {
     public function setUp(): void
     {

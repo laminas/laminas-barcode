@@ -13,7 +13,7 @@ use Traversable;
 
 use function extension_loaded;
 
-abstract class AbstractTest extends TestCase
+abstract class AbstractTestCase extends TestCase
 {
     /** @var AbstractObject */
     protected $object;
@@ -379,7 +379,7 @@ abstract class AbstractTest extends TestCase
 
     public function testAddInstruction()
     {
-        $object       = new TestAsset\BarcodeTest();
+        $object       = new TestAsset\BarcodeTestObject();
         $instructions = [
             'type'        => 'text',
             'text'        => 'text',
@@ -396,7 +396,7 @@ abstract class AbstractTest extends TestCase
 
     public function testAddPolygon()
     {
-        $object       = new TestAsset\BarcodeTest();
+        $object       = new TestAsset\BarcodeTestObject();
         $points       = [];
         $color        = '#123456';
         $filled       = false;
@@ -412,7 +412,7 @@ abstract class AbstractTest extends TestCase
 
     public function testAddPolygonWithDefaultColor()
     {
-        $object = new TestAsset\BarcodeTest();
+        $object = new TestAsset\BarcodeTestObject();
         $points = [];
         $color  = 123456;
         $object->setForeColor($color);
@@ -429,7 +429,7 @@ abstract class AbstractTest extends TestCase
 
     public function testAddText()
     {
-        $object       = new TestAsset\BarcodeTest();
+        $object       = new TestAsset\BarcodeTestObject();
         $size         = 10;
         $text         = 'foobar';
         $position     = [];
@@ -461,7 +461,7 @@ abstract class AbstractTest extends TestCase
 
     public function testAddTextWithDefaultColor()
     {
-        $object   = new TestAsset\BarcodeTest();
+        $object   = new TestAsset\BarcodeTestObject();
         $size     = 10;
         $text     = 'foobar';
         $position = [];

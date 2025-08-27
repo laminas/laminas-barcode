@@ -16,7 +16,7 @@ use Traversable;
 use function date_default_timezone_get;
 use function date_default_timezone_set;
 
-abstract class AbstractTest extends TestCase
+abstract class AbstractTestCase extends TestCase
 {
     /** @var AbstractRenderer */
     protected $renderer;
@@ -195,7 +195,7 @@ abstract class AbstractTest extends TestCase
     public function testRendererWithUnkownInstructionProvideByObject()
     {
         $this->expectException(ExceptionInterface::class);
-        $object = new TestAsset\BarcodeTest();
+        $object = new TestAsset\BarcodeTestObject();
         $object->setText('test');
         $object->addTestInstruction(['type' => 'unknown']);
         $this->renderer->setBarcode($object);

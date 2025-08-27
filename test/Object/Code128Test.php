@@ -10,7 +10,7 @@ use Traversable;
 /**
  * @group      Laminas_Barcode
  */
-class Code128Test extends AbstractTest
+class Code128Test extends AbstractTestCase
 {
     /**
      * @param array|Traversable $options
@@ -35,7 +35,7 @@ class Code128Test extends AbstractTest
 
     public function testKnownBarcodeConversion()
     {
-        $barcode = new TestAsset\Code128Test();
+        $barcode = new TestAsset\Code128TestObject();
         $this->assertSame([104, 13, 17, 18, 19], $barcode->convertToBarcodeChars(-123));
         $this->assertSame([104, 40, 41, 99, 34, 56, 78], $barcode->convertToBarcodeChars('HI345678'));
     }

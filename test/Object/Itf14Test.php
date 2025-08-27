@@ -12,7 +12,7 @@ use Traversable;
 /**
  * @group      Laminas_Barcode
  */
-class Itf14Test extends AbstractTest
+class Itf14Test extends AbstractTestCase
 {
     /**
      * @param array|Traversable $options

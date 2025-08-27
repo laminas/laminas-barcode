@@ -20,7 +20,7 @@ use function imagecreatetruecolor;
 /**
  * @group      Laminas_Barcode
  */
-class ImageTest extends AbstractTest
+class ImageTest extends AbstractTestCase
 {
     use AssertIsGdImageTrait;
 

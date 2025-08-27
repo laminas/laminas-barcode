@@ -5,7 +5,7 @@ namespace LaminasTest\Barcode\Object\TestAsset;
 /**
  * @group      Laminas_Barcode
  */
-class BarcodeTest extends \Laminas\Barcode\Object\AbstractObject
+class BarcodeTestObject extends \Laminas\Barcode\Object\AbstractObject
 {
 
     protected function calculateBarcodeWidth()

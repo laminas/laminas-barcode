@@ -10,7 +10,7 @@ use Traversable;
 /**
  * @group      Laminas_Barcode
  */
-class CodabarTest extends AbstractTest
+class CodabarTest extends AbstractTestCase
 {
     /**
      * @param array|Traversable $options
