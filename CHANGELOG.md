@@ -2,27 +2,32 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.15.0 - TBD
+## 2.15.0 - 2025-08-28
 
 ### Added
 
 - PHP 8.4 compatibility
 
-### Changed
 
-- Nothing.
+-----
 
-### Deprecated
+### Release Notes for [2.15.0](https://github.com/laminas/laminas-barcode/milestone/16)
 
-- Nothing.
+Feature release (minor)
 
-### Removed
+### 2.15.0
 
-- Nothing.
+- Total issues resolved: **1**
+- Total pull requests resolved: **1**
+- Total contributors: **2**
 
-### Fixed
+#### Dependencies
 
-- Nothing.
+ - [27: Add support for PHP 8.4 and Upgrade PHPUnit to 10.x](https://github.com/laminas/laminas-barcode/pull/27) thanks to @ynnoig
+
+#### Enhancement
+
+ - [26: PHP 8.4 support](https://github.com/laminas/laminas-barcode/issues/26) thanks to @ElTeteDBit
 
 ## 2.14.0 - 2024-06-13
 
