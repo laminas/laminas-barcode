@@ -13,7 +13,7 @@ use Traversable;
 /**
  * @group      Laminas_Barcode
  */
-class IdentcodeTest extends AbstractTest
+class IdentcodeTest extends AbstractTestCase
 {
     /**
      * @param array|Traversable $options

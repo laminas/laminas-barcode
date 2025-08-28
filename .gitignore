@@ -7,3 +7,6 @@
 /phpunit.xml
 /vendor/
 .phpcs-cache
+.idea
+/.phpunit.cache
+

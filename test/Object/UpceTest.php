@@ -12,7 +12,7 @@ use Traversable;
 /**
  * @group      Laminas_Barcode
  */
-class UpceTest extends AbstractTest
+class UpceTest extends AbstractTestCase
 {
     /**
      * @param array|Traversable $options

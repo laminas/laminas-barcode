@@ -14,7 +14,7 @@ use Traversable;
 /**
  * @group      Laminas_Barcode
  */
-class SvgTest extends AbstractTest
+class SvgTest extends AbstractTestCase
 {
     /**
      * @param array|Traversable $options

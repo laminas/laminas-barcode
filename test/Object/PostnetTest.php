@@ -12,7 +12,7 @@ use Traversable;
 /**
  * @group      Laminas_Barcode
  */
-class PostnetTest extends AbstractTest
+class PostnetTest extends AbstractTestCase
 {
     /**
      * @param array|Traversable $options

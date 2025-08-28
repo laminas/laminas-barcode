@@ -11,7 +11,7 @@ use Traversable;
 /**
  * @group      Laminas_Barcode
  */
-class Code25Test extends AbstractTest
+class Code25Test extends AbstractTestCase
 {
     /**
      * @param array|Traversable $options
