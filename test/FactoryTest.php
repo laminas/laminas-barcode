@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Barcode;
 
+use ArrayObject;
 use DOMDocument;
 use Laminas\Barcode;
 use Laminas\Barcode\Exception\InvalidArgumentException;
@@ -14,7 +15,6 @@ use Laminas\Barcode\Renderer;
 use Laminas\Barcode\Renderer\Image;
 use Laminas\Barcode\Renderer\Pdf;
 use Laminas\Barcode\Renderer\RendererInterface;
-use Laminas\Config\Config;
 use Laminas\ServiceManager\Exception\ExceptionInterface;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\Exception\ServiceNotFoundException;
@@ -117,7 +117,7 @@ class FactoryTest extends TestCase
     public function testFactoryWithLaminasConfig()
     {
         $this->checkGDRequirement();
-        $config   = new Config([
+        $config   = new ArrayObject([
             'barcode'  => 'code39',
             'renderer' => 'image',
         ]);
@@ -129,7 +129,7 @@ class FactoryTest extends TestCase
     public function testFactoryWithLaminasConfigAndObjectOptions()
     {
         $this->checkGDRequirement();
-        $config   = new Config([
+        $config   = new ArrayObject([
             'barcode'       => 'code25',
             'barcodeParams' => [
                 'barHeight' => 123,
@@ -144,7 +144,7 @@ class FactoryTest extends TestCase
     public function testFactoryWithLaminasConfigAndRendererOptions()
     {
         $this->checkGDRequirement();
-        $config   = new Config([
+        $config   = new ArrayObject([
             'barcode'        => 'code25',
             'rendererParams' => [
                 'imageType' => 'gif',
@@ -167,7 +167,7 @@ class FactoryTest extends TestCase
     public function testFactoryWithoutBarcodeWithAutomaticExceptionRenderWithLaminasConfig()
     {
         $this->checkGDRequirement();
-        $config   = new Config(['barcode' => null]);
+        $config   = new ArrayObject(['barcode' => null]);
         $renderer = Barcode\Barcode::factory($config);
         $this->assertInstanceOf(Image::class, $renderer);
         $this->assertInstanceOf(Error::class, $renderer->getBarcode());
@@ -206,7 +206,7 @@ class FactoryTest extends TestCase
 
     public function testBarcodeObjectFactoryWithBarcodeAsStringAndConfigAsLaminasConfig()
     {
-        $config  = new Config(['barHeight' => 123]);
+        $config  = new ArrayObject(['barHeight' => 123]);
         $barcode = Barcode\Barcode::makeBarcode('code25', $config);
         $this->assertInstanceOf(Code25::class, $barcode);
         $this->assertSame(123, $barcode->getBarHeight());
@@ -214,7 +214,7 @@ class FactoryTest extends TestCase
 
     public function testBarcodeObjectFactoryWithBarcodeAsLaminasConfig()
     {
-        $config  = new Config([
+        $config  = new ArrayObject([
             'barcode'       => 'code25',
             'barcodeParams' => [
                 'barHeight' => 123,
@@ -228,7 +228,7 @@ class FactoryTest extends TestCase
     public function testBarcodeObjectFactoryWithBarcodeAsLaminasConfigButNoBarcodeParameter()
     {
         $this->expectException(\Laminas\Barcode\Exception\ExceptionInterface::class);
-        $config  = new Config(['barcodeParams' => ['barHeight' => 123]]);
+        $config  = new ArrayObject(['barcodeParams' => ['barHeight' => 123]]);
         $barcode = Barcode\Barcode::makeBarcode($config);
     }
 
@@ -310,7 +310,7 @@ class FactoryTest extends TestCase
     public function testBarcodeRendererFactoryWithBarcodeAsStringAndConfigAsLaminasConfig()
     {
         $this->checkGDRequirement();
-        $config   = new Config(['imageType' => 'gif']);
+        $config   = new ArrayObject(['imageType' => 'gif']);
         $renderer = Barcode\Barcode::makeRenderer('image', $config);
         $this->assertInstanceOf(Image::class, $renderer);
         $this->assertSame('gif', $renderer->getimageType());
@@ -319,7 +319,7 @@ class FactoryTest extends TestCase
     public function testBarcodeRendererFactoryWithBarcodeAsLaminasConfig()
     {
         $this->checkGDRequirement();
-        $config   = new Config([
+        $config   = new ArrayObject([
             'renderer'       => 'image',
             'rendererParams' => ['imageType' => 'gif'],
         ]);
@@ -331,7 +331,7 @@ class FactoryTest extends TestCase
     public function testBarcodeRendererFactoryWithBarcodeAsLaminasConfigButNoBarcodeParameter()
     {
         $this->expectException(\Laminas\Barcode\Exception\ExceptionInterface::class);
-        $config   = new Config(['rendererParams' => ['imageType' => 'gif']]);
+        $config   = new ArrayObject(['rendererParams' => ['imageType' => 'gif']]);
         $renderer = Barcode\Barcode::makeRenderer($config);
     }
 
