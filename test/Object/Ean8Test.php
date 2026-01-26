@@ -7,11 +7,10 @@ namespace LaminasTest\Barcode\Object;
 use Laminas\Barcode\Object\Ean8;
 use Laminas\Barcode\Object\Exception\BarcodeValidationException;
 use Laminas\Barcode\Object\Exception\ExceptionInterface;
+use PHPUnit\Framework\Attributes\Group;
 use Traversable;
 
-/**
- * @group      Laminas_Barcode
- */
+#[Group('Laminas_Barcode')]
 class Ean8Test extends AbstractTestCase
 {
     /**

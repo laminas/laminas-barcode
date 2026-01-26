@@ -6,15 +6,14 @@ namespace LaminasTest\Barcode\Renderer;
 
 use Laminas\Barcode;
 use Laminas\Barcode\Object\Code39;
+use PHPUnit\Framework\Attributes\Group;
 use Traversable;
 use ZendPdf as Pdf;
 use ZendPdf\PdfDocument;
 
 use function getenv;
 
-/**
- * @group      Laminas_Barcode
- */
+#[Group('Laminas_Barcode')]
 class PdfTest extends AbstractTestCase
 {
     public function setUp(): void

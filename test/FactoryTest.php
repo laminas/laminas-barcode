@@ -20,6 +20,7 @@ use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\Exception\ServiceNotFoundException;
 use LaminasTest\Barcode\Renderer\TestAsset\RendererNamespace;
 use LaminasTest\Barcode\Renderer\TestAsset\RendererNamespaceWithoutExtendingRendererAbstract;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ZendPdf\PdfDocument;
@@ -29,9 +30,7 @@ use function date_default_timezone_set;
 use function extension_loaded;
 use function getenv;
 
-/**
- * @group      Laminas_Barcode
- */
+#[Group('Laminas_Barcode')]
 class FactoryTest extends TestCase
 {
     use AssertIsGdImageTrait;
@@ -74,9 +73,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(Code39::class, $renderer->getBarcode());
     }
 
-    /**
-     * @group fml
-     */
+    #[Group('fml')]
     public function testMinimalFactoryWithRenderer()
     {
         $renderer = Barcode\Barcode::factory('code39', 'pdf');

@@ -9,11 +9,11 @@ use Laminas\Barcode;
 use Laminas\Barcode\Object\Code39;
 use Laminas\Barcode\Renderer\Exception\ExceptionInterface;
 use Laminas\Barcode\Renderer\Svg;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 use Traversable;
 
-/**
- * @group      Laminas_Barcode
- */
+#[Group('Laminas_Barcode')]
 class SvgTest extends AbstractTestCase
 {
     /**
@@ -26,10 +26,9 @@ class SvgTest extends AbstractTestCase
     }
 
     /**
-     * @group 4708
-     *
      * Needs to be run first due to runOnce static on drawPolygon
      */
+    #[Group('4708')]
     public function testSvgNoTransparency()
     {
         Barcode\Barcode::setBarcodeFont(__DIR__ . '/../Object/_fonts/Vera.ttf');
@@ -42,10 +41,9 @@ class SvgTest extends AbstractTestCase
     }
 
     /**
-     * @group 4708
-     *
      * Needs to be run first due to runOnce static on drawPolygon
      */
+    #[Group('4708')]
     public function testSvgTransparency()
     {
         Barcode\Barcode::setBarcodeFont(__DIR__ . '/../Object/_fonts/Vera.ttf');
@@ -103,9 +101,7 @@ class SvgTest extends AbstractTestCase
         $this->renderer->setWidth(-1);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testGoodSvgResource()
     {
         $svgResource = new DOMDocument();
