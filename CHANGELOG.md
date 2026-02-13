@@ -2,27 +2,32 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.16.0 - TBD
+## 2.16.0 - 2026-02-13
 
 ### Added
 
 - PHP 8.5 compatibility
 
-### Changed
-
-- Nothing.
-
-### Deprecated
-
-- Nothing.
-
 ### Removed
 
 - PHP 8.1 compatibility
 
-### Fixed
 
-- Nothing.
+-----
+
+### Release Notes for [2.16.0](https://github.com/laminas/laminas-barcode/milestone/18)
+
+Feature release (minor)
+
+### 2.16.0
+
+- Total issues resolved: **0**
+- Total pull requests resolved: **1**
+- Total contributors: **1**
+
+#### Enhancement
+
+ - [30: Support PHP 8.5](https://github.com/laminas/laminas-barcode/pull/30) thanks to @D3strukt0r
 
 ## 2.15.0 - 2025-08-28
 
