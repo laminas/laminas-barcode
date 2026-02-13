@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace LaminasTest\Barcode\Object;
 
+use ArrayObject;
 use Laminas\Barcode;
 use Laminas\Barcode\Object\AbstractObject;
 use Laminas\Barcode\Object\Exception\ExceptionInterface;
-use Laminas\Config;
 use PHPUnit\Framework\TestCase;
 use Traversable;
 
@@ -76,7 +76,7 @@ abstract class AbstractTestCase extends TestCase
 
     public function testConstructorWithLaminasConfig()
     {
-        $config = new Config\Config(
+        $config = new ArrayObject(
             [
                 'barHeight'      => 150,
                 'unkownProperty' => 'aValue',

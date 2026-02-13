@@ -6,11 +6,11 @@ namespace LaminasTest\Barcode\Object;
 
 use Generator;
 use Laminas\Barcode;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use Traversable;
 
-/**
- * @group      Laminas_Barcode
- */
+#[Group('Laminas_Barcode')]
 class Ean5Test extends AbstractTestCase
 {
     /**
@@ -30,7 +30,7 @@ class Ean5Test extends AbstractTestCase
     /**
      * @return Generator
      */
-    public function checksum()
+    public static function checksum()
     {
         yield ['45678', 2];
         yield ['5678', 0];
@@ -38,10 +38,10 @@ class Ean5Test extends AbstractTestCase
     }
 
     /**
-     * @dataProvider checksum
      * @param string $text
      * @param int $checksum
      */
+    #[DataProvider('checksum')]
     public function testChecksum($text, $checksum)
     {
         $this->assertSame($checksum, $this->object->getChecksum($text));

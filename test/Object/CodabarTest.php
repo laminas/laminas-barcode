@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace LaminasTest\Barcode\Object;
 
 use Laminas\Barcode;
+use PHPUnit\Framework\Attributes\Group;
 use Traversable;
 
-/**
- * @group      Laminas_Barcode
- */
+#[Group('Laminas_Barcode')]
 class CodabarTest extends AbstractTestCase
 {
     /**

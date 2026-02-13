@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace LaminasTest\Barcode\Renderer;
 
+use ArrayObject;
 use Laminas\Barcode;
 use Laminas\Barcode\Object\Code39;
 use Laminas\Barcode\Renderer\AbstractRenderer;
 use Laminas\Barcode\Renderer\Exception\ExceptionInterface;
-use Laminas\Config;
 use LaminasTest\Barcode\Object\TestAsset;
 use PHPUnit\Framework\TestCase;
 use Traversable;
@@ -164,7 +164,7 @@ abstract class AbstractTestCase extends TestCase
 
     public function testConstructorWithLaminasConfig()
     {
-        $config   = new Config\Config(
+        $config   = new ArrayObject(
             [
                 'automaticRenderError' => true,
                 'unkownProperty'       => 'aValue',

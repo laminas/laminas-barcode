@@ -6,11 +6,10 @@ namespace LaminasTest\Barcode\Object;
 
 use Laminas\Barcode;
 use Laminas\Barcode\Object\Exception\ExceptionInterface;
+use PHPUnit\Framework\Attributes\Group;
 use Traversable;
 
-/**
- * @group      Laminas_Barcode
- */
+#[Group('Laminas_Barcode')]
 class Code25Test extends AbstractTestCase
 {
     /**

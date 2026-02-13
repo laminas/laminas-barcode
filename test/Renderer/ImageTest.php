@@ -9,6 +9,8 @@ use Laminas\Barcode\Object\Code39;
 use Laminas\Barcode\Renderer as RendererNS;
 use Laminas\Barcode\Renderer\Exception\ExceptionInterface;
 use LaminasTest\Barcode\AssertIsGdImageTrait;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 use stdClass;
 use Traversable;
 
@@ -17,9 +19,7 @@ use function function_exists;
 use function imagecolortransparent;
 use function imagecreatetruecolor;
 
-/**
- * @group      Laminas_Barcode
- */
+#[Group('Laminas_Barcode')]
 class ImageTest extends AbstractTestCase
 {
     use AssertIsGdImageTrait;
@@ -46,9 +46,7 @@ class ImageTest extends AbstractTestCase
         $this->assertSame('image', $this->renderer->getType());
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testGoodImageResource()
     {
         $imageResource = imagecreatetruecolor(1, 1);
@@ -296,9 +294,7 @@ class ImageTest extends AbstractTestCase
         parent::testTopOffsetOverrideVerticalPosition();
     }
 
-    /**
-     * @group 4708
-     */
+    #[Group('4708')]
     public function testImageGifWithNoTransparency()
     {
         $barcode = new Code39(['text' => '0123456789']);
@@ -314,9 +310,7 @@ class ImageTest extends AbstractTestCase
         $this->assertEquals($index, -1);
     }
 
-    /**
-     * @group 4708
-     */
+    #[Group('4708')]
     public function testImagePngWithNoTransparency()
     {
         $barcode = new Code39(['text' => '0123456789']);
@@ -332,9 +326,7 @@ class ImageTest extends AbstractTestCase
         $this->assertEquals($index, -1);
     }
 
-    /**
-     * @group 4708
-     */
+    #[Group('4708')]
     public function testImageGifWithTransparency()
     {
         $barcode = new Code39(['text' => '0123456789']);
@@ -350,9 +342,7 @@ class ImageTest extends AbstractTestCase
         $this->assertNotEquals(-1, $index);
     }
 
-    /**
-     * @group 4708
-     */
+    #[Group('4708')]
     public function testImagePngWithTransparency()
     {
         $barcode = new Code39(['text' => '0123456789']);

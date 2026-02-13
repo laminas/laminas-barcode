@@ -8,11 +8,11 @@ use Generator;
 use Laminas\Barcode;
 use Laminas\Barcode\Object\Exception\BarcodeValidationException;
 use Laminas\Barcode\Object\Exception\ExceptionInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use Traversable;
 
-/**
- * @group      Laminas_Barcode
- */
+#[Group('Laminas_Barcode')]
 class IdentcodeTest extends AbstractTestCase
 {
     /**
@@ -32,7 +32,7 @@ class IdentcodeTest extends AbstractTestCase
     /**
      * @return Generator
      */
-    public function checksum()
+    public static function checksum()
     {
         yield ['12345678901', 6];
         yield ['709003', 4];
@@ -44,10 +44,10 @@ class IdentcodeTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider checksum
      * @param string $text
      * @param int $checksum
      */
+    #[DataProvider('checksum')]
     public function testChecksum($text, $checksum)
     {
         $this->assertSame($checksum, $this->object->getChecksum($text));
