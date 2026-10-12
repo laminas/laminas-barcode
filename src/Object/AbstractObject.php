@@ -18,6 +18,7 @@ use function floor;
 use function hexdec;
 use function imagefontheight;
 use function implode;
+use function in_array;
 use function intval;
 use function is_array;
 use function is_int;
@@ -32,6 +33,7 @@ use function sin;
 use function sprintf;
 use function str_repeat;
 use function strlen;
+use function strspn;
 use function strtolower;
 use function substr;
 use function trim;
@@ -41,6 +43,25 @@ use function trim;
  */
 abstract class AbstractObject implements ObjectInterface
 {
+    /**
+     * Barcode validator adapters accepting digits only
+     */
+    private const DIGITS_ONLY_ADAPTERS = [
+        'code25',
+        'code25interleaved',
+        'ean13',
+        'ean2',
+        'ean5',
+        'ean8',
+        'identcode',
+        'itf14',
+        'leitcode',
+        'planet',
+        'postnet',
+        'upca',
+        'upce',
+    ];
+
     /**
      * Namespace of the barcode for autoloading
      *
@@ -1320,7 +1341,7 @@ abstract class AbstractObject implements ObjectInterface
 
         $validator = new BarcodeValidator([
             'adapter'     => $validatorName,
-            'usechecksum' => $this->providedChecksum,
+            'useChecksum' => $this->providedChecksum,
         ]);
 
         $checksumCharacter = '';
@@ -1332,10 +1353,44 @@ abstract class AbstractObject implements ObjectInterface
 
         $value = $this->addLeadingZeros($value, $withChecksum) . $checksumCharacter;
 
+        $this->validateDigitsOnly($validatorName, $value);
+
         if (! $validator->isValid($value)) {
             $message = implode("\n", $validator->getMessages());
             throw new Exception\BarcodeValidationException($message);
         }
+    }
+
+    /**
+     * Reject non-digit characters for barcode types accepting digits only
+     *
+     * laminas-validator v3 checks the characters of most of these types with
+     * is_numeric(), which also accepts signs, decimal points and exponents.
+     * A validator without checksum keeps the length error precedence.
+     *
+     * @param string $validatorName
+     * @param string $value
+     * @throws Exception\BarcodeValidationException
+     */
+    protected function validateDigitsOnly($validatorName, $value)
+    {
+        if (
+            ! in_array(strtolower($validatorName), self::DIGITS_ONLY_ADAPTERS, true)
+            || strspn($value, '0123456789') === strlen($value)
+        ) {
+            return;
+        }
+
+        $validator = new BarcodeValidator([
+            'adapter'     => $validatorName,
+            'useChecksum' => false,
+        ]);
+
+        $message = $validator->isValid($value)
+            ? 'The input contains invalid characters'
+            : implode("\n", $validator->getMessages());
+
+        throw new Exception\BarcodeValidationException($message);
     }
 
     /**

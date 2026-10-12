@@ -176,11 +176,13 @@ class Upce extends Ean13
     protected function validateSpecificText($value, $options = [])
     {
         $validator = new BarcodeValidator([
-            'adapter'  => 'upce',
-            'checksum' => false,
+            'adapter'     => 'upce',
+            'useChecksum' => true,
         ]);
 
         $value = $this->addLeadingZeros($value, true);
+
+        $this->validateDigitsOnly('upce', $value);
 
         if (! $validator->isValid($value)) {
             $message = implode("\n", $validator->getMessages());

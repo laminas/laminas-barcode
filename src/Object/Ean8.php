@@ -134,11 +134,13 @@ class Ean8 extends Ean13
     protected function validateSpecificText($value, $options = [])
     {
         $validator = new BarcodeValidator([
-            'adapter'  => 'ean8',
-            'checksum' => false,
+            'adapter'     => 'ean8',
+            'useChecksum' => true,
         ]);
 
         $value = $this->addLeadingZeros($value, true);
+
+        $this->validateDigitsOnly('ean8', $value);
 
         if (! $validator->isValid($value)) {
             $message = implode("\n", $validator->getMessages());
